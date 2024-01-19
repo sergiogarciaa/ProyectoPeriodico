@@ -4,8 +4,9 @@ import java.util.Calendar;
 
 import java.util.List;
 
-import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -65,6 +66,7 @@ public class ImplementacionUsuario implements InterfazUsuario{
 		return null;
 	}
 	
+	/*
 	@Override
 	public boolean iniciarResetPassConEmail(String emailUsuario) {
 		try {
@@ -99,7 +101,7 @@ public class ImplementacionUsuario implements InterfazUsuario{
 			return false;
 		}
 	}
-	
+	*/
 	@Override
 	public boolean modificarContraseñaConToken(UsuarioDTO usuario) {
 		
@@ -136,6 +138,45 @@ public class ImplementacionUsuario implements InterfazUsuario{
 		return repositorio.findFirstByEmailUsuario(email);
 	}
 
+
+	/**
+	 * Metodo que ejecuta la creacion de un usuario administrador con su rol de administrador
+	 */
+	private void inicializarUsuarioAdmin() {
+		// Comprueba si ya existe un usuario admin
+		if (!repositorio.existsByNombreUsuario("admin")) {
+			// Si no existe, crea un nuevo usuario con rol de administrador
+			Usuario admin = new Usuario();
+			admin.setNombreUsuario("admin");
+			admin.setClaveUsuario(passwordEncoder.encode("admin"));
+			admin.setDniUsuario("-");
+			admin.setEmailUsuario("admin@admin.com");
+			admin.setRol("3");
+			repositorio.save(admin);
+			toDto.usuarioToDto(admin);
+			toDto.listaUsuarioToDto(repositorio.findAll());
+		}
+	}
+
+	/**
+	 * Metodo que automatiza la creacion de un usuario administrador que se ejecuta la primera vez que se despliega la aplicacion
+	 */
+	@EventListener(ApplicationReadyEvent.class)
+	public void onApplicationReady() {
+		inicializarUsuarioAdmin();
+	}
+
+	@Override
+	public Usuario eliminar(long id) {
+		Usuario usuario = repositorio.findById(id).orElse(null);
+		if (usuario != null) {
+			repositorio.delete(usuario);
+		} 
+		return usuario;
+		
+	}
+	
+	
 	
 	
 	//ESTOS METODO NO SE USAN DE MOMENTO
@@ -154,19 +195,11 @@ public class ImplementacionUsuario implements InterfazUsuario{
 		return toDto.listaUsuarioToDto(repositorio.findAll());
 	}
 	
-	@Override
-	public boolean cambiarRolAdminPorEmail(String emailUsuario) {
-	    Usuario usuario = repositorio.findFirstByEmailUsuario(emailUsuario);
 
-	    if (usuario != null) {
-	        usuario.setAdmin(!usuario.getAdmin());  // Cambia el estado de administrador
-	        repositorio.save(usuario);  // Guarda los cambios en la base de datos
-	     // Actualizar el UsuarioDTO correspondiente
-	        UsuarioDTO usuarioDTO = toDto.usuarioToDto(usuario);       
-	        return true;
-	    } else {
-	        return false;  // El usuario no se encontró
-	    }
+	@Override
+	public boolean iniciarResetPassConEmail(String emailUsuario) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

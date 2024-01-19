@@ -7,6 +7,7 @@ import proyecto.periodico.dto.UsuarioDTO;
 
 
 public interface InterfazUsuario {
+	
 	/**
 	 * Se registra a un usuario antes comprobando si ya se encuentra en la BBDD registrado el usuario
 	 * @param userDTO El usuario a registrar
@@ -64,5 +65,14 @@ public interface InterfazUsuario {
 	 */
 	public boolean modificarContraseñaConToken(UsuarioDTO usuario);
 
-	public boolean cambiarRolAdminPorEmail(String emailUsuario);
+	/**
+	 * Elimina un usuario por su identificador
+	 * @param id del usuario
+	 * @return el usuario eliminado o null si no existe
+	 */
+	public Usuario eliminar(long id);
+
+
+
+
 }

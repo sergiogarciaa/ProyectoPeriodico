@@ -14,6 +14,8 @@ import jakarta.persistence.Table;
  * Clase DAO (Data Access Object) que representa la tabla usuarios de la BBDD,
  * mapea con esta 1:1 y ejerce como modelo virtual de la tabla en la aplicación.
  */
+
+// Rol: 1 = Usuario, 2 = Periodista, 3 = Administrador
 @Entity
 @Table(name = "usuarios", schema = "prdc_schema")
 public class Usuario {
@@ -54,16 +56,13 @@ public class Usuario {
 	@Column(name = "expiracion_token", nullable = true, length = 100)
 	private Calendar expiracionToken;
 	
-	@Column(name = "periodista", nullable = false)
-	public Boolean periodista = true;
-	
-	@Column(name = "admin", nullable = false)
-	public Boolean admin = false;
+	@Column(name = "rol", nullable = true)
+	private String rol;
 
 	// CONSTRUCTORES
 
 	public Usuario(String dni_usuario, String nombre_usuario, String apellidos_usuario, String tlf_usuario,
-			String email_usuario, String clave_usuario, Boolean admin, Boolean periodista) {
+			String email_usuario, String clave_usuario, String rol) {
 		super();
 		this.dniUsuario = dni_usuario;
 		this.nombreUsuario = nombre_usuario;
@@ -71,8 +70,7 @@ public class Usuario {
 		this.tlfUsuario = tlf_usuario;
 		this.emailUsuario = email_usuario;
 		this.claveUsuario = clave_usuario;
-		this.admin = admin;
-		this.periodista = periodista;
+		this.rol = rol;
 	}
 
 
@@ -165,22 +163,12 @@ public class Usuario {
 		this.expiracionToken = expiracionToken;
 	}
 	
-	public Boolean getPeriodista() {
-		return periodista;
+	public String getRol() {
+		return rol;
 	}
-
-
-	public void setPeriodista(Boolean periodista) {
-		this.periodista = periodista;
-	}
-
-
-	public Boolean getAdmin() {
-		return admin;
-	}
-
-	public void setAdmin(Boolean admin) {
-		this.admin = admin;
+	
+	public void setRol(String rol) {
+		this.rol = rol;
 	}
 
 	
@@ -189,17 +177,16 @@ public class Usuario {
 	@Override
 	public int hashCode() {
 		return Objects.hash(apellidosUsuario, claveUsuario, dniUsuario, emailUsuario, expiracionToken, fchAltaUsuario,
-				fchBajaUsuario, idUsuario, nombreUsuario, tlfUsuario, token, admin, periodista);
+				fchBajaUsuario, idUsuario, nombreUsuario, tlfUsuario, token, rol);
 	}
 	
+	public boolean isAdmin() {
+		if(getRol() == "3")
+			return true;
+		else
+			return false;
+	}
 	
-	public boolean esAdmin() {
-	    return admin != null && admin;
-	}
-	public boolean esPeriodista() {
-	    return periodista != null && periodista;
-	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -216,7 +203,7 @@ public class Usuario {
 				&& Objects.equals(fchAltaUsuario, other.fchAltaUsuario)
 				&& Objects.equals(fchBajaUsuario, other.fchBajaUsuario) && idUsuario == other.idUsuario
 				&& Objects.equals(nombreUsuario, other.nombreUsuario) && Objects.equals(tlfUsuario, other.tlfUsuario)
-				&& Objects.equals(token, other.token) && Objects.equals(admin, other.admin) && Objects.equals(periodista, other.periodista);
+				&& Objects.equals(token, other.token) && Objects.equals(rol, other.rol);
 	}
 
 	@Override
@@ -225,7 +212,7 @@ public class Usuario {
 				+ ", apellidosUsuario=" + apellidosUsuario + ", tlfUsuario=" + tlfUsuario + ", emailUsuario="
 				+ emailUsuario + ", claveUsuario=" + claveUsuario + ", fchAltaUsuario=" + fchAltaUsuario
 				+ ", fchBajaUsuario=" + fchBajaUsuario + ", token=" + token + ", expiracionToken=" + expiracionToken
-				+ ", admin= " + admin + ", periodista= " + periodista +"]";
+				+ ", rol=" + rol +"]";
 	}
 
 }

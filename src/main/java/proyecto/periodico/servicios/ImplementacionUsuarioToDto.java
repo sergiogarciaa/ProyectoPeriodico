@@ -11,7 +11,6 @@ import proyecto.periodico.dto.UsuarioDTO;
 
 @Service
 public class ImplementacionUsuarioToDto implements InterfazUsuarioToDTO {
-	
 	@Override
 	public UsuarioDTO usuarioToDto(Usuario u) {
 		
@@ -25,7 +24,8 @@ public class ImplementacionUsuarioToDto implements InterfazUsuarioToDTO {
 			dto.setClaveUsuario(u.getClaveUsuario());
 			dto.setToken(u.getToken());
 			dto.setExpiracionToken(u.getExpiracionToken());
-			dto.setAdmin(u.getAdmin());
+			dto.setId(u.getIdUsuario());
+			
 			return dto;
 		} catch (Exception e) {
 			System.out.println(
@@ -52,6 +52,5 @@ public class ImplementacionUsuarioToDto implements InterfazUsuarioToDTO {
 		}
 		return null;
 	}
-
 
 }

@@ -1,7 +1,11 @@
 package proyecto.periodico.dto;
 
 import java.util.Calendar;
+import java.util.List;
 import java.util.Objects;
+
+import jakarta.servlet.http.HttpServletRequest;
+
 
 /**
  * Clase DTO (Data Transfer Object) para pasar información entre capas 
@@ -9,6 +13,7 @@ import java.util.Objects;
  */
 public class UsuarioDTO {
 	//ATRIBUTOS
+	private long id;
 	private String nombreUsuario;
 	private String apellidosUsuario;
 	private String dniUsuario;
@@ -19,26 +24,29 @@ public class UsuarioDTO {
 	private String password;
 	private String password2;
 	private Calendar expiracionToken;
-	public Boolean periodista = true;
-	public Boolean admin = true;
+	private String rol;
 
 	//CONSTRUCTORES
 	public UsuarioDTO() {
 	}
 
 	public UsuarioDTO(String dniUsuario, String nombreUsuario, String apellidosUsuario, String tlfUsuario,
-			String emailUsuario, String claveUsuario, Boolean admin, Boolean periodista) {
+			String emailUsuario, String claveUsuario, String rol) {
 		this.dniUsuario = dniUsuario;
 		this.nombreUsuario = nombreUsuario;
 		this.apellidosUsuario = apellidosUsuario;
 		this.tlfUsuario = tlfUsuario;
 		this.emailUsuario = emailUsuario;
 		this.claveUsuario = claveUsuario;
-		this.admin = admin;
-		this.periodista = periodista;
+		this.rol = rol;
 	}
-
 	//GETTERS Y SETTERS
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
 	public String getDniUsuario() {
 		return dniUsuario;
 	}
@@ -118,40 +126,29 @@ public class UsuarioDTO {
 	public void setExpiracionToken(Calendar expiracionToken) {
 		this.expiracionToken = expiracionToken;
 	}
+
+	public String getRol() {
+		return rol;
+	}
 	
-	public Boolean getPeriodista() {
-		return periodista;
+	public void setRol(String rol) {
+		this.rol = rol;
 	}
-
-
-	public void setPeriodista(Boolean periodista) {
-		this.periodista = periodista;
-	}
-
-	public Boolean getAdmin() {
-		return admin;
-	}
-
-	public void setAdmin(Boolean admin) {
-		this.admin = admin;
-	}
-
-
+	
+	
 	//METODOS
 	@Override
 	public int hashCode() {
 		return Objects.hash(apellidosUsuario, claveUsuario, dniUsuario, emailUsuario, expiracionToken, nombreUsuario,
-				password, password2, tlfUsuario, token);
-	}
-
-	public boolean esAdmin() {
-	    return admin != null && admin;
-	}
-	public boolean esPeriodista() {
-	    return periodista != null && periodista;
+				password, password2, tlfUsuario, token, rol);
 	}
 	
-	
+	public boolean isAdmin() {
+		if(getRol() == "3")
+			return true;
+		else
+			return false;
+	}
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -175,7 +172,7 @@ public class UsuarioDTO {
 		return "UsuarioDTO [nombreUsuario=" + nombreUsuario + ", apellidosUsuario=" + apellidosUsuario + ", dniUsuario="
 				+ dniUsuario + ", tlfUsuario=" + tlfUsuario + ", emailUsuario=" + emailUsuario + ", claveUsuario="
 				+ claveUsuario + ", token=" + token + ", password=" + password + ", password2=" + password2
-				+ ", expiracionToken=" + expiracionToken + ", admin=" + admin + ", periodista=" + periodista + "]";
+				+ ", expiracionToken=" + expiracionToken + "]";
 	}
     
 	

@@ -117,17 +117,6 @@ body {
     color: #192255;
     }
 
-/* Estilos para los enlaces (si no hay enlaces quitar)*/
-a {
-    color: inherit; /* O puedes establecer un color espec�fico, por ejemplo: color: #000; */
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: none; /* Quita el subrayado cuando el rat�n est� sobre el enlace */
-    color: inherit; /* Mantiene el color del texto del elemento padre cuando el rat�n est� sobre el enlace */
-}
-
 .mensajeContrasenya {
     text-align: center;
     margin-top: -8px;
