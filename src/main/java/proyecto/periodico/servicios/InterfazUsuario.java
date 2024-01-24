@@ -72,7 +72,7 @@ public interface InterfazUsuario {
 	 */
 	public Usuario eliminar(long id);
 
-
+	public boolean cambiarRolPorEmail(String emailUsuario, String nuevoRol);
 
 
 }

@@ -57,7 +57,7 @@ public class Usuario {
 	private Calendar expiracionToken;
 	
 	@Column(name = "rol", nullable = true)
-	private String rol;
+	private String rol = "ROLE_1";
 
 	// CONSTRUCTORES
 
@@ -181,7 +181,7 @@ public class Usuario {
 	}
 	
 	public boolean isAdmin() {
-		if(getRol() == "3")
+		if(getRol() == "ROLE_3")
 			return true;
 		else
 			return false;

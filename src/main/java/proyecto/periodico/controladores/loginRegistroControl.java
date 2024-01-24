@@ -1,5 +1,6 @@
 package proyecto.periodico.controladores;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.servlet.http.HttpServletRequest;
 import proyecto.periodico.dao.Usuario;
@@ -92,40 +94,66 @@ public class loginRegistroControl {
 	@GetMapping("/privada/index")
 	public String loginCorrecto(Model model, Authentication authentication) {
 		Usuario usuario = usuarioServicio.buscarPorEmail(authentication.getName());
-		String nombreUsuario = usuario.getNombreUsuario() + " " + usuario.getApellidosUsuario();
-		model.addAttribute("nombreUsuario", nombreUsuario);
-		// Agregar información sobre si el usuario es administrador al modelo
-	    model.addAttribute("isAdmin", usuario.getRol());
+		String email = usuario.getEmailUsuario();
+		model.addAttribute("nombreUsuario", email);
+		System.out.println(authentication.getAuthorities());
 		return "index";
 	}
 	
 	@GetMapping("/privada/administracion")
-	public String listadoUsuarios(Model model, HttpServletRequest request, Authentication authentication) {
-		
-		Usuario usuario = usuarioServicio.buscarPorEmail(authentication.getName());
-		// Sacar nombre del usuario logeado
-		String nombreUsuario = usuario.getNombreUsuario();
-		model.addAttribute("nombreUsuario", nombreUsuario);
-		// Sacar si es administrador
-		model.addAttribute("isAdmin", usuario.getRol());
-	
-		// Sacar lista de usuario
+	public String listadoUsuarios(Model model, HttpServletRequest request) {
 		List<UsuarioDTO> usuarios = usuarioServicio.buscarTodos();
-        model.addAttribute("usuarios", usuarios);
-		return "administracion";
+		System.out.println(usuarios);
+		model.addAttribute("usuarios", usuarios);
+		if(request.isUserInRole("ROLE_3") || request.isUserInRole("ROLE_4")) {
+			return "administracion";	
+		} 
+		return "index";
 	}
 	
 	@GetMapping("/privada/eliminar/{id}")
 	public String eliminarUsuario(@PathVariable Long id, Model model, HttpServletRequest request) {
 		Usuario usuario = usuarioServicio.buscarPorId(id);
 		List<UsuarioDTO> usuarios = usuarioServicio.buscarTodos();
-		if(usuario.getRol().equals("3")) {
+		System.out.println(usuario);
+		if(request.isUserInRole("ROLE_4") && usuario.getRol().equals("ROLE_4")) {
 			model.addAttribute("noSePuedeEliminar", "No se puede eliminar a un admin");
 			model.addAttribute("usuarios", usuarios);
-			return "administracion";
+			return "adminstracion";
 		}
 		usuarioServicio.eliminar(id);
 		return "redirect:/privada/administracion";
 		
+	}
+	
+	/**
+	 * Gestiona la solicitud HTTP Post para actualizar los roles
+	 * @return Cambio de rol
+	 */
+	
+	@PostMapping("/privada/administracion/cambiarRol")
+	public String cambiarRol(@RequestParam String emailUsuario, @RequestParam String nuevoRol, Model model) {
+	    Usuario usuario = usuarioServicio.buscarPorEmail(emailUsuario);
+
+	    if ("ROLE_4".equals(usuario.getRol())) {
+	        // Si el usuario es superadmin, no permitir cambiar el rol
+	        model.addAttribute("noSePuedeCambiarRol", "No se puede cambiar el rol del superadmin.");
+	    } else {
+	        boolean exito = usuarioServicio.cambiarRolPorEmail(emailUsuario, nuevoRol);
+
+	        if (exito) {
+	            // Actualiza la lista de usuarios después de cambiar el rol
+	            List<UsuarioDTO> usuarios = usuarioServicio.buscarTodos();
+	            model.addAttribute("usuarios", usuarios);
+	            return "administracion";
+	        } else {
+	            return "error";
+	        }
+	    }
+
+	    // Si no se pudo cambiar el rol, vuelve a la página de administración
+	    List<UsuarioDTO> usuarios = usuarioServicio.buscarTodos();
+	    model.addAttribute("usuarios", usuarios);
+	    return "administracion";
 	}
 }

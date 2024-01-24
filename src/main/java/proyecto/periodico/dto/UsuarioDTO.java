@@ -24,7 +24,7 @@ public class UsuarioDTO {
 	private String password;
 	private String password2;
 	private Calendar expiracionToken;
-	private String rol;
+	private String rol = "ROLE_1";
 
 	//CONSTRUCTORES
 	public UsuarioDTO() {
@@ -135,20 +135,17 @@ public class UsuarioDTO {
 		this.rol = rol;
 	}
 	
-	
 	//METODOS
 	@Override
 	public int hashCode() {
 		return Objects.hash(apellidosUsuario, claveUsuario, dniUsuario, emailUsuario, expiracionToken, nombreUsuario,
-				password, password2, tlfUsuario, token, rol);
+				password, password2, tlfUsuario, token);
 	}
 	
 	public boolean isAdmin() {
-		if(getRol() == "3")
-			return true;
-		else
-			return false;
+		return "ROLE_3".equals(getRol());
 	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

@@ -7,6 +7,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User.UserBuilder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -64,6 +66,21 @@ public class ImplementacionUsuario implements InterfazUsuario{
 			System.out.println("[Error UsuarioServicioImpl - registrar() ]" + e.getMessage());
 		}
 		return null;
+	}
+	/**
+	 * Metodo para cambiar el rol del usuario 
+	 */
+	@Override
+	public boolean cambiarRolPorEmail(String emailUsuario, String nuevoRol) {
+	    Usuario usuario = repositorio.findFirstByEmailUsuario(emailUsuario);
+
+	    if (usuario != null) {
+	        usuario.setRol(nuevoRol);  // Cambia el rol
+	        repositorio.save(usuario);  // Guarda los cambios en la base de datos
+	        return true;
+	    } else {
+	        return false;  // El usuario no se encontró
+	    }
 	}
 	
 	/*
@@ -151,10 +168,8 @@ public class ImplementacionUsuario implements InterfazUsuario{
 			admin.setClaveUsuario(passwordEncoder.encode("admin"));
 			admin.setDniUsuario("-");
 			admin.setEmailUsuario("admin@admin.com");
-			admin.setRol("3");
+			admin.setRol("ROLE_4");
 			repositorio.save(admin);
-			toDto.usuarioToDto(admin);
-			toDto.listaUsuarioToDto(repositorio.findAll());
 		}
 	}
 
@@ -166,17 +181,19 @@ public class ImplementacionUsuario implements InterfazUsuario{
 		inicializarUsuarioAdmin();
 	}
 
+	/**
+	 * Metodo para eliminar
+	 */
 	@Override
 	public Usuario eliminar(long id) {
 		Usuario usuario = repositorio.findById(id).orElse(null);
 		if (usuario != null) {
 			repositorio.delete(usuario);
+			System.out.println("Borrado con exito");
 		} 
 		return usuario;
 		
 	}
-	
-	
 	
 	
 	//ESTOS METODO NO SE USAN DE MOMENTO

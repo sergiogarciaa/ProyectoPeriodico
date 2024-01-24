@@ -10,7 +10,7 @@
 	<link rel="stylesheet" href="../static/css/menu.css" th:href="@{/css/menu.css}">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" th:src="@{/webjars/jquery/jquery.min.js}"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-	<script th:src="@{/script/script.js}"></script>
+	<script src="../static/script/script.js" th:src="@{/script/script.js}"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.2/js/bootstrap.min.js" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </head>
 
@@ -19,7 +19,7 @@
 		<div class="menu">
 			<div class="logo"><a>Biblioteca</a></div>
 			<ul class="nav-links">
-				<li><a th:href="@{/}">Volver</a></li>
+				<li><a class="btn btn-dark mt-2"  th:href="@{/}">Volver</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -37,7 +37,16 @@
 		<form th:action="@{/auth/iniciarRecuperacion}" th:method="get">
     		<button type="submit" class="form-btn negro">Recuperar contraseña</button>
 		</form>
+		
 	</div>
+	
+	<!-- Cuando en la URL exista el parametro error. -->
+	<!-- No funciona -->
+	<script th:if="${param.error}">
+	    error();
+	</script>
+	<!-- ..... -->
+	
 	<script th:if="${not #strings.isEmpty(mensajeRegistroExitoso)}">
 	    mostrarNotificacion("¡Registro exitoso!", "Ahora puede iniciar sesión", 'success');
 	</script>
@@ -47,10 +56,6 @@
 	<script th:if="${not #strings.isEmpty(contraseñaModificadaExito)}">
 	    mostrarNotificacion("¡Exito!", "Se ha modificado con correctamente la contraseña", 'success');
 	</script>
-	<script th:if="${param.error}">
-	    mostrarNotificacion("¡Error!","Las credenciales introducidas no son correctas", 'error');
-	</script>
-	
 </body>
 
 </html>

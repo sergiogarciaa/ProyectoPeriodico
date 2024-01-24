@@ -21,7 +21,11 @@
 				<a>Periodico</a>
 			</div>
 			<ul class="nav-links">
-				<li th:if="${isAdmin}"><a class="btn btn-dark mt-2" th:href="@{/privada/administracion}">Listado Usuarios</a></li>
+				<li>
+					<form sec:authorize="hasAnyRole('ROLE_3', 'ROLE_4')">
+						<button type="button" class="btn btn-dark mt-2"><a style="color: white; text-decoration: none;"th:href="@{/privada/administracion}">Administracion</a></button>
+					</form>
+				</li>
 				<li>
 					<form th:action="@{/auth/logout}" method="post" id="logoutForm">
 						<button type="button" class="btn btn-dark mt-2"

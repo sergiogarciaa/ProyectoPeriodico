@@ -26,6 +26,16 @@ function mostrarNotificacion(titulo, mensaje, tipo) {
     });
 }
 
+function error(){
+	Swal.fire({
+	  icon: "error",
+	  title: "Oops...",
+	  text: "Something went wrong!",
+	  footer: '<a href="#">Why do I have this issue?</a>'
+	});
+}
+
+
 function confirmarLogout() {
     Swal.fire({
         title: '¿Estás seguro de que deseas cerrar sesión?',
@@ -59,8 +69,22 @@ function confirmar() {
 
 function confirmarEliminar(event) {
     const idUsuario = event.currentTarget.getAttribute("data-id");
+    const rol = event.currentTarget.getAttribute("get-rol");
     confirmar().then(function (confirmado) {
-        if (confirmado) {
+   		if (idUsuario == "1")
+   		{
+		return Swal.fire({
+        title: 'No se puede borrar al administrador',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Aceptar'
+    }).then((result) => {
+        return result.isConfirmed;
+    });
+		   }
+        if (confirmado && rol != "ROLE_3") {
             window.location.href = 'http://localhost:8080/privada/eliminar/' + idUsuario;
         }
     });
