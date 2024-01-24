@@ -11,6 +11,8 @@ import jakarta.servlet.http.HttpServletRequest;
  * Clase DTO (Data Transfer Object) para pasar información entre capas 
  * para la gestión de usuarios
  */
+
+//Rol: 1 = Usuario, 2 = Periodista, 3 = Administrador, 4 = SuperAdmin
 public class UsuarioDTO {
 	//ATRIBUTOS
 	private long id;
@@ -21,6 +23,7 @@ public class UsuarioDTO {
 	private String emailUsuario;
 	private String claveUsuario;
 	private String token;
+	private Boolean estado_suscripcion;
 	private String password;
 	private String password2;
 	private Calendar expiracionToken;
@@ -31,13 +34,14 @@ public class UsuarioDTO {
 	}
 
 	public UsuarioDTO(String dniUsuario, String nombreUsuario, String apellidosUsuario, String tlfUsuario,
-			String emailUsuario, String claveUsuario, String rol) {
+			String emailUsuario, String claveUsuario, Boolean estado_suscripcion, String rol) {
 		this.dniUsuario = dniUsuario;
 		this.nombreUsuario = nombreUsuario;
 		this.apellidosUsuario = apellidosUsuario;
 		this.tlfUsuario = tlfUsuario;
 		this.emailUsuario = emailUsuario;
 		this.claveUsuario = claveUsuario;
+		this.estado_suscripcion = estado_suscripcion;
 		this.rol = rol;
 	}
 	//GETTERS Y SETTERS
@@ -135,6 +139,15 @@ public class UsuarioDTO {
 		this.rol = rol;
 	}
 	
+	public Boolean getEstado_suscripcion() {
+		return estado_suscripcion;
+	}
+
+
+	public void setEstado_suscripcion(Boolean estado_suscripcion) {
+		this.estado_suscripcion = estado_suscripcion;
+	}
+	
 	//METODOS
 	@Override
 	public int hashCode() {
@@ -161,14 +174,14 @@ public class UsuarioDTO {
 				&& Objects.equals(expiracionToken, other.expiracionToken)
 				&& Objects.equals(nombreUsuario, other.nombreUsuario) && Objects.equals(password, other.password)
 				&& Objects.equals(password2, other.password2) && Objects.equals(tlfUsuario, other.tlfUsuario)
-				&& Objects.equals(token, other.token);
+				&& Objects.equals(token, other.token) && Objects.equals(estado_suscripcion, other.estado_suscripcion);
 	}
 
 	@Override
 	public String toString() {
 		return "UsuarioDTO [nombreUsuario=" + nombreUsuario + ", apellidosUsuario=" + apellidosUsuario + ", dniUsuario="
 				+ dniUsuario + ", tlfUsuario=" + tlfUsuario + ", emailUsuario=" + emailUsuario + ", claveUsuario="
-				+ claveUsuario + ", token=" + token + ", password=" + password + ", password2=" + password2
+				+ claveUsuario + ", token=" + token + ", estadoSuscripcion=" + estado_suscripcion + ", password=" + password + ", password2=" + password2
 				+ ", expiracionToken=" + expiracionToken + "]";
 	}
     

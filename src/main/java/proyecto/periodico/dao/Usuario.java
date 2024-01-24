@@ -15,7 +15,8 @@ import jakarta.persistence.Table;
  * mapea con esta 1:1 y ejerce como modelo virtual de la tabla en la aplicación.
  */
 
-// Rol: 1 = Usuario, 2 = Periodista, 3 = Administrador
+// Rol: 1 = Usuario, 2 = Periodista, 3 = Administrador, 4 = SuperAdmin
+
 @Entity
 @Table(name = "usuarios", schema = "prdc_schema")
 public class Usuario {
@@ -44,6 +45,9 @@ public class Usuario {
 	@Column(name = "clave_usuario", nullable = false, length = 100)
 	private String claveUsuario;
 
+	@Column(name = "estado_suscripcion")
+	private Boolean estado_suscripcion;
+	
 	@Column(name = "fch_alta_usuario", nullable = true, updatable = false)
 	private Calendar fchAltaUsuario ;
 
@@ -62,7 +66,7 @@ public class Usuario {
 	// CONSTRUCTORES
 
 	public Usuario(String dni_usuario, String nombre_usuario, String apellidos_usuario, String tlf_usuario,
-			String email_usuario, String clave_usuario, String rol) {
+			String email_usuario, String clave_usuario, Boolean estado_suscripcion, String rol) {
 		super();
 		this.dniUsuario = dni_usuario;
 		this.nombreUsuario = nombre_usuario;
@@ -70,6 +74,7 @@ public class Usuario {
 		this.tlfUsuario = tlf_usuario;
 		this.emailUsuario = email_usuario;
 		this.claveUsuario = clave_usuario;
+		this.estado_suscripcion = estado_suscripcion;
 		this.rol = rol;
 	}
 
@@ -171,7 +176,15 @@ public class Usuario {
 		this.rol = rol;
 	}
 
-	
+	public Boolean getEstado_suscripcion() {
+		return estado_suscripcion;
+	}
+
+
+	public void setEstado_suscripcion(Boolean estado_suscripcion) {
+		this.estado_suscripcion = estado_suscripcion;
+	}
+
 
 	// METODOS
 	@Override
@@ -203,7 +216,7 @@ public class Usuario {
 				&& Objects.equals(fchAltaUsuario, other.fchAltaUsuario)
 				&& Objects.equals(fchBajaUsuario, other.fchBajaUsuario) && idUsuario == other.idUsuario
 				&& Objects.equals(nombreUsuario, other.nombreUsuario) && Objects.equals(tlfUsuario, other.tlfUsuario)
-				&& Objects.equals(token, other.token) && Objects.equals(rol, other.rol);
+				&& Objects.equals(token, other.token) && Objects.equals(rol, other.rol) && Objects.equals(estado_suscripcion, other.estado_suscripcion);
 	}
 
 	@Override
@@ -211,7 +224,7 @@ public class Usuario {
 		return "Usuario [idUsuario=" + idUsuario + ", dniUsuario=" + dniUsuario + ", nombreUsuario=" + nombreUsuario
 				+ ", apellidosUsuario=" + apellidosUsuario + ", tlfUsuario=" + tlfUsuario + ", emailUsuario="
 				+ emailUsuario + ", claveUsuario=" + claveUsuario + ", fchAltaUsuario=" + fchAltaUsuario
-				+ ", fchBajaUsuario=" + fchBajaUsuario + ", token=" + token + ", expiracionToken=" + expiracionToken
+				+ ", fchBajaUsuario=" + fchBajaUsuario + ", estadoSuscripcion=" + estado_suscripcion + ", token=" + token + ", expiracionToken=" + expiracionToken
 				+ ", rol=" + rol +"]";
 	}
 
