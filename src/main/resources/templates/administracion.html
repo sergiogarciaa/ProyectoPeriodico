@@ -1,42 +1,50 @@
 <!DOCTYPE html>
-<html lang="es" sec:authorize="hasAnyRole('ROLE_3', 'ROLE_4')" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="es" sec:authorize="hasAnyRole('ROLE_3', 'ROLE_4')" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head>
-<meta charset="UTF-8">
-<title>Listado</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.2/css/bootstrap.min.css"
+	<meta charset="UTF-8">
+	<title>Listado</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.2/css/bootstrap.min.css"
 		th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
 	<link rel="stylesheet" href="../static/css/estilo.css" th:href="@{/css/estilo.css}">
 	<link rel="stylesheet" href="../static/css/menu.css" th:href="@{/css/menu.css}">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+		th:src="@{/webjars/jquery/jquery.min.js}"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<script th:src="@{/script/script.js}"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.2/js/bootstrap.min.js" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.2/js/bootstrap.min.js"
+		th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </head>
+
 <body>
-<nav>
-	<div class="menu">
-		<div class="logo">
-			<a>Administracion</a>
-		</div>
-		<ul class="nav-links">
-			<li>
+	<nav>
+		<div class="menu">
+			<div class="logo">
+				<a>Administracion</a>
+			</div>
+			<ul class="nav-links">
+				<li>
 					<a class="btn btn-dark mt-2" th:href="@{/privada/index}">Volver</a>
 				</li>
-			<li>
-				<form th:action="@{/auth/logout}" method="post" id="logoutForm">
-					<button type="button" class="btn btn-dark mt-2" onclick="confirmarLogout()">Salir</button>
-				</form>
-			</li>
-		</ul>
-	</div>
-</nav>
-<div class="container py-4 mt-5">
+				<li>
+					<form th:action="@{/auth/logout}" method="post" id="logoutForm">
+						<button type="button" class="btn btn-dark mt-2" onclick="confirmarLogout()">Salir</button>
+					</form>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<div class="container py-4 mt-5">
 
 		<div class="card bg-light">
-			<div class="card-header"><h3>Listado usuarios</h3></div>
-			<div class="card-body" >
+			<div class="card-header">
+				<h3>Listado usuarios</h3>
+			</div>
+			<div class="card-body">
 
-				<h5 class="card-title text-center text-danger" th:if="${#lists.isEmpty(usuarios)}">No hay usuarios registrados</h5>
+				<h5 class="card-title text-center text-danger" th:if="${#lists.isEmpty(usuarios)}">No hay usuarios
+					registrados</h5>
 
 				<h4 class="card-title">
 					<a th:href="@{/auth/registrar}" class="btn btn-dark" th:if="${not #lists.isEmpty(usuarios)}">
@@ -52,29 +60,34 @@
 							<th class="table-dark">DNI</th>
 							<th class="table-dark">Rol</th>
 							<th class="table-dark">Editar</th>
-							<th  class="table-dark">Eliminar</th>
+							<th class="table-dark">Eliminar</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr th:each="usuario : ${usuarios}">
 							<td sec:authorize="hasRole('ROLE_1')">
-								<a class="btn btn-dark" th:href="@{/privada/ver/} + ${usuario.id}" th:text="${usuario.id}"></a></td>
+								<a class="btn btn-dark" th:href="@{/privada/ver/} + ${usuario.id}"
+									th:text="${usuario.id}"></a>
+							</td>
 							<td th:text="${usuario. nombreUsuario}"></td>
 							<td th:text="${usuario.apellidosUsuario}"></td>
 							<td th:text="${usuario.emailUsuario}"></td>
 							<td th:text="${usuario.dniUsuario}"></td>
 							<!-- botón de cambio de ROL -->
 							<td>
-								<form sec:authorize="hasAnyRole('ROLE_3', 'ROLE_4')" method="post" th:action="@{/privada/administracion/cambiarRol}">
-							        <input type="hidden" name="emailUsuario" th:value="${usuario.emailUsuario}" />
-							        <select name="nuevoRol">
-							            <option value="ROLE_1" th:selected="${usuario.rol == 'ROLE_1'}">Usuario</option>
-							            <option value="ROLE_2" th:selected="${usuario.rol == 'ROLE_2'}">Periodista</option>
-							            <option value="ROLE_3" th:selected="${usuario.rol == 'ROLE_3'}">Administrador</option>
-							        </select>
-							        <button type="submit" class="btn btn-warning">Cambiar Rol</button>
-							    </form>     	
-							     
+								<form sec:authorize="hasAnyRole('ROLE_3', 'ROLE_4')" method="post"
+									th:action="@{/privada/administracion/cambiarRol}">
+									<input type="hidden" name="emailUsuario" th:value="${usuario.emailUsuario}" />
+									<select name="nuevoRol">
+										<option value="ROLE_1" th:selected="${usuario.rol == 'ROLE_1'}">Usuario</option>
+										<option value="ROLE_2" th:selected="${usuario.rol == 'ROLE_2'}">Periodista
+										</option>
+										<option value="ROLE_3" th:selected="${usuario.rol == 'ROLE_3'}">Administrador
+										</option>
+									</select>
+									<button type="submit" class="btn btn-warning">Cambiar Rol</button>
+								</form>
+
 							</td>
 							<!-- botón de EDITAR -->
 							<td sec:authorize="hasAnyRole('ROLE_3', 'ROLE_4')">
@@ -82,7 +95,8 @@
 							</td>
 							<!-- botón de ELIMINAR -->
 							<td sec:authorize="hasAnyRole('ROLE_3', 'ROLE_4')">
-    							<a class="btn btn-danger" th:attr="data-id=${usuario.id}" th:text="'eliminar'" onclick="confirmarEliminar(event)"></a>
+								<a class="btn btn-danger" th:attr="data-id=${usuario.id}" th:text="'eliminar'"
+									onclick="confirmarEliminar(event)"></a>
 							</td>
 
 						</tr>
@@ -92,10 +106,11 @@
 		</div>
 	</div>
 	<script th:if="${not #strings.isEmpty(noSePuedeCambiarRol)}">
-	    mostrarNotificacion("¡Error!","No se puede cambiar el rol del superadmin.", 'error');
+		mostrarNotificacion("¡Error!", "No se puede cambiar el rol del superadmin.", 'error');
 	</script>
 	<script th:if="${not #strings.isEmpty(noSePuedeEliminar)}">
-	    mostrarNotificacion("¡Error!","No se puede eliminar a un usuario con permisos de administrador", 'error');
+		mostrarNotificacion("¡Error!", "No se puede eliminar a un usuario con permisos de administrador", 'error');
 	</script>
 </body>
+
 </html>

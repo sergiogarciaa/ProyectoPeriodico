@@ -18,7 +18,6 @@ import proyecto.periodico.dao.Usuario;
 import proyecto.periodico.dto.UsuarioDTO;
 import proyecto.periodico.servicios.InterfazUsuario;
 
-
 @Controller
 public class loginRegistroControl {
 
@@ -26,8 +25,11 @@ public class loginRegistroControl {
 	private InterfazUsuario usuarioServicio;
 
 	/**
-	 * Gestiona la solicitud HTTP GET para /auth/login y muestra la página de inicio de sesión
-	 * @param model Modelo que se utiliza para enviar un usuarioDTO vacio a la vista.
+	 * Gestiona la solicitud HTTP GET para /auth/login y muestra la página de inicio
+	 * de sesión
+	 * 
+	 * @param model Modelo que se utiliza para enviar un usuarioDTO vacio a la
+	 *              vista.
 	 * @return La vista de inicio de sesión (login.html).
 	 */
 	@GetMapping("/auth/login")
@@ -36,6 +38,7 @@ public class loginRegistroControl {
 		model.addAttribute("usuarioDTO", new UsuarioDTO());
 		return "login";
 	}
+
 	@GetMapping("/")
 	public String index1() {
 		return "landing";
@@ -46,9 +49,12 @@ public class loginRegistroControl {
 		model.addAttribute("usuarioDTO", new UsuarioDTO());
 		return "landing";
 	}
+
 	/**
 	 * Gestiona la solicitud HTTP GET para mostrar la página de registro.
-	 * @param model Modelo que se utiliza para enviar un usuarioDTO vacio a la vista.
+	 * 
+	 * @param model Modelo que se utiliza para enviar un usuarioDTO vacio a la
+	 *              vista.
 	 * @return La vista de registro de usuario (registrar.html).
 	 */
 	@GetMapping("/auth/registrar")
@@ -59,18 +65,20 @@ public class loginRegistroControl {
 
 	/**
 	 * Procesa la solicitud HTTP POST para registro de un nuevo usuario.
-	 * @param  usuarioDTO El objeto UsuarioDTO que recibe en el modelo y contiene los
-	 *         datos del nuevo usuario.
-	 * @return La vista de inicio de sesión (login.html) si fue exitoso el registro; 
-	 * 		   de lo contrario, la vista de registro de usuario (registro.html).
+	 * 
+	 * @param usuarioDTO El objeto UsuarioDTO que recibe en el modelo y contiene los
+	 *                   datos del nuevo usuario.
+	 * @return La vista de inicio de sesión (login.html) si fue exitoso el registro;
+	 *         de lo contrario, la vista de registro de usuario (registro.html).
 	 */
 	@PostMapping("/auth/registrar")
 	public String registrarPost(@ModelAttribute UsuarioDTO usuarioDTO, Model model) {
 
 		UsuarioDTO nuevoUsuario = usuarioServicio.registrar(usuarioDTO);
-		
+
 		if (nuevoUsuario != null && nuevoUsuario.getDniUsuario() != null) {
-			// Si el usuario y el DNI no son null es que el registro se completo correctamente
+			// Si el usuario y el DNI no son null es que el registro se completo
+			// correctamente
 			model.addAttribute("mensajeRegistroExitoso", "Registro del nuevo usuario OK");
 			return "login";
 		} else {
@@ -85,10 +93,10 @@ public class loginRegistroControl {
 		}
 	}
 
-	
-
 	/**
-	 * Gestiona la solicitud HTTP GET para llevar a la página de home una vez logeado con exito.
+	 * Gestiona la solicitud HTTP GET para llevar a la página de home una vez
+	 * logeado con exito.
+	 * 
 	 * @return La vista de home.html
 	 */
 	@GetMapping("/privada/index")
@@ -99,61 +107,82 @@ public class loginRegistroControl {
 		System.out.println(authentication.getAuthorities());
 		return "index";
 	}
+
+	/**
+	 * Maneja la solicitud HTTP GET para mostrar la página de administración de usuarios.
+	 * Si el usuario autenticado tiene el rol "ROLE_3" o "ROLE_4", se muestra la lista de usuarios;
+	 * de lo contrario, se redirige a la página de inicio.
+	 * @param model Modelo utilizado para enviar la lista de usuarios a la vista.
+	 * @param request HttpServletRequest para obtener información sobre la autenticación del usuario.
+	 * @return La vista correspondiente ("administracion" o "index").
+	 */
 	
 	@GetMapping("/privada/administracion")
 	public String listadoUsuarios(Model model, HttpServletRequest request) {
 		List<UsuarioDTO> usuarios = usuarioServicio.buscarTodos();
 		System.out.println(usuarios);
 		model.addAttribute("usuarios", usuarios);
-		if(request.isUserInRole("ROLE_3") || request.isUserInRole("ROLE_4")) {
-			return "administracion";	
-		} 
+		if (request.isUserInRole("ROLE_3") || request.isUserInRole("ROLE_4")) {
+			return "administracion";
+		}
 		return "index";
 	}
+	
+	/**
+	 * Maneja la solicitud HTTP GET para eliminar a un usuario por su ID.
+	 * Si el usuario autenticado tiene el rol "ROLE_4" y el usuario a eliminar también tiene ese rol,
+	 * se muestra un mensaje indicando que no se puede eliminar a un administrador.
+	 * En cualquier otro caso, se elimina al usuario por su ID y se redirige a la página de administración.
+	 * @param id ID del usuario a eliminar.
+	 * @param model Modelo utilizado para enviar mensajes y la lista actualizada de usuarios a la vista.
+	 * @param request HttpServletRequest para obtener información sobre la autenticación del usuario.
+	 * @return La vista correspondiente ("administracion" o redirección a "/privada/administracion").
+	 */
 	
 	@GetMapping("/privada/eliminar/{id}")
 	public String eliminarUsuario(@PathVariable Long id, Model model, HttpServletRequest request) {
 		Usuario usuario = usuarioServicio.buscarPorId(id);
 		List<UsuarioDTO> usuarios = usuarioServicio.buscarTodos();
 		System.out.println(usuario);
-		if(request.isUserInRole("ROLE_4") && usuario.getRol().equals("ROLE_4")) {
+		if (request.isUserInRole("ROLE_4") && usuario.getRol().equals("ROLE_4")) {
 			model.addAttribute("noSePuedeEliminar", "No se puede eliminar a un admin");
 			model.addAttribute("usuarios", usuarios);
 			return "adminstracion";
 		}
 		usuarioServicio.eliminar(id);
 		return "redirect:/privada/administracion";
-		
+
 	}
-	
+
 	/**
 	 * Gestiona la solicitud HTTP Post para actualizar los roles
+	 * 
 	 * @return Cambio de rol
 	 */
-	
+
 	@PostMapping("/privada/administracion/cambiarRol")
 	public String cambiarRol(@RequestParam String emailUsuario, @RequestParam String nuevoRol, Model model) {
-	    Usuario usuario = usuarioServicio.buscarPorEmail(emailUsuario);
+		Usuario usuario = usuarioServicio.buscarPorEmail(emailUsuario);
 
-	    if ("ROLE_4".equals(usuario.getRol())) {
-	        // Si el usuario es superadmin, no permitir cambiar el rol
-	        model.addAttribute("noSePuedeCambiarRol", "No se puede cambiar el rol del superadmin.");
-	    } else {
-	        boolean exito = usuarioServicio.cambiarRolPorEmail(emailUsuario, nuevoRol);
+		if ("ROLE_4".equals(usuario.getRol())) {
+			// Si el usuario es superadmin, no permitir cambiar el rol
+			model.addAttribute("noSePuedeCambiarRol", "No se puede cambiar el rol del superadmin.");
+		} else {
+			boolean exito = usuarioServicio.cambiarRolPorEmail(emailUsuario, nuevoRol);
 
-	        if (exito) {
-	            // Actualiza la lista de usuarios después de cambiar el rol
-	            List<UsuarioDTO> usuarios = usuarioServicio.buscarTodos();
-	            model.addAttribute("usuarios", usuarios);
-	            return "administracion";
-	        } else {
-	            return "error";
-	        }
-	    }
+			if (exito) {
+				// Actualiza la lista de usuarios después de cambiar el rol
+				List<UsuarioDTO> usuarios = usuarioServicio.buscarTodos();
+				model.addAttribute("usuarios", usuarios);
+				return "administracion";
+			} else {
+				return "error";
+			}
+		}
 
-	    // Si no se pudo cambiar el rol, vuelve a la página de administración
-	    List<UsuarioDTO> usuarios = usuarioServicio.buscarTodos();
-	    model.addAttribute("usuarios", usuarios);
-	    return "administracion";
+		// Si no se pudo cambiar el rol, vuelve a la página de administración
+		List<UsuarioDTO> usuarios = usuarioServicio.buscarTodos();
+		model.addAttribute("usuarios", usuarios);
+		return "administracion";
 	}
 }

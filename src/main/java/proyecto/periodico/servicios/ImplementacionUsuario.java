@@ -67,9 +67,16 @@ public class ImplementacionUsuario implements InterfazUsuario{
 		}
 		return null;
 	}
-	/**
-	 * Metodo para cambiar el rol del usuario 
-	 */
+
+
+	 /**
+     * Método para cambiar el rol del usuario.
+     * 
+     * @param emailUsuario Email del usuario cuyo rol se desea cambiar.
+     * @param nuevoRol     Nuevo rol que se asignará al usuario.
+     * @return true si el cambio de rol fue exitoso, false si no se encontró al usuario.
+     */
+	
 	@Override
 	public boolean cambiarRolPorEmail(String emailUsuario, String nuevoRol) {
 	    Usuario usuario = repositorio.findFirstByEmailUsuario(emailUsuario);
@@ -119,6 +126,14 @@ public class ImplementacionUsuario implements InterfazUsuario{
 		}
 	}
 	*/
+	
+    /**
+     * Método para modificar la contraseña del usuario utilizando un token.
+     * 
+     * @param usuario Objeto UsuarioDTO que contiene el token y la nueva contraseña.
+     * @return true si la modificación de contraseña fue exitosa, false si el token no se encontró.
+     */
+	
 	@Override
 	public boolean modificarContraseñaConToken(UsuarioDTO usuario) {
 		
@@ -136,6 +151,14 @@ public class ImplementacionUsuario implements InterfazUsuario{
 		return false;
 	}
 	
+	
+	/**
+     * Método para obtener un usuario por su token.
+     * 
+     * @param token Token del usuario que se desea obtener.
+     * @return UsuarioDTO si se encuentra el usuario, null si no existe un usuario con el token proporcionado.
+     */
+	
 	@Override
 	public UsuarioDTO obtenerUsuarioPorToken(String token) {
 		Usuario usuarioExistente = repositorio.findByToken(token);
@@ -150,6 +173,14 @@ public class ImplementacionUsuario implements InterfazUsuario{
 		
 	}
 	
+	/**
+     * Método para buscar un usuario por su dirección de correo electrónico.
+     * 
+     * @param email Dirección de correo electrónico del usuario que se desea buscar.
+     * @return Usuario si se encuentra el usuario, null si no existe un usuario con el email proporcionado.
+     */
+
+	
 	@Override
 	public Usuario buscarPorEmail(String email) {
 		return repositorio.findFirstByEmailUsuario(email);
@@ -157,8 +188,8 @@ public class ImplementacionUsuario implements InterfazUsuario{
 
 
 	/**
-	 * Metodo que ejecuta la creacion de un usuario administrador con su rol de administrador
-	 */
+     * Método que ejecuta la creación de un usuario administrador con su rol de administrador.
+     */
 	private void inicializarUsuarioAdmin() {
 		// Comprueba si ya existe un usuario admin
 		if (!repositorio.existsByNombreUsuario("admin")) {
@@ -173,17 +204,20 @@ public class ImplementacionUsuario implements InterfazUsuario{
 		}
 	}
 
-	/**
-	 * Metodo que automatiza la creacion de un usuario administrador que se ejecuta la primera vez que se despliega la aplicacion
-	 */
+	 /**
+     * Método que automatiza la creación de un usuario administrador que se ejecuta la primera vez que se despliega la aplicación.
+     */
 	@EventListener(ApplicationReadyEvent.class)
 	public void onApplicationReady() {
 		inicializarUsuarioAdmin();
 	}
 
 	/**
-	 * Metodo para eliminar
-	 */
+     * Método para eliminar un usuario por su ID.
+     * 
+     * @param id ID del usuario que se desea eliminar.
+     * @return Usuario que fue eliminado, null si no se encontró un usuario con el ID proporcionado.
+     */
 	@Override
 	public Usuario eliminar(long id) {
 		Usuario usuario = repositorio.findById(id).orElse(null);
@@ -195,8 +229,11 @@ public class ImplementacionUsuario implements InterfazUsuario{
 		
 	}
 	
-	
-	//ESTOS METODO NO SE USAN DE MOMENTO
+	@Override
+	public List<UsuarioDTO> buscarTodos() {	
+		return toDto.listaUsuarioToDto(repositorio.findAll());
+	}
+
 	@Override
 	public boolean buscarPorDni(String dni) {
 		return repositorio.existsByDniUsuario(dni);
@@ -206,12 +243,6 @@ public class ImplementacionUsuario implements InterfazUsuario{
 	public Usuario buscarPorId(long id) {
 		return repositorio.findById(id).orElse(null);
 	}
-
-	@Override
-	public List<UsuarioDTO> buscarTodos() {	
-		return toDto.listaUsuarioToDto(repositorio.findAll());
-	}
-	
 
 	@Override
 	public boolean iniciarResetPassConEmail(String emailUsuario) {
