@@ -2,7 +2,10 @@ package proyecto.periodico.controladores;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +22,7 @@ import proyecto.periodico.dto.UsuarioDTO;
 import proyecto.periodico.servicios.ImplementacionUsuarioToDto;
 import proyecto.periodico.servicios.InterfazUsuario;
 import proyecto.periodico.servicios.InterfazUsuarioToDTO;
+import proyecto.periodico.servicios.InterfazUsuarioToDao;
 
 
 @Controller
@@ -26,6 +30,8 @@ public class administracionControl {
 
 	@Autowired
 	private InterfazUsuario usuarioServicio;
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 
 	
 	/**
@@ -83,26 +89,42 @@ public class administracionControl {
 	 @GetMapping("/privada/editar/{id}")
 	    public String editarUsuario(@PathVariable Long id, Model model) {
 		 	Usuario usuarioDAO = usuarioServicio.buscarPorId(id);
+		 	 System.out.println("----------" + usuarioDAO.getClaveUsuario());
 		 	InterfazUsuarioToDTO it = new ImplementacionUsuarioToDto();
 		 	UsuarioDTO usuarioDTO = it.usuarioToDto(usuarioDAO);
+		 	System.out.println("----------" + usuarioDAO.getClaveUsuario());
+		 	System.out.println("----------" + usuarioDTO.getClaveUsuario());
 		 	// Comprobar si el usuario es superAdmin
 		 	if ("ROLE_4".equals(usuarioDAO.getRol())) {
 				// Si el usuario es superadmin, no permitir cambiar el rol
 				model.addAttribute("noSePuedeCambiarRol", "No se puede cambiar el rol del superadmin.");
 				return "administracion";
-		 	}
-			else if (usuarioDTO != null) {
+		 	} else {
 	            model.addAttribute("usuarioDTO", usuarioDTO);
 	            return "edicionAdmin";
-	        } else {
-	            // Manejar el caso cuando no se encuentra el usuario
-	            return "redirect:/privada/administracion"; 
 	        }
 	    }
 
-	    @PostMapping("/guardarEdicion")
-	    public String guardarEdicion(@ModelAttribute("usuarioDTO") UsuarioDTO usuarioDTO) {	
-			usuarioServicio.actualizarUsuario(usuarioDTO);
-			 return "redirect:/privada/index";
-	    }
+	 @PostMapping("/guardarEdicion")
+	 public String guardarEdicion(@ModelAttribute("usuarioDTO") UsuarioDTO usuarioDTO) {
+		 
+		 // Obtener el usuario existente de la base de datoS
+	
+	     Usuario usuarioExistente = usuarioServicio.buscarPorId(usuarioDTO.getId());
+
+	     // Mantener la contraseña existente si no se proporciona una nueva contraseña
+	     if (StringUtils.isEmpty(usuarioDTO.getClaveUsuario())) {
+	         usuarioDTO.setClaveUsuario(usuarioExistente.getClaveUsuario());
+	     } else {
+	         // La contraseña se ha proporcionado en texto plano, cifrarla antes de actualizarla
+	         usuarioDTO.setClaveUsuario(passwordEncoder.encode(usuarioDTO.getClaveUsuario()));
+	     }
+
+	  
+	     // Guardar el usuario actualizado en la base de datos
+	     usuarioServicio.actualizarUsuario(usuarioDTO);
+
+	     return "redirect:/privada/index";
+	 }
+
 }

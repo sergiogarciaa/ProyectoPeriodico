@@ -249,7 +249,6 @@ public class ImplementacionUsuario implements InterfazUsuario {
 		try {
 			// Convierte el DTO a entidad DAO
 			Usuario usuarioDao = toDao.usuarioToDao(usuarioDTO);
-
 			// Actualiza la información en la base de datos
 			Usuario usuarioActualizado = repositorio.save(usuarioDao);
 			// Actualiza el DTO con la información de la base de datos

@@ -24,5 +24,4 @@ public interface InterfazUsuarioToDao {
 	 */
 	public List<Usuario> listUsuarioToDao(List<UsuarioDTO>listaUsuarioDTO);
 
-	Usuario usuarioToDaoAct(UsuarioDTO usuarioDTO);
 }
