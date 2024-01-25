@@ -6,14 +6,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.biblioteca.servicios.UsuarioServicioImpl;
+
 import jakarta.servlet.http.HttpServletRequest;
 import proyecto.periodico.dao.Usuario;
 import proyecto.periodico.dto.UsuarioDTO;
+import proyecto.periodico.servicios.ImplementacionUsuarioToDto;
 import proyecto.periodico.servicios.InterfazUsuario;
+import proyecto.periodico.servicios.InterfazUsuarioToDTO;
 
 
 @Controller
@@ -71,35 +76,33 @@ public class administracionControl {
 	}
 
 	/**
-	 * Gestiona la solicitud HTTP Post para actualizar los roles
+	 * Gestiona la solicitud HTTP Post para editar Usuario y actualizar los roles
 	 * 
-	 * @return Cambio de rol
+	 * @return Edicon de usuario y cambio de rol
 	 */
-
-	@PostMapping("/privada/administracion/cambiarRol")
-	public String cambiarRol(@RequestParam String emailUsuario, @RequestParam String nuevoRol, Model model) {
-		Usuario usuario = usuarioServicio.buscarPorEmail(emailUsuario);
-		
-
-		if ("ROLE_4".equals(usuario.getRol())) {
-			// Si el usuario es superadmin, no permitir cambiar el rol
-			model.addAttribute("noSePuedeCambiarRol", "No se puede cambiar el rol del superadmin.");
-		} else {
-			boolean exito = usuarioServicio.cambiarRolPorEmail(emailUsuario, nuevoRol);
-
-			if (exito) {
-				// Actualiza la lista de usuarios después de cambiar el rol
-				List<UsuarioDTO> usuarios = usuarioServicio.buscarTodos();
-				model.addAttribute("usuarios", usuarios);
+	 @GetMapping("/privada/editar/{id}")
+	    public String editarUsuario(@PathVariable Long id, Model model) {
+		 	Usuario usuarioDAO = usuarioServicio.buscarPorId(id);
+		 	InterfazUsuarioToDTO it = new ImplementacionUsuarioToDto();
+		 	UsuarioDTO usuarioDTO = it.usuarioToDto(usuarioDAO);
+		 	// Comprobar si el usuario es superAdmin
+		 	if ("ROLE_4".equals(usuarioDAO.getRol())) {
+				// Si el usuario es superadmin, no permitir cambiar el rol
+				model.addAttribute("noSePuedeCambiarRol", "No se puede cambiar el rol del superadmin.");
 				return "administracion";
-			} else {
-				return "error";
-			}
-		}
+		 	}
+			else if (usuarioDTO != null) {
+	            model.addAttribute("usuarioDTO", usuarioDTO);
+	            return "edicionAdmin";
+	        } else {
+	            // Manejar el caso cuando no se encuentra el usuario
+	            return "redirect:/privada/administracion"; 
+	        }
+	    }
 
-		// Si no se pudo cambiar el rol, vuelve a la página de administración
-		List<UsuarioDTO> usuarios = usuarioServicio.buscarTodos();
-		model.addAttribute("usuarios", usuarios);
-		return "administracion";
-	}
+	    @PostMapping("/guardarEdicion")
+	    public String guardarEdicion(@ModelAttribute("usuarioDTO") UsuarioDTO usuarioDTO) {	
+			usuarioServicio.actualizarUsuario(usuarioDTO);
+			 return "redirect:/privada/index";
+	    }
 }

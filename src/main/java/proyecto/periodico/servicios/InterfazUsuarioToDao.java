@@ -23,4 +23,6 @@ public interface InterfazUsuarioToDao {
 	 * @return Lista de usuarios DAO
 	 */
 	public List<Usuario> listUsuarioToDao(List<UsuarioDTO>listaUsuarioDTO);
+
+	Usuario usuarioToDaoAct(UsuarioDTO usuarioDTO);
 }

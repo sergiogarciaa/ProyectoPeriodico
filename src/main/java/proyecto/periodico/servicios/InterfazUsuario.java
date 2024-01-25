@@ -71,8 +71,14 @@ public interface InterfazUsuario {
 	 * @return el usuario eliminado o null si no existe
 	 */
 	public Usuario eliminar(long id);
-
-	public boolean cambiarRolPorEmail(String emailUsuario, String nuevoRol);
-
+	
+	
+	public void actualizarUsuario(UsuarioDTO usuarioDTO);
+	/**
+     * Método para buscar un usuario por ID.
+     * @param id Identificador del usuario.
+     * @return El DTO del usuario encontrado o null si no existe.
+     */
+    public UsuarioDTO buscarDtoPorId(Long id);
 
 }

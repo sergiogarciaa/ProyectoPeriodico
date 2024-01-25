@@ -18,12 +18,14 @@ public class ImplementacionUsuarioToDao implements InterfazUsuarioToDao {
 		Usuario usuarioDao = new Usuario();
 
 		try {
+			usuarioDao.setIdUsuario(usuarioDTO.getId());
 			usuarioDao.setNombreUsuario(usuarioDTO.getNombreUsuario());
 			usuarioDao.setApellidosUsuario(usuarioDTO.getApellidosUsuario());
 			usuarioDao.setEmailUsuario(usuarioDTO.getEmailUsuario());
 			usuarioDao.setClaveUsuario(usuarioDTO.getClaveUsuario());
 			usuarioDao.setTlfUsuario(usuarioDTO.getTlfUsuario());
 			usuarioDao.setDniUsuario(usuarioDTO.getDniUsuario());
+			usuarioDao.setRol(usuarioDTO.getRol());
 			
 			return usuarioDao;
 
@@ -36,6 +38,28 @@ public class ImplementacionUsuarioToDao implements InterfazUsuarioToDao {
 
 	}
 
+	@Override
+	public Usuario usuarioToDaoAct(UsuarioDTO usuarioDTO) {
+
+		Usuario usuarioDao = new Usuario();
+
+		try {
+			usuarioDao.setNombreUsuario(usuarioDTO.getNombreUsuario());
+			usuarioDao.setApellidosUsuario(usuarioDTO.getApellidosUsuario());
+			usuarioDao.setEmailUsuario(usuarioDTO.getEmailUsuario());
+			usuarioDao.setClaveUsuario(usuarioDTO.getClaveUsuario());
+			usuarioDao.setTlfUsuario(usuarioDTO.getTlfUsuario());
+			
+			return usuarioDao;
+
+		} catch (Exception e) {
+			System.out.println(
+					"\n[ERROR UsuarioToDaoImpl - toUsuarioDao()] - Al convertir usuarioDTO a usuarioDAO (return null): "
+							+ e);
+			return null;
+		}
+
+	}
 	@Override
 	public List<Usuario> listUsuarioToDao(List<UsuarioDTO> listaUsuarioDTO) {
 

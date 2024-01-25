@@ -58,7 +58,6 @@
 							<th class="table-dark">apellidos</th>
 							<th class="table-dark">email</th>
 							<th class="table-dark">DNI</th>
-							<th class="table-dark">Rol</th>
 							<th class="table-dark">Editar</th>
 							<th class="table-dark">Eliminar</th>
 						</tr>
@@ -73,23 +72,9 @@
 							<td th:text="${usuario.apellidosUsuario}"></td>
 							<td th:text="${usuario.emailUsuario}"></td>
 							<td th:text="${usuario.dniUsuario}"></td>
-							<!-- botón de cambio de ROL -->
-							<td>
-								<form sec:authorize="hasAnyRole('ROLE_3', 'ROLE_4')" method="post"
-									th:action="@{/privada/administracion/cambiarRol}">
-									<input type="hidden" name="emailUsuario" th:value="${usuario.emailUsuario}" />
-									<select name="nuevoRol" >
-										<option value="ROLE_1">Usuario</option>
-										<option value="ROLE_2">Periodista</option>
-										<option value="ROLE_3">Administrador</option>
-									</select>
-									<button type="submit" class="btn btn-warning">Cambiar Rol</button>
-								</form>
-
-							</td>
-							<!-- botón de EDITAR -->
+							<!-- botón de EDITAR, dentro está el cambio de rol -->
 							<td sec:authorize="hasAnyRole('ROLE_3', 'ROLE_4')">
-								<a class="btn btn-primary" th:href="@{/form/} + ${usuario.id}" th:text="'editar'"></a>
+							    <a class="btn btn-primary" th:attr="data-id=${usuario.id}" onclick="confirmarEdicion(event)" th:text="'Editar'"></a>
 							</td>
 							<!-- botón de ELIMINAR -->
 							<td sec:authorize="hasAnyRole('ROLE_3', 'ROLE_4')">

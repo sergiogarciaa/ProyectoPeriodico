@@ -65,9 +65,10 @@ public class Usuario {
 
 	// CONSTRUCTORES
 
-	public Usuario(String dni_usuario, String nombre_usuario, String apellidos_usuario, String tlf_usuario,
+	public Usuario(Long idUsuario ,String dni_usuario, String nombre_usuario, String apellidos_usuario, String tlf_usuario,
 			String email_usuario, String clave_usuario, Boolean estado_suscripcion, String rol) {
 		super();
+		this.idUsuario = idUsuario;
 		this.dniUsuario = dni_usuario;
 		this.nombreUsuario = nombre_usuario;
 		this.apellidosUsuario = apellidos_usuario;
@@ -87,6 +88,11 @@ public class Usuario {
 	public long getIdUsuario() {
 		return idUsuario;
 	}
+
+	public void setIdUsuario(long idUsuario) {
+		this.idUsuario = idUsuario;
+	}
+
 
 	public String getDniUsuario() {
 		return dniUsuario;

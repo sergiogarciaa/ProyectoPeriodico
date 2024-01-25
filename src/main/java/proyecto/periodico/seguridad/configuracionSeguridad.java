@@ -66,7 +66,7 @@ public class configuracionSeguridad {
             .authorizeHttpRequests(auth -> 
                 auth
                 	// Permite el acceso público a ciertos recursos y direcciones de URL que no requieren autenticación.
-                    .requestMatchers("/", "/webjars/**", "/css/**", "/script/**", "/auth/**").permitAll()
+                    .requestMatchers("/", "/webjars/**", "/css/**", "/script/**", "/auth/**", "/landing/**").permitAll()
                     .anyRequest().authenticated()// Exige autenticación para cualquier otra solicitud.
             )
             // Configura el proceso de inicio de sesión y la página de inicio de sesión.
@@ -77,6 +77,7 @@ public class configuracionSeguridad {
                     .failureUrl("/login?error=true") // Redirección en caso de error
                     .defaultSuccessUrl("/privada/index", true) // Establece la URL de redirección después de un inicio de sesión exitoso.
                     .loginProcessingUrl("/auth/login-post") // Establece la URL de procesamiento del formulario de inicio de sesión.
+
             )
             // Configura el proceso de cierre de sesión.
             .logout(logout ->
