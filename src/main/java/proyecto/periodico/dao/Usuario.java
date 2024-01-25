@@ -1,6 +1,7 @@
 package proyecto.periodico.dao;
 
 import java.util.Calendar;
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Column;
@@ -8,6 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 /**
@@ -62,6 +64,9 @@ public class Usuario {
 	
 	@Column(name = "rol", nullable = true)
 	private String rol = "ROLE_1";
+	
+	@OneToMany(mappedBy = "usuario")
+    private List<Noticia> noticias;
 
 	// CONSTRUCTORES
 
@@ -190,14 +195,22 @@ public class Usuario {
 	public void setEstado_suscripcion(Boolean estado_suscripcion) {
 		this.estado_suscripcion = estado_suscripcion;
 	}
+	
+	public List<Noticia> getNoticias() {
+        return noticias;
+    }
+
+    public void setNoticias(List<Noticia> noticias) {
+        this.noticias = noticias;
+    }
 
 
 	// METODOS
-	@Override
-	public int hashCode() {
-		return Objects.hash(apellidosUsuario, claveUsuario, dniUsuario, emailUsuario, expiracionToken, fchAltaUsuario,
-				fchBajaUsuario, idUsuario, nombreUsuario, tlfUsuario, token, rol);
-	}
+//	@Override
+//	public int hashCode() {
+//		return Objects.hash(apellidosUsuario, claveUsuario, dniUsuario, emailUsuario, expiracionToken, fchAltaUsuario,
+//				fchBajaUsuario, idUsuario, nombreUsuario, tlfUsuario, token, rol);
+//	}
 	
 	public boolean isAdmin() {
 		if(getRol() == "ROLE_3")
@@ -206,6 +219,25 @@ public class Usuario {
 			return false;
 	}
 	
+
+	@Override
+	public String toString() {
+		return "Usuario [idUsuario=" + idUsuario + ", dniUsuario=" + dniUsuario + ", nombreUsuario=" + nombreUsuario
+				+ ", apellidosUsuario=" + apellidosUsuario + ", tlfUsuario=" + tlfUsuario + ", emailUsuario="
+				+ emailUsuario + ", claveUsuario=" + claveUsuario + ", fchAltaUsuario=" + fchAltaUsuario
+				+ ", fchBajaUsuario=" + fchBajaUsuario + ", estadoSuscripcion=" + estado_suscripcion + ", token=" + token + ", expiracionToken=" + expiracionToken
+				+ ", rol=" + rol +"]";
+	}
+
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(apellidosUsuario, claveUsuario, dniUsuario, emailUsuario, estado_suscripcion,
+				expiracionToken, fchAltaUsuario, fchBajaUsuario, idUsuario, nombreUsuario, noticias, rol, tlfUsuario,
+				token);
+	}
+
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -218,20 +250,13 @@ public class Usuario {
 		return Objects.equals(apellidosUsuario, other.apellidosUsuario)
 				&& Objects.equals(claveUsuario, other.claveUsuario) && Objects.equals(dniUsuario, other.dniUsuario)
 				&& Objects.equals(emailUsuario, other.emailUsuario)
+				&& Objects.equals(estado_suscripcion, other.estado_suscripcion)
 				&& Objects.equals(expiracionToken, other.expiracionToken)
 				&& Objects.equals(fchAltaUsuario, other.fchAltaUsuario)
 				&& Objects.equals(fchBajaUsuario, other.fchBajaUsuario) && idUsuario == other.idUsuario
-				&& Objects.equals(nombreUsuario, other.nombreUsuario) && Objects.equals(tlfUsuario, other.tlfUsuario)
-				&& Objects.equals(token, other.token) && Objects.equals(rol, other.rol) && Objects.equals(estado_suscripcion, other.estado_suscripcion);
-	}
-
-	@Override
-	public String toString() {
-		return "Usuario [idUsuario=" + idUsuario + ", dniUsuario=" + dniUsuario + ", nombreUsuario=" + nombreUsuario
-				+ ", apellidosUsuario=" + apellidosUsuario + ", tlfUsuario=" + tlfUsuario + ", emailUsuario="
-				+ emailUsuario + ", claveUsuario=" + claveUsuario + ", fchAltaUsuario=" + fchAltaUsuario
-				+ ", fchBajaUsuario=" + fchBajaUsuario + ", estadoSuscripcion=" + estado_suscripcion + ", token=" + token + ", expiracionToken=" + expiracionToken
-				+ ", rol=" + rol +"]";
+				&& Objects.equals(nombreUsuario, other.nombreUsuario) && Objects.equals(noticias, other.noticias)
+				&& Objects.equals(rol, other.rol) && Objects.equals(tlfUsuario, other.tlfUsuario)
+				&& Objects.equals(token, other.token);
 	}
 
 }
