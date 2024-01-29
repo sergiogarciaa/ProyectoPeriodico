@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es" sec:authorize="hasAnyRole('ROLE_2', 'ROLE_4')" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Listado</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.2/css/bootstrap.min.css"
+		th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+	<link rel="stylesheet" href="../static/css/estilo.css" th:href="@{/css/estilo.css}">
+	<link rel="stylesheet" href="../static/css/menu.css" th:href="@{/css/menu.css}">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+		th:src="@{/webjars/jquery/jquery.min.js}"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script th:src="@{/script/script.js}"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.2/js/bootstrap.min.js"
+		th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</head>
+
+<body>
+	<nav>
+		<div class="menu">
+			<div class="logo">
+				<a>Zona Periodista</a>
+			</div>
+			<ul class="nav-links">
+				<li>
+					<a class="btn btn-dark mt-2" th:href="@{/privada/index}">Volver</a>
+				</li>
+				<li>
+					<form th:action="@{/auth/logout}" method="post" id="logoutForm">
+						<button type="button" class="btn btn-dark mt-2" onclick="confirmarLogout()">Salir</button>
+					</form>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<div class="container py-4 mt-5">
+
+		<div class="card bg-light">
+			<div class="card-header">
+				<h3>Imagina y Crea</h3>
+				<div class="contenedor form-registro">
+	         	
+	         		<form class="form" th:action="@{/guardarNoticia}" method="post" th:object="${noticiaDTO}">
+					    <input type="hidden" id="idNoticia" name="idNoticia" th:value="*{idNoticia}">
+					    
+					    <input type="text" id="tituloNoticia" name="tituloNoticia" class="input" placeholder="Título de la Noticia"
+					        required th:value="*{tituloNoticia}">
+					    
+					    <textarea id="descNoticia" name="descNoticia" class="input" placeholder="Descripción de la Noticia"
+					        required th:text="*{descNoticia}"></textarea>
+					    
+					    <!-- Nuevo campo de selección para CategoriaDTO -->
+					    <select id="categoria" name="idCategoria" class="input" required>
+					        <option th:each="categoria : ${categoriasDTO}" th:value="${categoria.idCategoria}"
+					            th:selected="${noticiaDTO.idCategoria == categoria.idCategoria}">
+					            <!-- Supongo que CategoriaDTO tiene un campo 'tipoCategoria' -->
+					            <span th:text="${categoria.tipoCategoria}"></span>
+					        </option>
+					    </select>
+
+					
+					    <button type="submit" id="btnGuardarNoticia" class="form-btn">Guardar Noticia</button>
+					    <div class="mensajeContrasenya" id="mensajeContrasenya"></div>
+					</form>
+
+    </div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

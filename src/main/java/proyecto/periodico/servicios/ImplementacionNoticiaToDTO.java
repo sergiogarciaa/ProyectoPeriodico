@@ -33,7 +33,7 @@ public class ImplementacionNoticiaToDTO implements InterfazNoticiaToDTO {
     }
 
 	@Override
-	public List<NoticiaDTO> listaUsuarioToDto(List<Noticia> listaNoticia){
+	public List<NoticiaDTO> listaNoticiasToDto(List<Noticia> listaNoticia){
 		try {
 				
 			List<NoticiaDTO> listaDto = new ArrayList<>();

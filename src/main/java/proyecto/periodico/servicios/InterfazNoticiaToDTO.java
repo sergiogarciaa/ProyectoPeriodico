@@ -10,5 +10,5 @@ import proyecto.periodico.dto.UsuarioDTO;
 public interface InterfazNoticiaToDTO {
 
 	NoticiaDTO noticiaToDto(Noticia noticia);
-	public List<NoticiaDTO> listaUsuarioToDto(List<Noticia> listaNoticia);
+	public List<NoticiaDTO> listaNoticiasToDto(List<Noticia> listaNoticia);
 }

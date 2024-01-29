@@ -22,6 +22,11 @@
 			</div>
 			<ul class="nav-links">
 				<li>
+				<form sec:authorize="hasAnyRole('ROLE_2', 'ROLE_4')">
+						<button type="button" class="btn btn-dark mt-2"><a style="color: white; text-decoration: none;"th:href="@{/privada/zonaPeriodista}">Zona Periodista</a></button>
+					</form>
+				</li>
+				<li>
 					<form sec:authorize="hasAnyRole('ROLE_3', 'ROLE_4')">
 						<button type="button" class="btn btn-dark mt-2"><a style="color: white; text-decoration: none;"th:href="@{/privada/administracion}">Administracion</a></button>
 					</form>

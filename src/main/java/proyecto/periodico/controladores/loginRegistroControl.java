@@ -17,6 +17,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import proyecto.periodico.dao.Categoria;
 import proyecto.periodico.dao.Noticia;
 import proyecto.periodico.dao.Usuario;
+import proyecto.periodico.dto.CategoriaDTO;
+import proyecto.periodico.dto.NoticiaDTO;
 import proyecto.periodico.dto.UsuarioDTO;
 import proyecto.periodico.repositorios.noticiaRepositorio;
 import proyecto.periodico.servicios.ImplementacionNoticia;
@@ -59,17 +61,19 @@ public class loginRegistroControl {
 
 	
 	@GetMapping("/")
-	public String index1() {
+	public String index1(Model model) {
+		List<NoticiaDTO> noticiaDTO = noticiaServicio.buscarTodas();
+		model.addAttribute("noticias", noticiaDTO);
 		return "landing";
 	}
 
+	
+	// Corregir más tarde con un Seeder
+	
 	@GetMapping("/auth/landing")
-	public String index() {
-		Categoria categoria = categoriaServicio.crearCategoria();
-		Usuario usuario = usuarioServicio.buscarPorEmail("admin@admin.com");
-		System.out.println("CONTROLADOR ---- "+ categoria);
-		Noticia noticia = noticiaServicio.noticiaCategoriaN(usuario, categoria);
-		System.out.println(usuario.getNoticias());
+	public String index(Model model) {
+		List<NoticiaDTO> noticiaDTO = noticiaServicio.buscarTodas();
+		model.addAttribute("noticias", noticiaDTO);
 		return "landing";
 	}
 
