@@ -1,8 +1,12 @@
 package proyecto.periodico.dao;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -10,7 +14,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.Lob;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -41,11 +47,12 @@ public class Noticia {
 		private Calendar fchaPublicacion;
 		
 		@ManyToOne // FK de Categoria
-	    @JoinColumn(name = "id_categoria", nullable = false)
-	    private Categoria categoria;
+	    @JoinColumn(name = "id_categoria_noticia", nullable = false)
+	    private Categoria noticiaCategoria;
+
 		
 		@ManyToOne // FK de Usuario
-	    @JoinColumn(name = "id_usuario", nullable = false)
+	    @JoinColumn(name = "id_usuario_noticia", nullable = false)
 	    private Usuario usuario;
 
 		/**
@@ -55,26 +62,9 @@ public class Noticia {
 		 * @param foto
 		 * @param estado_suscripcion
 		 * @param fchaPublicacion
-		 * @param categoria
 		 * @param usuario
 		 */
-		public Noticia(long idNoticia, String tituloNoticia, String descNoticia, byte[] foto,
-				Boolean estado_suscripcion, Calendar fchaPublicacion, Categoria categoria, Usuario usuario) {
-			super();
-			this.idNoticia = idNoticia;
-			this.tituloNoticia = tituloNoticia;
-			this.descNoticia = descNoticia;
-			this.foto = foto;
-			this.estado_suscripcion = estado_suscripcion;
-			this.fchaPublicacion = fchaPublicacion;
-			this.categoria = categoria;
-			this.usuario = usuario;
-		}
 
-		public Noticia() {
-			super();
-			// TODO Auto-generated constructor stub
-		}
 		
 		// GETTER Y SETTER
 
@@ -126,13 +116,6 @@ public class Noticia {
 			this.fchaPublicacion = fchaPublicacion;
 		}
 
-		public Categoria getCategoria() {
-			return categoria;
-		}
-
-		public void setCategoria(Categoria categoria) {
-			this.categoria = categoria;
-		}
 
 		public Usuario getUsuario() {
 			return usuario;
@@ -142,11 +125,20 @@ public class Noticia {
 			this.usuario = usuario;
 		}
 
+
+		public Categoria getNoticiaCategoria() {
+			return noticiaCategoria;
+		}
+
+		public void setNoticiaCategoria(Categoria noticiaCategoria) {
+			this.noticiaCategoria = noticiaCategoria;
+		}
+
 		@Override
 		public String toString() {
 			return "Noticia [idNoticia=" + idNoticia + ", tituloNoticia=" + tituloNoticia + ", descNoticia="
 					+ descNoticia + ", foto=" + Arrays.toString(foto) + ", estado_suscripcion=" + estado_suscripcion
-					+ ", fchaPublicacion=" + fchaPublicacion + ", categoria=" + categoria + ", usuario=" + usuario
+					+ ", fchaPublicacion=" + fchaPublicacion + ", usuario=" + usuario
 					+ "]";
 		}
 
@@ -155,7 +147,7 @@ public class Noticia {
 			final int prime = 31;
 			int result = 1;
 			result = prime * result + Arrays.hashCode(foto);
-			result = prime * result + Objects.hash(categoria, descNoticia, estado_suscripcion, fchaPublicacion,
+			result = prime * result + Objects.hash(descNoticia, estado_suscripcion, fchaPublicacion,
 					idNoticia, tituloNoticia, usuario);
 			return result;
 		}
@@ -169,7 +161,7 @@ public class Noticia {
 			if (getClass() != obj.getClass())
 				return false;
 			Noticia other = (Noticia) obj;
-			return Objects.equals(categoria, other.categoria) && Objects.equals(descNoticia, other.descNoticia)
+			return  Objects.equals(descNoticia, other.descNoticia)
 					&& Objects.equals(estado_suscripcion, other.estado_suscripcion)
 					&& Objects.equals(fchaPublicacion, other.fchaPublicacion) && Arrays.equals(foto, other.foto)
 					&& idNoticia == other.idNoticia && Objects.equals(tituloNoticia, other.tituloNoticia)

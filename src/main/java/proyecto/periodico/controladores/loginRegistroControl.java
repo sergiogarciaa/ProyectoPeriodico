@@ -14,16 +14,33 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.servlet.http.HttpServletRequest;
+import proyecto.periodico.dao.Categoria;
+import proyecto.periodico.dao.Noticia;
 import proyecto.periodico.dao.Usuario;
 import proyecto.periodico.dto.UsuarioDTO;
+import proyecto.periodico.repositorios.noticiaRepositorio;
+import proyecto.periodico.servicios.ImplementacionNoticia;
+import proyecto.periodico.servicios.ImplementacionNoticiaToDTO;
+import proyecto.periodico.servicios.ImplementacionUsuario;
+import proyecto.periodico.servicios.InterfazCategoria;
+import proyecto.periodico.servicios.InterfazNoticia;
+import proyecto.periodico.servicios.InterfazNoticiaToDTO;
 import proyecto.periodico.servicios.InterfazUsuario;
 
 @Controller
 public class loginRegistroControl {
 
 	@Autowired
-	private InterfazUsuario usuarioServicio;
+    private InterfazUsuario usuarioServicio;
+    
+    @Autowired
+    private InterfazCategoria categoriaServicio;
+    
+    @Autowired
+    private InterfazNoticia noticiaServicio;
 
+	
+	
 	/**
 	 * Gestiona la solicitud HTTP GET para /auth/login y muestra la página de inicio
 	 * de sesión
@@ -39,14 +56,20 @@ public class loginRegistroControl {
 		return "login";
 	}
 
+
+	
 	@GetMapping("/")
 	public String index1() {
 		return "landing";
 	}
 
 	@GetMapping("/auth/landing")
-	public String index(Model model) {
-		model.addAttribute("usuarioDTO", new UsuarioDTO());
+	public String index() {
+		Categoria categoria = categoriaServicio.crearCategoria();
+		Usuario usuario = usuarioServicio.buscarPorEmail("admin@admin.com");
+		System.out.println("CONTROLADOR ---- "+ categoria);
+		Noticia noticia = noticiaServicio.noticiaCategoriaN(usuario, categoria);
+		System.out.println(usuario.getNoticias());
 		return "landing";
 	}
 

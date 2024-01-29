@@ -1,60 +1,33 @@
-package proyecto.periodico.dao;
+package proyecto.periodico.dto;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-
-@Entity
-@Table(name = "categorias", schema = "prdc_schema")
-public class Categoria {
-
-
+public class CategoriaDTO {
 	// ATRIBUTOS
-			@Id
-			@GeneratedValue(strategy = GenerationType.IDENTITY)
-			@Column(name = "id_categoria", nullable = false)
 			private long idCategoria;
-
-
-			@Column(name = "tipo_categoria", nullable = false)
 			private String tipoCategoria;
-			
-			@Column(name = "desc_categoria", nullable = true)
 			private String descCategoria;
-			@OneToMany(mappedBy = "noticiaCategoria")
-		    private List<Noticia> noticiaCategoria;
-
-			public Categoria() {
-				super();
-				// TODO Auto-generated constructor stub
-			}
-			
 			/**
 			 * @param idCategoria
 			 * @param tipoCategoria
 			 * @param descCategoria
-			 * @param noticias
 			 */
-			public Categoria(long idCategoria, String tipoCategoria, String descCategoria) {
+			public CategoriaDTO(long idCategoria, String tipoCategoria, String descCategoria){
 				super();
 				this.idCategoria = idCategoria;
 				this.tipoCategoria = tipoCategoria;
 				this.descCategoria = descCategoria;
 			}
 
-			
+			/**
+			 * 
+			 */
+			public CategoriaDTO() {
+				super();
+				// TODO Auto-generated constructor stub
+			}
+
 			public long getIdCategoria() {
 				return idCategoria;
 			}
@@ -78,14 +51,7 @@ public class Categoria {
 			public void setDescCategoria(String descCategoria) {
 				this.descCategoria = descCategoria;
 			}
-
-			public List<Noticia> getNoticiaCategoria() {
-				return noticiaCategoria;
-			}
-
-			public void setNoticiaCategoria(List<Noticia> noticiaCategoria) {
-				this.noticiaCategoria = noticiaCategoria;
-			}
+			
 
 			@Override
 			public int hashCode() {
@@ -100,7 +66,7 @@ public class Categoria {
 					return false;
 				if (getClass() != obj.getClass())
 					return false;
-				Categoria other = (Categoria) obj;
+				CategoriaDTO other = (CategoriaDTO) obj;
 				return Objects.equals(descCategoria, other.descCategoria) && idCategoria == other.idCategoria
 						&& Objects.equals(tipoCategoria, other.tipoCategoria);
 			}
@@ -108,7 +74,7 @@ public class Categoria {
 			@Override
 			public String toString() {
 				return "Categoria [idCategoria=" + idCategoria + ", tipoCategoria=" + tipoCategoria + ", descCategoria="
-						+ descCategoria + ", noticias=" + "]";
+						+ descCategoria + "]";
 			}
-
+			
 }

@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,7 +21,7 @@ import jakarta.persistence.Table;
 // Rol: 1 = Usuario, 2 = Periodista, 3 = Administrador, 4 = SuperAdmin
 
 @Entity
-@Table(name = "usuarios", schema = "prdc_schema")
+@Table(name = "Usuarios", schema = "prdc_schema")
 public class Usuario {
 
 	// ATRIBUTOS
@@ -65,8 +66,8 @@ public class Usuario {
 	@Column(name = "rol", nullable = true)
 	private String rol = "ROLE_1";
 	
-	@OneToMany(mappedBy = "usuario")
-    private List<Noticia> noticias;
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private List<Noticia> noticiaDeUsuario;
 
 	// CONSTRUCTORES
 
@@ -197,11 +198,11 @@ public class Usuario {
 	}
 	
 	public List<Noticia> getNoticias() {
-        return noticias;
+        return noticiaDeUsuario;
     }
 
-    public void setNoticias(List<Noticia> noticias) {
-        this.noticias = noticias;
+    public void setNoticias(List<Noticia> noticiaDeUsuario) {
+        this.noticiaDeUsuario = noticiaDeUsuario;
     }
 
 
@@ -233,7 +234,7 @@ public class Usuario {
 	@Override
 	public int hashCode() {
 		return Objects.hash(apellidosUsuario, claveUsuario, dniUsuario, emailUsuario, estado_suscripcion,
-				expiracionToken, fchAltaUsuario, fchBajaUsuario, idUsuario, nombreUsuario, noticias, rol, tlfUsuario,
+				expiracionToken, fchAltaUsuario, fchBajaUsuario, idUsuario, nombreUsuario, noticiaDeUsuario, rol, tlfUsuario,
 				token);
 	}
 
@@ -254,9 +255,10 @@ public class Usuario {
 				&& Objects.equals(expiracionToken, other.expiracionToken)
 				&& Objects.equals(fchAltaUsuario, other.fchAltaUsuario)
 				&& Objects.equals(fchBajaUsuario, other.fchBajaUsuario) && idUsuario == other.idUsuario
-				&& Objects.equals(nombreUsuario, other.nombreUsuario) && Objects.equals(noticias, other.noticias)
+				&& Objects.equals(nombreUsuario, other.nombreUsuario) && Objects.equals(noticiaDeUsuario, other.noticiaDeUsuario)
 				&& Objects.equals(rol, other.rol) && Objects.equals(tlfUsuario, other.tlfUsuario)
 				&& Objects.equals(token, other.token);
 	}
+
 
 }

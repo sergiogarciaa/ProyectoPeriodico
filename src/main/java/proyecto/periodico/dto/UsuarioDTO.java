@@ -1,5 +1,6 @@
 package proyecto.periodico.dto;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
@@ -28,6 +29,7 @@ public class UsuarioDTO {
 	private String password2;
 	private Calendar expiracionToken;
 	private String rol = "ROLE_1";
+	private List<NoticiaDTO> misNoticias = new ArrayList<>();
 
 	//CONSTRUCTORES
 	public UsuarioDTO() {
@@ -148,11 +150,19 @@ public class UsuarioDTO {
 		this.estado_suscripcion = estado_suscripcion;
 	}
 	
+	public List<NoticiaDTO> getNoticiasUsuario() {
+		return misNoticias;
+	}
+
+	public void setNoticiasUsuario(List <NoticiaDTO> misNoticias) {
+		this.misNoticias = misNoticias;
+	}
+
 	//METODOS
 	@Override
 	public int hashCode() {
 		return Objects.hash(apellidosUsuario, claveUsuario, dniUsuario, emailUsuario, expiracionToken, nombreUsuario,
-				password, password2, tlfUsuario, token);
+				password, password2, tlfUsuario, token, misNoticias);
 	}
 	
 	public boolean isAdmin() {
@@ -172,7 +182,8 @@ public class UsuarioDTO {
 				&& Objects.equals(claveUsuario, other.claveUsuario) && Objects.equals(dniUsuario, other.dniUsuario)
 				&& Objects.equals(emailUsuario, other.emailUsuario)
 				&& Objects.equals(expiracionToken, other.expiracionToken)
-				&& Objects.equals(nombreUsuario, other.nombreUsuario) && Objects.equals(password, other.password)
+				&& Objects.equals(nombreUsuario, other.nombreUsuario)
+				&& Objects.equals(misNoticias, other.misNoticias) && Objects.equals(password, other.password)
 				&& Objects.equals(password2, other.password2) && Objects.equals(tlfUsuario, other.tlfUsuario)
 				&& Objects.equals(token, other.token) && Objects.equals(estado_suscripcion, other.estado_suscripcion);
 	}

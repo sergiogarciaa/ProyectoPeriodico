@@ -195,6 +195,7 @@ public class ImplementacionUsuario implements InterfazUsuario {
 				admin.setRol("ROLE_4");
 				repositorio.save(admin);
 				toDto.usuarioToDto(admin);
+				
 			}
 		} catch (Exception e) {
 			System.out.println("[IMPL-Usu][inicializarUsuarioAdmin] " + e.getMessage());

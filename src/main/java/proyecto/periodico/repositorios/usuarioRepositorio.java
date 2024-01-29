@@ -1,10 +1,12 @@
 package proyecto.periodico.repositorios;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import proyecto.periodico.dao.Usuario;
 
-
+@Service
 public interface usuarioRepositorio extends JpaRepository<Usuario, Long>{
 	
 	/**
@@ -14,7 +16,7 @@ public interface usuarioRepositorio extends JpaRepository<Usuario, Long>{
 	 *         especificada o null en caso contrario.
 	 */
 	public Usuario findFirstByEmailUsuario(String email);
-	
+
 	/**
 	 * Busca si un usuario tiene el DNI especificado.
 	 * @param dni El DNI del usuario a buscar.
