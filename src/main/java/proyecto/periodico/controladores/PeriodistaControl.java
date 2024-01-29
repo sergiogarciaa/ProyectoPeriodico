@@ -1,5 +1,7 @@
 package proyecto.periodico.controladores;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,7 +64,13 @@ public class PeriodistaControl {
 
 	        // Consultar la categoría por ID desde la base de datos o utilizarla directamente si la tienes en el DTO
 	        Categoria categoria = categoriaServicio.buscarPorId(noticiaDTO.getIdCategoria());
+	        // Obtener la fecha y hora actual
+	        Calendar fechaActual = Calendar.getInstance();
 
+	        // Formatear la fecha y hora actual como una cadena
+	        SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	        noticiaDTO.setFchaPublicacionMostrarWeb(formatoFecha.format(fechaActual.getTime()));
+	        System.out.println(noticiaDTO.getFchaPublicacionMostrarWeb());
 	        // Crear una entidad Noticia a partir del DTO
 	        Noticia noticia = noticiaToDao.noticiaToDao(noticiaDTO, usuario, categoria);
 

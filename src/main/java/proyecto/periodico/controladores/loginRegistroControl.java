@@ -63,6 +63,7 @@ public class loginRegistroControl {
 	@GetMapping("/")
 	public String index1(Model model) {
 		List<NoticiaDTO> noticiaDTO = noticiaServicio.buscarTodas();
+		System.out.println(noticiaDTO);
 		model.addAttribute("noticias", noticiaDTO);
 		return "landing";
 	}
