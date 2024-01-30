@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" sec:authorize="hasAnyRole('ROLE_3', 'ROLE_4')" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">

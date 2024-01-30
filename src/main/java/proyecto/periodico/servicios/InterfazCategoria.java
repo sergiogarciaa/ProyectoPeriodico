@@ -12,5 +12,5 @@ public interface InterfazCategoria {
 
 	public List<CategoriaDTO> buscarTodas();
 
-	public Categoria buscarPorId(long idCategoria);
+	public Categoria buscarPorId(Categoria categoria);
 }

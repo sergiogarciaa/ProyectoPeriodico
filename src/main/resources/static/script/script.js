@@ -116,7 +116,9 @@ function confirmarEdicion(event) {
 
 function confirmarRedireccion(event) {
 	// Añadir comprobacion de rol para ver si esta logeado y poner SwalFire.
-    const idNoticia = event.currentTarget.getAttribute("data-idNoticia");
-    const idCategoria = event.currentTarget.getAttribute("data-idCategoria");
+    const idNoticia = parseInt(event.currentTarget.getAttribute("data-idNoticia"), 10);
+	const idCategoria = parseInt(event.currentTarget.getAttribute("data-idCategoria"), 10);
+
+
     window.location.href = 'http://localhost:8080/auth/' + idCategoria + '/' + idNoticia;
 }

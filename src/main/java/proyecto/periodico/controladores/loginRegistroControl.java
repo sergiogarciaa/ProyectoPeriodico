@@ -59,12 +59,12 @@ public class loginRegistroControl {
 	}
 
 
-	
 	@GetMapping("/")
 	public String index1(Model model) {
 		List<NoticiaDTO> noticiaDTO = noticiaServicio.buscarTodas();
-		System.out.println(noticiaDTO);
+		List<CategoriaDTO> categoriaDTO = categoriaServicio.buscarTodas();
 		model.addAttribute("noticias", noticiaDTO);
+		model.addAttribute("categorias", categoriaDTO);
 		return "landing";
 	}
 
@@ -74,9 +74,12 @@ public class loginRegistroControl {
 	@GetMapping("/auth/landing")
 	public String index(Model model) {
 		List<NoticiaDTO> noticiaDTO = noticiaServicio.buscarTodas();
+		List<CategoriaDTO> categoriaDTO = categoriaServicio.buscarTodas();
 		model.addAttribute("noticias", noticiaDTO);
+		model.addAttribute("categorias", categoriaDTO);
 		return "landing";
 	}
+
 
 	/**
 	 * Gestiona la solicitud HTTP GET para mostrar la página de registro.
@@ -135,4 +138,19 @@ public class loginRegistroControl {
 		System.out.println(authentication.getAuthorities());
 		return "index";
 	}
+	
+	@GetMapping("/auth/{idCategoria}/{idNoticia}")
+    public String verNoticia(@PathVariable long idCategoria, @PathVariable long idNoticia, Model model) {
+        // Aquí deberías cargar la noticia y la categoría correspondiente usando los ID proporcionados
+        // por ejemplo, llamando a tu servicio NoticiaService
+
+        Noticia noticia = noticiaServicio.buscarNoticiaPorID(idNoticia);
+        Categoria categoria = noticia.getNoticiaCategoria();
+        System.out.println(noticia);
+        // Puedes pasar la noticia y la categoría al modelo para que estén disponibles en la página
+        model.addAttribute("noticia", noticia);
+        model.addAttribute("categoria", categoria);
+
+        return "verNoticia"; // Cambia "verNoticia" por el nombre de tu página de visualización de noticias
+    }
 }

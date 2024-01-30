@@ -52,7 +52,7 @@ public class administracionControl {
 		if (request.isUserInRole("ROLE_3") || request.isUserInRole("ROLE_4")) {
 			return "administracion";
 		}
-		return "index";
+		return "redirect:/privada/index";
 	}
 	
 	/**
@@ -76,7 +76,14 @@ public class administracionControl {
 			model.addAttribute("usuarios", usuarios);
 			return "adminstracion";
 		}
-		usuarioServicio.eliminar(id);
+
+		if (request.isUserInRole("ROLE_1")) {
+			return "redirect:/privada/index";	
+		}
+		else if (request.isUserInRole("ROLE_3") || request.isUserInRole("ROLE_4")) {
+			usuarioServicio.eliminar(id);				
+		}
+		
 		return "redirect:/privada/administracion";
 
 	}
@@ -87,14 +94,14 @@ public class administracionControl {
 	 * @return Edicon de usuario y cambio de rol
 	 */
 	 @GetMapping("/privada/editar/{id}")
-	    public String editarUsuario(@PathVariable Long id, Model model) {
+	    public String editarUsuario(@PathVariable Long id, Model model, HttpServletRequest request) {
 		 	Usuario usuarioDAO = usuarioServicio.buscarPorId(id);
-		 	 System.out.println("----------" + usuarioDAO.getClaveUsuario());
 		 	InterfazUsuarioToDTO it = new ImplementacionUsuarioToDto();
 		 	UsuarioDTO usuarioDTO = it.usuarioToDto(usuarioDAO);
-		 	System.out.println("----------" + usuarioDAO.getClaveUsuario());
-		 	System.out.println("----------" + usuarioDTO.getClaveUsuario());
 		 	// Comprobar si el usuario es superAdmin
+		 	if (request.isUserInRole("ROLE_1")) {
+				return "redirect:/privada/index";	
+			}
 		 	if ("ROLE_4".equals(usuarioDAO.getRol())) {
 				// Si el usuario es superadmin, no permitir cambiar el rol
 				model.addAttribute("noSePuedeCambiarRol", "No se puede cambiar el rol del superadmin.");

@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Objects;
 
+import proyecto.periodico.dao.Categoria;
 import proyecto.periodico.dao.Usuario;
 
 
@@ -15,8 +16,8 @@ public class NoticiaDTO {
 	private Boolean estado_suscripcion;
 	private Calendar fchaPublicacion;
 	private String fchaPublicacionMostrarWeb;
-	private long idCategoria;
-	private long idUsuario;
+	private Categoria idCategoria;
+	private Usuario idUsuario;
 	
 	/**
 	 * @param idNoticia
@@ -27,7 +28,7 @@ public class NoticiaDTO {
 	 * @param fchaPublicacion
 	 */
 	public NoticiaDTO(long idNoticia, String tituloNoticia, String descNoticia, byte[] foto, Boolean estado_suscripcion,
-			Calendar fchaPublicacion, String fchaPublicacionMostrarWeb,long idCategoria, long idUsuario) {
+			Calendar fchaPublicacion, String fchaPublicacionMostrarWeb,Categoria idCategoria, Usuario idUsuario) {
 		super();
 		this.idNoticia = idNoticia;
 		this.tituloNoticia = tituloNoticia;
@@ -82,16 +83,16 @@ public class NoticiaDTO {
 	public void setFchaPublicacion(Calendar fchaPublicacion) {
 		this.fchaPublicacion = fchaPublicacion;
 	}
-	public long getIdCategoria() {
+	public Categoria getIdCategoria() {
 		return idCategoria;
 	}
-	public void setIdCategoria(long idCategoria) {
-		this.idCategoria = idCategoria;
+	public void setIdCategoria(Categoria categoria) {
+		this.idCategoria = categoria;
 	}
-	public long getIdUsuario() {
+	public Usuario getIdUsuario() {
 		return idUsuario;
 	}
-	public void setIdUsuario(long idUsuario) {
+	public void setIdUsuario(Usuario idUsuario) {
 		this.idUsuario = idUsuario;
 	}
 	public String getFchaPublicacionMostrarWeb() {

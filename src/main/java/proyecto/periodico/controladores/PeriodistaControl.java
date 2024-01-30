@@ -50,7 +50,10 @@ public class PeriodistaControl {
 
         // Agregar un objeto NoticiaDTO al modelo para que el formulario pueda mostrar y editar los datos
         model.addAttribute("noticiaDTO", new NoticiaDTO());
-		
+        
+        if (request.isUserInRole("ROLE_1")) {
+			return "redirect:/privada/index";	
+		}
 		if (request.isUserInRole("ROLE_2") || request.isUserInRole("ROLE_4")) {
 			return "periodista";
 		}
