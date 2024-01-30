@@ -42,18 +42,8 @@ public class ImplementacionNoticia implements InterfazNoticia  {
 	@Override
 	public NoticiaDTO noticiaCategoriaN(Usuario usu, Categoria categoria) {
 		try {
-			//// Crear una noticia
-			Noticia noticia = new Noticia();
-			noticia.setTituloNoticia("Caaa");
-			noticia.setDescNoticia("La politica en españaaaaaa");
-			noticia.setFchaPublicacion(Calendar.getInstance());
-			noticia.setUsuario(usu);	
-			noticia.setNoticiaCategoria(categoria);
-			
-			NoticiaDTO noticiaDTO = toDto.noticiaToDto(noticia);
-			Nrepositorio.save(noticia);
 
-			return noticiaDTO;
+			return null;
 			// Guardar en el repositorio o realizar otras operaciones necesarias...
 			
 		} catch (Exception e) {
