@@ -113,3 +113,10 @@ function confirmarEdicion(event) {
         }
     });
 }
+
+function confirmarRedireccion(event) {
+	// Añadir comprobacion de rol para ver si esta logeado y poner SwalFire.
+    const idNoticia = event.currentTarget.getAttribute("data-idNoticia");
+    const idCategoria = event.currentTarget.getAttribute("data-idCategoria");
+    window.location.href = 'http://localhost:8080/auth/' + idCategoria + '/' + idNoticia;
+}

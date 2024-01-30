@@ -14,6 +14,7 @@ public class NoticiaDTO {
     private byte[] foto;
 	private Boolean estado_suscripcion;
 	private Calendar fchaPublicacion;
+	private String fchaPublicacionMostrarWeb;
 	private long idCategoria;
 	private long idUsuario;
 	
@@ -26,7 +27,7 @@ public class NoticiaDTO {
 	 * @param fchaPublicacion
 	 */
 	public NoticiaDTO(long idNoticia, String tituloNoticia, String descNoticia, byte[] foto, Boolean estado_suscripcion,
-			Calendar fchaPublicacion, long idCategoria, long idUsuario) {
+			Calendar fchaPublicacion, String fchaPublicacionMostrarWeb,long idCategoria, long idUsuario) {
 		super();
 		this.idNoticia = idNoticia;
 		this.tituloNoticia = tituloNoticia;
@@ -36,6 +37,7 @@ public class NoticiaDTO {
 		this.fchaPublicacion = fchaPublicacion;
 		this.idCategoria = idCategoria;
 		this.idUsuario = idUsuario;
+		this.fchaPublicacionMostrarWeb = fchaPublicacionMostrarWeb;
 	}
 	/**
 	 * 
@@ -92,6 +94,12 @@ public class NoticiaDTO {
 	public void setIdUsuario(long idUsuario) {
 		this.idUsuario = idUsuario;
 	}
+	public String getFchaPublicacionMostrarWeb() {
+		return fchaPublicacionMostrarWeb;
+	}
+	public void setFchaPublicacionMostrarWeb(String fchaPublicacionMostrarWeb) {
+		this.fchaPublicacionMostrarWeb = fchaPublicacionMostrarWeb;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -114,12 +122,12 @@ public class NoticiaDTO {
 				&& Objects.equals(estado_suscripcion, other.estado_suscripcion)
 				&& Objects.equals(fchaPublicacion, other.fchaPublicacion) && Arrays.equals(foto, other.foto)
 				&& idNoticia == other.idNoticia && Objects.equals(tituloNoticia, other.tituloNoticia)&& Objects.equals(idCategoria, other.idCategoria)
-				&& Objects.equals(idUsuario, other.idUsuario);
+				&& Objects.equals(fchaPublicacionMostrarWeb, other.fchaPublicacionMostrarWeb) && Objects.equals(idUsuario, other.idUsuario);
 	}
 	@Override
 	public String toString() {
 		return "NoticiaDTO [idNoticia=" + idNoticia + ", tituloNoticia=" + tituloNoticia + ", descNoticia="
 				+ descNoticia + ", foto=" + Arrays.toString(foto) + ", estado_suscripcion=" + estado_suscripcion
-				+ ", fchaPublicacion=" + fchaPublicacion + "]";
+				+ ", fchaPublicacionWeb=" + fchaPublicacionMostrarWeb + "]";
 	}
 }

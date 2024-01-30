@@ -22,7 +22,7 @@ public class ImplementacionNoticiaToDTO implements InterfazNoticiaToDTO {
             dto.setDescNoticia(noticia.getDescNoticia());
             dto.setFoto(noticia.getFoto());
             dto.setEstado_suscripcion(noticia.getEstado_suscripcion());
-            dto.setFchaPublicacion(noticia.getFchaPublicacion());
+            dto.setFchaPublicacionMostrarWeb(noticia.getFchaPublicacion());
             // Puedes agregar más atributos según sea necesario
 
             return dto;

@@ -30,10 +30,10 @@ public class Noticia {
 		@Column(name = "id_noticia", nullable = false)
 		private long idNoticia;
 		
-		@Column(name = "titulo_noticia", nullable = false, length = 70)
+		@Column(name = "titulo_noticia", nullable = false, length = 50)
 		private String tituloNoticia;
 
-		@Column(name = "desc_noticia", nullable = true, length = 100)
+		@Column(name = "desc_noticia", nullable = true, length = 2000)
 		private String descNoticia;
 		
 		@Lob
@@ -44,7 +44,7 @@ public class Noticia {
 		private Boolean estado_suscripcion;
 		
 		@Column(name = "fch_publicacion", nullable = true, updatable = false)
-		private Calendar fchaPublicacion;
+		private String fchaPublicacion;
 		
 		@ManyToOne // FK de Categoria
 	    @JoinColumn(name = "id_categoria_noticia", nullable = false)
@@ -108,12 +108,12 @@ public class Noticia {
 			this.estado_suscripcion = estado_suscripcion;
 		}
 
-		public Calendar getFchaPublicacion() {
+		public String getFchaPublicacion() {
 			return fchaPublicacion;
 		}
 
-		public void setFchaPublicacion(Calendar fchaPublicacion) {
-			this.fchaPublicacion = fchaPublicacion;
+		public void setFchaPublicacion(String string) {
+			this.fchaPublicacion = string;
 		}
 
 
