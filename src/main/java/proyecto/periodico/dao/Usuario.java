@@ -51,6 +51,9 @@ public class Usuario {
 	@Column(name = "estado_suscripcion")
 	private Boolean estado_suscripcion;
 	
+	@Column(name = "cuenta_confirmada", nullable = false, columnDefinition = "boolean default false")
+	private boolean cuentaConfirmada;
+	
 	@Column(name = "fch_alta_usuario", nullable = true, updatable = false)
 	private Calendar fchAltaUsuario ;
 
@@ -171,6 +174,14 @@ public class Usuario {
 	public void setToken(String token) {
 		this.token = token;
 	}
+	
+	public boolean isCuentaConfirmada() {
+		return cuentaConfirmada;
+	}
+
+	public void setCuentaConfirmada(boolean cuentaConfirmada) {
+		this.cuentaConfirmada = cuentaConfirmada;
+	}
 
 	public Calendar getExpiracionToken() {
 		return expiracionToken;
@@ -226,14 +237,14 @@ public class Usuario {
 		return "Usuario [idUsuario=" + idUsuario + ", dniUsuario=" + dniUsuario + ", nombreUsuario=" + nombreUsuario
 				+ ", apellidosUsuario=" + apellidosUsuario + ", tlfUsuario=" + tlfUsuario + ", emailUsuario="
 				+ emailUsuario + ", claveUsuario=" + claveUsuario + ", fchAltaUsuario=" + fchAltaUsuario
-				+ ", fchBajaUsuario=" + fchBajaUsuario + ", estadoSuscripcion=" + estado_suscripcion + ", token=" + token + ", expiracionToken=" + expiracionToken
+				+ ", fchBajaUsuario=" + fchBajaUsuario + ", cuentaConfirmada=" + cuentaConfirmada + ", estadoSuscripcion=" + estado_suscripcion + ", token=" + token + ", expiracionToken=" + expiracionToken
 				+ ", rol=" + rol +"]";
 	}
 
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(apellidosUsuario, claveUsuario, dniUsuario, emailUsuario, estado_suscripcion,
+		return Objects.hash(cuentaConfirmada, apellidosUsuario, claveUsuario, dniUsuario, emailUsuario, estado_suscripcion,
 				expiracionToken, fchAltaUsuario, fchBajaUsuario, idUsuario, nombreUsuario, noticiaDeUsuario, rol, tlfUsuario,
 				token);
 	}
@@ -248,7 +259,7 @@ public class Usuario {
 		if (getClass() != obj.getClass())
 			return false;
 		Usuario other = (Usuario) obj;
-		return Objects.equals(apellidosUsuario, other.apellidosUsuario)
+		return cuentaConfirmada == other.cuentaConfirmada && Objects.equals(apellidosUsuario, other.apellidosUsuario)
 				&& Objects.equals(claveUsuario, other.claveUsuario) && Objects.equals(dniUsuario, other.dniUsuario)
 				&& Objects.equals(emailUsuario, other.emailUsuario)
 				&& Objects.equals(estado_suscripcion, other.estado_suscripcion)

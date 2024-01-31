@@ -4,6 +4,7 @@ import java.util.Calendar;
 
 import java.util.List;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
@@ -12,6 +13,7 @@ import org.springframework.security.core.userdetails.User.UserBuilder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import jakarta.persistence.PersistenceException;
 import jakarta.transaction.Transactional;
 import proyecto.periodico.dao.Usuario;
 import proyecto.periodico.dto.UsuarioDTO;
@@ -32,6 +34,9 @@ public class ImplementacionUsuario implements InterfazUsuario {
 
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
+	
+	@Autowired
+	private InterfazEmail emailServicio;
 
 	@Override
 	public UsuarioDTO registrar(UsuarioDTO userDto) {
@@ -44,64 +49,72 @@ public class ImplementacionUsuario implements InterfazUsuario {
 				return null; // Si no es null es que ya está registrado
 			}
 
-			// Ahora se comprueba si hay un usuario por el DNI que quiere registrar
-			boolean yaExisteElDNI = repositorio.existsByDniUsuario(userDto.getDniUsuario());
+			// Si continua la ejecución es que el email no se encuentra ya registrado
+						userDto.setClaveUsuario(passwordEncoder.encode(userDto.getClaveUsuario()));
+						Usuario usuarioDao = toDao.usuarioToDao(userDto);
+						usuarioDao.setFchAltaUsuario(Calendar.getInstance());
+						usuarioDao.setRol("ROLE_1");
+						if (userDto.isCuentaConfirmada()) {
+							usuarioDao.setCuentaConfirmada(true);
+							repositorio.save(usuarioDao);
+						} else {
+							usuarioDao.setCuentaConfirmada(false);
+							// Generar token de confirmación
+							String token = passwordEncoder.encode(RandomStringUtils.random(30));
+							usuarioDao.setToken(token);
 
-			if (yaExisteElDNI) {
-				// Si es que ya hay un usuario con ese dni se setea a null para controlar el
-				// error en controlador
-				userDto.setDniUsuario(null);
-				return userDto;
-			}
+							// Guardar el usuario en la base de datos
+							repositorio.save(usuarioDao);
 
-			// Si llega a esta línea es que no existe el usuario con el email y el dni a
-			// registrar
-			userDto.setClaveUsuario(passwordEncoder.encode(userDto.getClaveUsuario()));
-			Usuario usuarioDao = toDao.usuarioToDao(userDto);
-			usuarioDao.setFchAltaUsuario(Calendar.getInstance());
-			repositorio.save(usuarioDao);
+							// Enviar el correo de confirmación
+							String nombreUsuario = usuarioDao.getNombreUsuario() + " " + usuarioDao.getApellidosUsuario();
+							emailServicio.enviarEmailConfirmacion(userDto.getEmailUsuario(), nombreUsuario, token);
+						}
 
-			return userDto;
-		} catch (IllegalArgumentException iae) {
-			System.out.println("[IMPL-Usu][registrar] " + iae.getMessage());
-		} catch (Exception e) {
-			System.out.println("[IMPL-Usu][registrar] " + e.getMessage());
-		}
-		return null;
+						return userDto;
+					} catch (IllegalArgumentException iae) {
+						System.out.println("[Error UsuarioServicioImpl - registrarUsuario()] Argumento no valido al registrar usuario " + iae.getMessage());
+					} catch (PersistenceException e) {
+						System.out.println("[Error UsuarioServicioImpl - registrarUsuario()] Error de persistencia al registrar usuario " + e.getMessage());
+					}
+					return null;
 	}
 
-	/*
-	 * @Override public boolean iniciarResetPassConEmail(String emailUsuario) { try
-	 * { Usuario usuarioExistente =
-	 * repositorio.findFirstByEmailUsuario(emailUsuario);
-	 * 
-	 * if (usuarioExistente != null) { // Generar el token y establece la fecha de
-	 * expiración String token =
-	 * passwordEncoder.encode(RandomStringUtils.random(30)); Calendar
-	 * fechaExpiracion = Calendar.getInstance();
-	 * fechaExpiracion.add(Calendar.MINUTE, 10); // Actualizar el usuario con el
-	 * nuevo token y la fecha de expiración usuarioExistente.setToken(token);
-	 * usuarioExistente.setExpiracionToken(fechaExpiracion);
-	 * 
-	 * //Actualizar el usuario en la base de datos
-	 * repositorio.save(usuarioExistente);
-	 * 
-	 * //Enviar el correo de recuperación String nombreUsuario =
-	 * usuarioExistente.getNombreUsuario()+" "+usuarioExistente.getApellidosUsuario(
-	 * ); //emailServicio.enviarEmailRecuperacion(emailUsuario, nombreUsuario,
-	 * token);
-	 * 
-	 * return true;
-	 * 
-	 * } else { System.out.
-	 * println("[Error iniciarRecuperacionConEmail() ]El usuario con email "+
-	 * emailUsuario +" no existe"); return false; } } catch
-	 * (IllegalArgumentException iae) {
-	 * System.out.println("[Error UsuarioServicioImpl - registrar() ]" +
-	 * iae.getMessage()); return false; } catch (Exception e) { System.out.
-	 * println("[Error UsuarioServicioImpl - iniciarRecuperacionConEmail()]"+
-	 * e.getMessage()); return false; } }
-	 */
+	
+	@Override
+	public boolean iniciarResetPassConEmail(String emailUsuario) {
+		try {
+			Usuario usuarioExistente = repositorio.findFirstByEmailUsuario(emailUsuario);
+	
+			if (usuarioExistente != null) {
+				// Generar el token y establece la fecha de expiración
+				String token = passwordEncoder.encode(RandomStringUtils.random(30));
+				Calendar fechaExpiracion = Calendar.getInstance();
+				fechaExpiracion.add(Calendar.MINUTE, 3);
+				// Actualizar el usuario con el nuevo token y la fecha de expiración
+				usuarioExistente.setToken(token);
+				usuarioExistente.setExpiracionToken(fechaExpiracion);
+
+				//Actualizar el usuario en la base de datos
+				repositorio.save(usuarioExistente);
+
+				//Enviar el correo de recuperación
+				String nombreUsuario = usuarioExistente.getNombreUsuario()+" "+usuarioExistente.getApellidosUsuario();
+				emailServicio.enviarEmailRecuperacion(emailUsuario, nombreUsuario, token);
+				
+				return true;
+
+			} else {
+				System.out.println("[Error iniciarRecuperacionConEmail() ]El usuario con email "+ emailUsuario +" no existe");
+				return false;		}
+		} catch (IllegalArgumentException iae) {
+			System.out.println("[Error UsuarioServicioImpl - registrar() ]" + iae.getMessage());
+			return false;
+		}  catch (Exception e) {	
+			System.out.println("[Error UsuarioServicioImpl - iniciarRecuperacionConEmail()]"+ e.getMessage());
+			return false;
+		}
+	}
 
 	/**
 	 * Método para modificar la contraseña del usuario utilizando un token.
@@ -295,12 +308,6 @@ public class ImplementacionUsuario implements InterfazUsuario {
 	public Usuario buscarPorId(long id) {
 		return repositorio.findById(id).orElse(null);
 
-	}
-
-	@Override
-	public boolean iniciarResetPassConEmail(String emailUsuario) {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 }

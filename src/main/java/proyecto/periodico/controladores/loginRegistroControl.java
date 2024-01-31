@@ -90,8 +90,13 @@ public class loginRegistroControl {
 	 */
 	@GetMapping("/auth/registrar")
 	public String registrarGet(Model model) {
-		model.addAttribute("usuarioDTO", new UsuarioDTO());
-		return "registro";
+		try {
+            model.addAttribute("usuarioDTO", new UsuarioDTO());
+            return "registro";
+        } catch (Exception e) {
+            model.addAttribute("error", "Error al procesar la solicitud. Por favor, inténtelo de nuevo.");
+            return "registro";
+        }
 	}
 
 	/**
@@ -107,22 +112,19 @@ public class loginRegistroControl {
 
 		UsuarioDTO nuevoUsuario = usuarioServicio.registrar(usuarioDTO);
 
-		if (nuevoUsuario != null && nuevoUsuario.getDniUsuario() != null) {
+		 if (nuevoUsuario != null && !nuevoUsuario.isCuentaConfirmada()) {
 			// Si el usuario y el DNI no son null es que el registro se completo
 			// correctamente
 			model.addAttribute("mensajeRegistroExitoso", "Registro del nuevo usuario OK");
 			return "login";
-		} else {
-			// Se verifica si el DNI ya existe para mostrar error personalizado en la vista
-			if (usuarioDTO.getDniUsuario() == null) {
-				model.addAttribute("mensajeErrorDni", "Ya existe un usuario con ese DNI");
-				return "registro";
+		} 
+		 else if (nuevoUsuario.isCuentaConfirmada()) {
+				return "login";
 			} else {
 				model.addAttribute("mensajeErrorMail", "Ya existe un usuario con ese email");
 				return "registro";
 			}
 		}
-	}
 
 	/**
 	 * Gestiona la solicitud HTTP GET para llevar a la página de home una vez

@@ -25,6 +25,7 @@ public class UsuarioDTO {
 	private String claveUsuario;
 	private String token;
 	private Boolean estado_suscripcion;
+	private boolean cuentaConfirmada;
 	private String password;
 	private String password2;
 	private Calendar expiracionToken;
@@ -108,6 +109,14 @@ public class UsuarioDTO {
 	public void setToken(String token) {
 		this.token = token;
 	}
+	
+	public boolean isCuentaConfirmada() {
+		return cuentaConfirmada;
+	}
+
+	public void setCuentaConfirmada(boolean cuentaConfirmada) {
+		this.cuentaConfirmada = cuentaConfirmada;
+	}
 
 	public String getPassword() {
 		return password;
@@ -185,14 +194,15 @@ public class UsuarioDTO {
 				&& Objects.equals(nombreUsuario, other.nombreUsuario)
 				&& Objects.equals(misNoticias, other.misNoticias) && Objects.equals(password, other.password)
 				&& Objects.equals(password2, other.password2) && Objects.equals(tlfUsuario, other.tlfUsuario)
-				&& Objects.equals(token, other.token) && Objects.equals(estado_suscripcion, other.estado_suscripcion);
+				&& Objects.equals(token, other.token) && Objects.equals(estado_suscripcion, other.estado_suscripcion)
+				&& cuentaConfirmada == other.cuentaConfirmada;
 	}
 
 	@Override
 	public String toString() {
 		return "UsuarioDTO [nombreUsuario=" + nombreUsuario + ", apellidosUsuario=" + apellidosUsuario + ", dniUsuario="
 				+ dniUsuario + ", tlfUsuario=" + tlfUsuario + ", emailUsuario=" + emailUsuario + ", claveUsuario="
-				+ claveUsuario + ", token=" + token + ", estadoSuscripcion=" + estado_suscripcion + ", password=" + password + ", password2=" + password2
+				+ claveUsuario + ", token=" + token + ", cuentaConfirmada=" + cuentaConfirmada + ", estadoSuscripcion=" + estado_suscripcion + ", password=" + password + ", password2=" + password2
 				+ ", expiracionToken=" + expiracionToken + "]";
 	}
     
