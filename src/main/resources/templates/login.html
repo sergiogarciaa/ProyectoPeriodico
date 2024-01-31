@@ -7,38 +7,58 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.2/css/bootstrap.min.css"
 		th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
 	<link rel="stylesheet" href="../static/css/estilo.css" th:href="@{/css/estilo.css}">
-	<link rel="stylesheet" href="../static/css/menu.css" th:href="@{/css/menu.css}">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" th:src="@{/webjars/jquery/jquery.min.js}"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-	<script src="../static/script/script.js" th:src="@{/script/script.js}"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://use.fontawesome.com/releases/v5.7.2/css/all.css"></script>
+	<script th:src="@{/script/script.js}"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.2/js/bootstrap.min.js" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	<link rel="stylesheet" href="../static/css/blog.css" th:href="@{/css/blog.css}">
+	<link rel="stylesheet" href="../static/css/blog.rtl.css" th:href="@{/css/blog.rtl.css}">
+	 <!-- Custom styles for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap" rel="stylesheet">
 </head>
 
 <body>
-	<nav>
-		<div class="menu">
-			<div class="logo"><a>Biblioteca</a></div>
-			<ul class="nav-links">
-				<li><a class="btn btn-dark mt-2"  th:href="@{/}">Volver</a></li>
-			</ul>
-		</div>
-	</nav>
-	<div class="contenedor form-login">
-		<p class="titulo">Bienvenido</p>
-		<form class="form" id="loginform" method="POST" th:action="@{/auth/login-post}" role="form">
-			<input id="login-username" type="email" class="input" name="username" placeholder="email" required>
-			<input id="login-password" type="password" class="input" name="password" placeholder="password" required>
-			<button type="submit" class="col-12 form-btn">Acceder</button>
-			
-		</form>
-		<form class="mb-3" method="GET" th:action="@{/auth/registrar}" >
-			<button type="submit" class="form-btn">Registrarse</button>
-		</form>
-		 <form th:action="@{/auth/iniciarRecuperacion}" th:method="get">
-    		<button type="submit" class="form-btn negro">Recuperar contraseña</button>
-		</form>
+	<header class="blog-header py-3 px-3">
+	    <div class="row flex-nowrap justify-content-between align-items-center">
+	      <div class="col-4 pt-1">
+	        <a class="link-secondary" href="#">Subscribe</a>
+	      </div>
+	      <div class="col-4 text-center">
+	        <a class="blog-header-logo text-dark" style="text-decoration: underline;" th:href="@{/}">La Revista</a>
+	      </div>
+	      <div class="col-4 d-flex justify-content-end align-items-center">
+	        <a class="btn btn-sm btn-outline-secondary" style="margin-right: 2%;" th:href="@{/auth/registrar}">Registrar</a>
+	        <a class="btn btn-sm btn-outline-secondary" th:href="@{/auth/login}">Entrar</a>
+	      </div>
+	    </div>
+  </header>
 		
-	</div>
+<div class="wrapper">
+        <div class="logoLogin">
+            <img src="https://www.freepnglogos.com/uploads/logo-nu-png/nu-logo-hd-free-nahdlatul-ulama-emblem-download-1.png" alt="">
+        </div>
+        <div class="text-center mt-4 name">
+            La Revista
+        </div>
+        <form class="p-3 mt-3" id="loginform" method="POST" th:action="@{/auth/login-post}" role="form">
+            <div class="form-field d-flex align-items-center">
+                <span class="far fa-user"></span>
+                <input id="login-username" type="email" class="input" name="username" placeholder="Email" required>
+            </div>
+            <div class="form-field d-flex align-items-center">
+                <span class="fas fa-key"></span>
+                <input id="login-password" type="password" class="input" name="password" placeholder="Contraseña" required>
+            </div>
+            <button class="btn mt-3" type="submit">Entrar</button>
+        </form>
+        <div class="text-center fs-6">
+            <a th:href="@{/auth/iniciarRecuperacion}" th:method="get">¿Has olvidado la contraseña?</a> o <a method="GET" th:href="@{/auth/registrar}">Registro</a>
+        </div>
+    </div>
 	
 	<!-- Cuando en la URL exista el parametro error. -->
 	<!-- No funciona -->
@@ -46,9 +66,17 @@
 	    error();
 	</script>
 	<!-- ..... -->
-	
+	<script th:if="${not #strings.isEmpty(error)}">
+	    mostrarNotificacion("¡Datos Erróneos!", "El email o la contraseña es incorrecta", 'error');
+	</script>
+	<script th:if="${not #strings.isEmpty(cuentaVerificada)}">
+	    mostrarNotificacion("¡Cuenta verificada!", "La cuenta ha sido confirmada correctamente. Ya puede iniciar sesión", 'success');
+	</script>
+	<script th:if="${not #strings.isEmpty(cuentaNoVerificada)}">
+	    mostrarNotificacion("¡Debe confirmar su correo electrónico!","Debe confirmar su cuenta de correo electrónico.", 'error');
+	</script>
 	<script th:if="${not #strings.isEmpty(mensajeRegistroExitoso)}">
-	    mostrarNotificacion("¡Registro exitoso!", "Ahora puede iniciar sesión", 'success');
+	    mostrarNotificacion("¡Registro exitoso!", "Le hemos enviado un correo para verificar su usuario", 'success');
 	</script>
 	<script th:if="${not #strings.isEmpty(mensajeExitoMail)}">
 	    mostrarNotificacion("¡Email enviado!", "Se ha enviado a su direccion un correo de recuperación", 'info');

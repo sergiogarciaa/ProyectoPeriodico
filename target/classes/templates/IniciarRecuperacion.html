@@ -1,58 +1,77 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>Inicio Recuperacion</title>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.2/css/bootstrap.min.css"
-	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
-<link rel="stylesheet" href="../static/css/estilo.css"
-	th:href="@{/css/estilo.css}">
-<link rel="stylesheet" href="../static/css/menu.css"
-	th:href="@{/css/menu.css}">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-	th:src="@{/webjars/jquery/jquery.min.js}"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script th:src="@{/script/script.js}"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.2/js/bootstrap.min.js"
-	th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	<meta charset="UTF-8">
+	<title>Inicio Recuperacion</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.2/css/bootstrap.min.css"
+		th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+	<link rel="stylesheet" href="../static/css/estilo.css" th:href="@{/css/estilo.css}">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+		th:src="@{/webjars/jquery/jquery.min.js}"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://use.fontawesome.com/releases/v5.7.2/css/all.css"></script>
+	<script th:src="@{/script/script.js}"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.2/js/bootstrap.min.js"
+		th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	<link rel="stylesheet" href="../static/css/blog.css" th:href="@{/css/blog.css}">
+	<link rel="stylesheet" href="../static/css/blog.rtl.css" th:href="@{/css/blog.rtl.css}">
+	<!-- Custom styles for this template -->
+	<link href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap" rel="stylesheet">
 </head>
+
 <body>
-	<nav>
-		<div class="menu">
-			<div class="logo">
-				<a>La Revista</a>
+	<header class="blog-header py-3 px-3">
+		<div class="row flex-nowrap justify-content-between align-items-center">
+			<div class="col-4 pt-1">
+				<a class="link-secondary" href="#">Subscribe</a>
 			</div>
-			<ul class="nav-links">
-				<li><a class="btn btn-dark mt-2" th:href="@{/auth/login}">Volver</a></li>
-			</ul>
+			<div class="col-4 text-center">
+				<a class="blog-header-logo text-dark" style="text-decoration: underline;" th:href="@{/}">La Revista</a>
+			</div>
+			<div class="col-4 d-flex justify-content-end align-items-center">
+				<a class="btn btn-sm btn-outline-secondary" style="margin-right: 2%;"
+					th:href="@{/auth/registrar}">Registrar</a>
+				<a class="btn btn-sm btn-outline-secondary" th:href="@{/auth/login}">Entrar</a>
+			</div>
 		</div>
-	</nav>
-	<div class="contenedor form-olvidado">
-		<p class="titulo">Restablecer la contraseña</p>
-		<form class="form" th:action="@{/auth/iniciarRecuperacion}" enctype="multipart/form-data" th:object="${usuarioDTO}" method="post">
-			<input type="email" th:field="*{emailUsuario}" class="form-control" placeholder="Email"/>
-			<div class="text-right mt-1">
-				<button type="submit" class="form-btn">Recuperar</button>
+	</header>
+
+	<div class="wrapper">
+		<div class="logoLogin">
+			<img src="https://www.freepnglogos.com/uploads/logo-nu-png/nu-logo-hd-free-nahdlatul-ulama-emblem-download-1.png"
+				alt="">
+		</div>
+		<div class="text-center mt-4 name">
+			Restablecer la contraseña
+		</div>
+		<form class="p-3 mt-3" th:action="@{/auth/iniciarRecuperacion}" enctype="multipart/form-data"
+			th:object="${usuarioDTO}" method="post">
+			<div class="form-field d-flex align-items-center">
+				<span class="far fa-user"></span>
+				<input type="email" th:field="*{emailUsuario}" class="input" placeholder="Email" />
 			</div>
-			<div class="mi-recuadro">
-				<div>Le enviaremos un email con un enlace para modificar su contraseña.</div>
-			</div>
+			<button class="btn mt-3" type="submit">Entrar</button>
 		</form>
+		<div class="text-center fs-6">
+			<a>Le enviaremos un email con un enlace para modificar su contraseña.</a>
+		</div>
 	</div>
 	<script th:if="${not #strings.isEmpty(mensajeErrorMail)}">
-	    mostrarNotificacion("¡Error!", "Se ha producido un error en el proceso de recuperación, revisa la información ingresada.", 'error');
+		mostrarNotificacion("¡Error!", "Se ha producido un error en el proceso de recuperación, revisa la información ingresada.", 'error');
 	</script>
 	<script th:if="${not #strings.isEmpty(contraseñaModificadaError)}">
-	    mostrarNotificacion("¡Error!", "Ha ocurrido un error al reestablecer la contraseña", 'error');
+		mostrarNotificacion("¡Error!", "Ha ocurrido un error al reestablecer la contraseña", 'error');
 	</script>
 	<script th:if="${not #strings.isEmpty(mensajeErrorTokenValidez)}">
-	    mostrarNotificacion("¡Error!", "Token no válido", 'error');
+		mostrarNotificacion("¡Error!", "Token no válido", 'error');
 	</script>
 	<script th:if="${not #strings.isEmpty(mensajeErrorTokenExpirado)}">
-	    mostrarNotificacion("¡Error!", "El token ha expirado", 'error');
+		mostrarNotificacion("¡Error!", "El token ha expirado", 'error');
 	</script>
 </body>
+
 </html>

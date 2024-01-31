@@ -98,6 +98,7 @@ public class administracionControl {
 		 	Usuario usuarioDAO = usuarioServicio.buscarPorId(id);
 		 	InterfazUsuarioToDTO it = new ImplementacionUsuarioToDto();
 		 	UsuarioDTO usuarioDTO = it.usuarioToDto(usuarioDAO);
+		 	System.out.println(usuarioDTO.isCuentaConfirmada());
 		 	// Comprobar si el usuario es superAdmin
 		 	if (request.isUserInRole("ROLE_1")) {
 				return "redirect:/privada/index";	
@@ -126,7 +127,10 @@ public class administracionControl {
 	         // La contraseña se ha proporcionado en texto plano, cifrarla antes de actualizarla
 	         usuarioDTO.setClaveUsuario(passwordEncoder.encode(usuarioDTO.getClaveUsuario()));
 	     }
-
+	     // Mantener el boolean de cuenta confirmada
+	     if (!usuarioDTO.isCuentaConfirmada()) {
+	    	    usuarioDTO.setCuentaConfirmada(usuarioExistente.isCuentaConfirmada());
+	    	}
 	  
 	     // Guardar el usuario actualizado en la base de datos
 	     usuarioServicio.actualizarUsuario(usuarioDTO);

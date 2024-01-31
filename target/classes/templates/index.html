@@ -4,42 +4,61 @@
 <head>
 <meta charset="UTF-8">
 <title>Home</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.2/css/bootstrap.min.css"
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/blog/">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.2/css/bootstrap.min.css"
 		th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
-	<link rel="stylesheet" href="../static/css/estilo.css" th:href="@{/css/estilo.css}">
-	<link rel="stylesheet" href="../static/css/menu.css" th:href="@{/css/menu.css}">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" th:src="@{/webjars/jquery/jquery.min.js}"></script>
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-	<script th:src="@{/script/script.js}"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.2/js/bootstrap.min.js" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+		<script th:src="@{/script/script.js}"></script>
+	  <link rel="stylesheet" href="../static/css/blog.css" th:href="@{/css/blog.css}">
+	  <link rel="stylesheet" href="../static/css/blog.rtl.css" th:href="@{/css/blog.rtl.css}">
+	  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap" rel="stylesheet">
 </head>
 
 <body>
-	<nav>
-		<div class="menu">
-			<div class="logo">
-				<a>Periodico</a>
-			</div>
-			<ul class="nav-links">
-				<li>
-				<form sec:authorize="hasAnyRole('ROLE_2', 'ROLE_4')">
-						<button type="button" class="btn btn-dark mt-2"><a style="color: white; text-decoration: none;"th:href="@{/privada/zonaPeriodista}">Zona Periodista</a></button>
-					</form>
-				</li>
-				<li>
-					<form sec:authorize="hasAnyRole('ROLE_3', 'ROLE_4')">
-						<button type="button" class="btn btn-dark mt-2"><a style="color: white; text-decoration: none;"th:href="@{/privada/administracion}">Administracion</a></button>
-					</form>
-				</li>
-				<li>
-					<form th:action="@{/auth/logout}" method="post" id="logoutForm">
-						<button type="button" class="btn btn-dark mt-2"
-							onclick="confirmarLogout()">Logout</button>
-					</form>
-				</li>
-			</ul>
+	<div>
+		<header class="blog-header py-3 px-3">
+		    <div class="row flex-nowrap justify-content-between align-items-center">
+		      <div class="col-4 pt-1">
+		        <a class="link-secondary" href="#">Subscribe</a>
+		      </div>
+		      <div class="col-4 text-center">
+		        <a class="blog-header-logo text-dark" style="text-decoration: underline;" th:href="@{/}">La Revista</a>
+		      </div>
+		      <div class="col-4 d-flex justify-content-end align-items-center">
+		        <a class="btn btn-sm btn-outline-secondary" style="margin-right: 2%;" sec:authorize="hasAnyRole('ROLE_2', 'ROLE_4')" th:href="@{/privada/zonaPeriodista}">Zona Periodista</a>
+				<a class="btn btn-sm btn-outline-secondary" th:href="@{/privada/administracion}" sec:authorize="hasAnyRole('ROLE_3', 'ROLE_4')">Administracion</a>
+				<form th:action="@{/auth/logout}" method="post" id="logoutForm">
+					<button type="button" class="btn btn-sm btn-outline-secondary" style="margin-left:20%;" onclick="confirmarLogout()">Salir</button>
+				</form>
+		      </div>
+		    </div>
+	  </header>
+	  <div class="nav-scroller py-1 mb-2">
+		    <nav class="nav d-flex justify-content-between">
+		    	<a class="p-2 link-secondary" th:each="categoria : ${categorias}" th:text="${categoria.tipoCategoria}"></a>
+			</nav>
 		</div>
-	</nav>
+	</div>
 
 	<h3 class="text-dark text-center mt-5">Bienvenido <span th:text="${nombreUsuario}">usuario</span></h3>
 </body>

@@ -18,11 +18,14 @@ function revisarContraseña() {
 }
 
 function mostrarNotificacion(titulo, mensaje, tipo) {
-    Swal.fire({
+     Swal.fire({
         title: titulo,
         text: mensaje,
         icon: tipo,
-        confirmButtonText: 'OK'
+        confirmButtonText: 'OK',
+        customClass: {
+            confirmButton: 'btn btn-primary'  
+        }
     });
 }
 
