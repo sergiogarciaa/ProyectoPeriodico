@@ -23,5 +23,7 @@ public interface InterfazNoticia {
 	 */
 	public List<NoticiaDTO> buscarTodas();
 	public NoticiaDTO noticiaCategoriaN(Usuario usu, Categoria categoria);
+	
+	public String calcularResumen(String descNoticia, int palabras);
 
 }

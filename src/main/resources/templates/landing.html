@@ -9,6 +9,7 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/blog/">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.2/css/bootstrap.min.css"
 		th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 		<script th:src="@{/script/script.js}"></script>
 	  <link rel="stylesheet" href="../static/css/blog.css" th:href="@{/css/blog.css}">
 	  <link rel="stylesheet" href="../static/css/blog.rtl.css" th:href="@{/css/blog.rtl.css}">
@@ -77,9 +78,9 @@
         <div class="col p-4 d-flex flex-column position-static">
             <strong class="d-inline-block mb-2 text-primary" th:text="${noticia.idCategoria.tipoCategoria}"></strong>
             <strong class="d-inline-block mb-2 text-primary" th:text="'Publicado por: ' + ${noticia.idUsuario.nombreUsuario}"></strong>
-            <h3 class="mb-0" th:text="${noticia.tituloNoticia}">Featured post</h3>
-            <div class="mb-1" th:text="${noticia.fchaPublicacionMostrarWeb}">asdasd</div>
-            <p class="card-text mb-auto" th:text="${noticia.descNoticia}">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+            <h3 class="mb-0" th:text="${noticia.tituloNoticia}"></h3>
+            <div class="mb-1" th:text="${noticia.fchaPublicacionMostrarWeb}"></div>
+            <p class="card-text mb-auto" th:text="${noticia.resumenNoticia}"></p>
             <a th:attr="data-idCategoria=${noticia.idCategoria.idCategoria}, data-idNoticia=${noticia.idNoticia}" onclick="confirmarRedireccion(event)" class="stretched-link">Seguir leyendo</a>
         </div>
         <div class="col-auto d-none d-lg-block">
@@ -97,8 +98,5 @@
     <a th:href="@{/}">Subir</a>
   </p>
 </footer>
-
-
-    
   </body>
 </html>

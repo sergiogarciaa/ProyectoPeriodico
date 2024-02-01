@@ -15,34 +15,38 @@
 	<script th:src="@{/script/script.js}"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.2/js/bootstrap.min.js"
 		th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	  <link rel="stylesheet" href="../static/css/blog.css" th:href="@{/css/blog.css}">
+	  <link rel="stylesheet" href="../static/css/blog.rtl.css" th:href="@{/css/blog.rtl.css}">
 </head>
 
 <body>
-	<nav>
-		<div class="menu">
-			<div class="logo">
-				<a>Zona Periodista</a>
-			</div>
-			<ul class="nav-links">
-				<li>
-					<a class="btn btn-dark mt-2" th:href="@{/privada/index}">Volver</a>
-				</li>
-				<li>
-					<form th:action="@{/auth/logout}" method="post" id="logoutForm">
-						<button type="button" class="btn btn-dark mt-2" onclick="confirmarLogout()">Salir</button>
+	<header class="blog-header py-3 px-3">
+		    <div class="row flex-nowrap justify-content-between align-items-center">
+		      <div class="col-4 pt-1">
+		      </div>
+		      <div class="col-4 text-center">
+		        <a class="blog-header-logo text-dark" style="text-decoration: underline;">Panel Administrativo</a>
+		      </div>
+			      <div class="col-4 d-flex justify-content-end align-items-center">
+			        <a class="btn btn-sm btn-outline-secondary" style="margin-right: 5%;" th:href="@{/privada/index}">Volver</a>
+			        <form th:action="@{/auth/logout}" method="post" id="logoutForm">
+						<button type="button" class="btn btn-sm btn-outline-secondary" style="margin-left:10%;" onclick="confirmarLogout()">Salir</button>
 					</form>
-				</li>
-			</ul>
-		</div>
-	</nav>
+			      </div>
+		    </div>
+	  </header>
 	<div class="container py-4 mt-5">
-
-		<div class="card bg-light">
-			<div class="card-header">
-				<h3>Imagina y Crea</h3>
+		<div style="text-align: center;">
+			<h3>Imagina y Crea</h3>
+		</div>
+			
+		<div style="display: flex; justify-content: center;">
+		<div class="card bg-light" style="justify-content: center; text-align: center; width: 50%;">
+			<div class="card-header" style="justify-content: center; display: flex;">
+				
 				<div class="contenedor form-registro">
 	         	
-	         		<form class="form" th:action="@{/guardarNoticia}" method="post" th:object="${noticiaDTO}">
+	         		<form class="formEspecial" th:action="@{/guardarNoticia}" method="post" th:object="${noticiaDTO}">
 					    <input type="hidden" id="idNoticia" name="idNoticia" th:value="*{idNoticia}">
 					    
 					    <input type="text" id="tituloNoticia" name="tituloNoticia" class="input" placeholder="Título de la Noticia"
@@ -51,14 +55,16 @@
 					    <textarea id="descNoticia" name="descNoticia" class="input" placeholder="Descripción de la Noticia"
 					        required th:text="*{descNoticia}"></textarea>
 					    
+					     <div style="justify-content: center; display: flex;">
 					    <!-- Nuevo campo de selección para CategoriaDTO -->
-					    <select id="categoria" name="idCategoria" class="input" required>
+					    <select id="categoria" name="idCategoria" class="input form-field d-flex text-center align-items-center" required>
 					        <option th:each="categoria : ${categoriasDTO}" th:value="${categoria.idCategoria}"
 					            th:selected="${noticiaDTO.idCategoria == categoria.idCategoria}">
 					            <!-- Supongo que CategoriaDTO tiene un campo 'tipoCategoria' -->
 					            <span th:text="${categoria.tipoCategoria}"></span>
 					        </option>
 					    </select>
+					     </div>
 
 					
 					    <button type="submit" id="btnGuardarNoticia" class="form-btn">Guardar Noticia</button>
@@ -67,6 +73,7 @@
 
     </div>
 			</div>
+		</div>
 		</div>
 	</div>
 </body>

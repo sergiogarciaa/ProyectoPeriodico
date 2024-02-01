@@ -27,7 +27,7 @@ public class ImplementacionNoticiaToDao implements InterfazNoticiaToDAO {
 	            noticiaDao.setFoto(noticiaDTO.getFoto());
 	            noticiaDao.setEstado_suscripcion(noticiaDTO.getEstado_suscripcion());
 	            noticiaDao.setFchaPublicacion(noticiaDTO.getFchaPublicacionMostrarWeb());
-
+	            noticiaDao.setResumenNoticia(noticiaDTO.getResumenNoticia());
 	            // Asignar el usuario y la categoría a la noticia
 	            noticiaDao.setUsuario(usuario);
 	            noticiaDao.setNoticiaCategoria(categoria);

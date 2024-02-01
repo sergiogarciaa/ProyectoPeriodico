@@ -243,6 +243,7 @@ public class ImplementacionUsuario implements InterfazUsuario {
 				admin.setDniUsuario("-");
 				admin.setEmailUsuario("admin@admin.com");
 				admin.setRol("ROLE_4");
+				admin.setCuentaConfirmada(true);
 				repositorio.save(admin);
 				toDto.usuarioToDto(admin);
 				

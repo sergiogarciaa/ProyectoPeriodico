@@ -76,6 +76,7 @@ public class loginRegistroControl {
 	public String index(Model model) {
 		List<NoticiaDTO> noticiaDTO = noticiaServicio.buscarTodas();
 		List<CategoriaDTO> categoriaDTO = categoriaServicio.buscarTodas();
+		System.out.println("Mostrando Todas las Noticias LANDING" + noticiaDTO);
 		model.addAttribute("noticias", noticiaDTO);
 		model.addAttribute("categorias", categoriaDTO);
 		return "landing";
@@ -140,7 +141,10 @@ public class loginRegistroControl {
 
 	            if (cuentaConfirmada) {
 	                model.addAttribute("nombreUsuario", authentication.getName());
-	                Usuario usu = usuarioServicio.buscarPorEmail(authentication.getName());
+	                List<NoticiaDTO> noticiaDTO = noticiaServicio.buscarTodas();
+	        		List<CategoriaDTO> categoriaDTO = categoriaServicio.buscarTodas();
+	        		model.addAttribute("noticias", noticiaDTO);
+	        		model.addAttribute("categorias", categoriaDTO);
 	                return "index";
 	            } else {
 	                model.addAttribute("cuentaNoVerificada", "Error al confirmar su email");
@@ -170,17 +174,25 @@ public class loginRegistroControl {
 	    }
 	
 	@GetMapping("/auth/{idCategoria}/{idNoticia}")
-    public String verNoticia(@PathVariable long idCategoria, @PathVariable long idNoticia, Model model) {
+    public String verNoticia(@PathVariable long idCategoria, @PathVariable long idNoticia, Model model, Authentication authentication) {
         // Aquí deberías cargar la noticia y la categoría correspondiente usando los ID proporcionados
         // por ejemplo, llamando a tu servicio NoticiaService
-
-        Noticia noticia = noticiaServicio.buscarNoticiaPorID(idNoticia);
-        Categoria categoria = noticia.getNoticiaCategoria();
-        System.out.println(noticia);
-        // Puedes pasar la noticia y la categoría al modelo para que estén disponibles en la página
-        model.addAttribute("noticia", noticia);
-        model.addAttribute("categoria", categoria);
-
-        return "verNoticia"; // Cambia "verNoticia" por el nombre de tu página de visualización de noticias
+		 if (authentication == null || !authentication.isAuthenticated()) {
+		        // El usuario no está autenticado, muestra la notificación y redirige al inicio de sesión
+		        model.addAttribute("mensaje", "Debes estar logeado para acceder a esta página.");
+		        return "login";
+		    }
+		 else {
+		        Noticia noticia = noticiaServicio.buscarNoticiaPorID(idNoticia);
+		        Categoria categoria = noticia.getNoticiaCategoria();
+		        List<CategoriaDTO> categoriasDTO = categoriaServicio.buscarTodas();
+		        System.out.println(noticia);
+		        // Puedes pasar la noticia y la categoría al modelo para que estén disponibles en la página
+		        model.addAttribute("noticia", noticia);
+		        model.addAttribute("categoria", categoria);
+		        model.addAttribute("categorias", categoriasDTO);
+		        return "verNoticia";
+		 }
+        
     }
 }

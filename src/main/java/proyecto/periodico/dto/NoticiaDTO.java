@@ -12,6 +12,7 @@ public class NoticiaDTO {
 	private long idNoticia;
 	private String tituloNoticia;
 	private String descNoticia;
+	private String resumenNoticia;
     private byte[] foto;
 	private Boolean estado_suscripcion;
 	private Calendar fchaPublicacion;
@@ -28,7 +29,7 @@ public class NoticiaDTO {
 	 * @param fchaPublicacion
 	 */
 	public NoticiaDTO(long idNoticia, String tituloNoticia, String descNoticia, byte[] foto, Boolean estado_suscripcion,
-			Calendar fchaPublicacion, String fchaPublicacionMostrarWeb,Categoria idCategoria, Usuario idUsuario) {
+			Calendar fchaPublicacion, String fchaPublicacionMostrarWeb,Categoria idCategoria, Usuario idUsuario, String resumenNoticia) {
 		super();
 		this.idNoticia = idNoticia;
 		this.tituloNoticia = tituloNoticia;
@@ -39,6 +40,7 @@ public class NoticiaDTO {
 		this.idCategoria = idCategoria;
 		this.idUsuario = idUsuario;
 		this.fchaPublicacionMostrarWeb = fchaPublicacionMostrarWeb;
+		this.resumenNoticia = resumenNoticia;
 	}
 	/**
 	 * 
@@ -101,6 +103,12 @@ public class NoticiaDTO {
 	public void setFchaPublicacionMostrarWeb(String fchaPublicacionMostrarWeb) {
 		this.fchaPublicacionMostrarWeb = fchaPublicacionMostrarWeb;
 	}
+	public String getResumenNoticia() {
+		return resumenNoticia;
+	}
+	public void setResumenNoticia(String resumenNoticia) {
+		this.resumenNoticia = resumenNoticia;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -119,7 +127,7 @@ public class NoticiaDTO {
 		if (getClass() != obj.getClass())
 			return false;
 		NoticiaDTO other = (NoticiaDTO) obj;
-		return Objects.equals(descNoticia, other.descNoticia)
+		return Objects.equals(descNoticia, other.descNoticia) && Objects.equals(resumenNoticia, other.resumenNoticia)
 				&& Objects.equals(estado_suscripcion, other.estado_suscripcion)
 				&& Objects.equals(fchaPublicacion, other.fchaPublicacion) && Arrays.equals(foto, other.foto)
 				&& idNoticia == other.idNoticia && Objects.equals(tituloNoticia, other.tituloNoticia)&& Objects.equals(idCategoria, other.idCategoria)
@@ -129,6 +137,6 @@ public class NoticiaDTO {
 	public String toString() {
 		return "NoticiaDTO [idNoticia=" + idNoticia + ", tituloNoticia=" + tituloNoticia + ", descNoticia="
 				+ descNoticia + ", foto=" + Arrays.toString(foto) + ", estado_suscripcion=" + estado_suscripcion
-				+ ", fchaPublicacionWeb=" + fchaPublicacionMostrarWeb + "]";
+				+ ", fchaPublicacionWeb=" + fchaPublicacionMostrarWeb + ", resumen =" + resumenNoticia + "]";
 	}
 }

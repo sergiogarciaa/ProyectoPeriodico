@@ -60,11 +60,6 @@
         </div>
     </div>
 	
-	<!-- Cuando en la URL exista el parametro error. -->
-	<!-- No funciona -->
-	<script th:if="${param.error}">
-	    error();
-	</script>
 	<!-- ..... -->
 	<script th:if="${not #strings.isEmpty(error)}">
 	    mostrarNotificacion("¡Datos Erróneos!", "El email o la contraseña es incorrecta", 'error');

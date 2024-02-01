@@ -1,5 +1,6 @@
 package proyecto.periodico.servicios;
 
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
@@ -51,6 +52,13 @@ public class ImplementacionNoticia implements InterfazNoticia  {
 			return null;
 		}
 		
+	}
+	
+	// Método para calcular el resumen de la noticia
+	public String calcularResumen(String descNoticia, int palabras) {
+	    String[] palabrasArray = descNoticia.split("\\s+");
+	    int longitud = Math.min(palabrasArray.length, palabras);
+	    return String.join(" ", Arrays.copyOfRange(palabrasArray, 0, longitud));
 	}
 
 }

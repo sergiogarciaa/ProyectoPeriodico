@@ -12,23 +12,6 @@
 	  <link rel="stylesheet" href="../static/css/blog.rtl.css" th:href="@{/css/blog.rtl.css}">
 	  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
-
     
     <!-- Custom styles for this template -->
     <link href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap" rel="stylesheet">
@@ -54,13 +37,57 @@
 		    </div>
 	  </header>
 	  <div class="nav-scroller py-1 mb-2">
-		    <nav class="nav d-flex justify-content-between">
+		    <nav class="nav d-flex justify-content-between px-3">
 		    	<a class="p-2 link-secondary" th:each="categoria : ${categorias}" th:text="${categoria.tipoCategoria}"></a>
 			</nav>
 		</div>
+		<h3 class="text-dark text-center mt-1">Bienvenido <span th:text="${nombreUsuario}">usuario</span></h3>
 	</div>
 
-	<h3 class="text-dark text-center mt-5">Bienvenido <span th:text="${nombreUsuario}">usuario</span></h3>
+<main class="container">
+  <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
+    <div class="col-md-6 px-0">
+      <h1 class="display-4 fst-italic">assssst</h1>
+      <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly and efficiently about what’s most interesting in this post’s contents.</p>
+      <p class="lead mb-0"><a href="#" class="text-white fw-bold">Seguir Leyendo...</a></p>
+    </div>
+  </div>
+
+      <div class="col-md-6"  th:each="noticia, iterStat : ${noticias}" th:if="${iterStat.index < 4}">
+    <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+            <strong class="d-inline-block mb-2 text-primary" th:text="${noticia.idCategoria.tipoCategoria}"></strong>
+            <strong class="d-inline-block mb-2 text-primary" th:text="'Publicado por: ' + ${noticia.idUsuario.nombreUsuario}"></strong>
+            <h3 class="mb-0" th:text="${noticia.tituloNoticia}"></h3>
+            <div class="mb-1" th:text="${noticia.fchaPublicacionMostrarWeb}"></div>
+            <p class="card-text mb-auto" th:text="${noticia.resumenNoticia}"></p>
+            <a th:attr="data-idCategoria=${noticia.idCategoria.idCategoria}, data-idNoticia=${noticia.idNoticia}" onclick="confirmarRedireccion(event)" class="stretched-link">Seguir leyendo</a>
+        </div>
+        <div class="col-auto d-none d-lg-block">
+            <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+        </div>
+    </div>
+	</div>
+	
+</main>
+
+<footer class="blog-footer">
+  <p>Periodico "La Revista"</p>
+  <p>
+    <a th:href="@{/}">Subir</a>
+  </p>
+</footer>
+
 </body>
 
 </html>
+
+
+
+  
+
+
+
+
+
+

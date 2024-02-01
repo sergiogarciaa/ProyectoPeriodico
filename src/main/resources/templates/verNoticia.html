@@ -13,6 +13,7 @@
 		<script th:src="@{/script/script.js}"></script>
 	  <link rel="stylesheet" href="../static/css/blog.css" th:href="@{/css/blog.css}">
 	  <link rel="stylesheet" href="../static/css/blog.rtl.css" th:href="@{/css/blog.rtl.css}">
+	  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
     <style>
@@ -56,7 +57,7 @@
 	
 	  <div class="nav-scroller py-1 mb-2">
 		    <nav class="nav d-flex justify-content-between">
-		    	<a class="p-2 link-secondary" th:each="categoria : ${categoria}" th:text="${categoria.tipoCategoria}"></a>
+		    	<a class="p-2 link-secondary" th:each="categoria : ${categorias}" th:text="${categoria.tipoCategoria}"></a>
 			</nav>
 		</div>
 	</div>

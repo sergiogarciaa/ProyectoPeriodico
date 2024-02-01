@@ -30,11 +30,14 @@ public class Noticia {
 		@Column(name = "id_noticia", nullable = false)
 		private long idNoticia;
 		
-		@Column(name = "titulo_noticia", nullable = false, length = 50)
+		@Column(name = "titulo_noticia", nullable = false, length = 200)
 		private String tituloNoticia;
 
-		@Column(name = "desc_noticia", nullable = true, length = 2000)
+		@Column(name = "desc_noticia", nullable = true, length = 4000)
 		private String descNoticia;
+		
+		@Column(name = "resumen_noticia", nullable = true, length = 4000)
+		private String resumenNoticia;
 		
 		@Lob
 		@Column(name = "imagen_noticia", nullable = true)
@@ -55,18 +58,41 @@ public class Noticia {
 	    @JoinColumn(name = "id_usuario_noticia", nullable = false)
 	    private Usuario usuario;
 
+		
 		/**
 		 * @param idNoticia
 		 * @param tituloNoticia
 		 * @param descNoticia
+		 * @param resumenNoticia
 		 * @param foto
 		 * @param estado_suscripcion
 		 * @param fchaPublicacion
+		 * @param noticiaCategoria
 		 * @param usuario
 		 */
+		public Noticia(long idNoticia, String tituloNoticia, String descNoticia, String resumenNoticia, byte[] foto,
+				Boolean estado_suscripcion, String fchaPublicacion, Categoria noticiaCategoria, Usuario usuario) {
+			super();
+			this.idNoticia = idNoticia;
+			this.tituloNoticia = tituloNoticia;
+			this.descNoticia = descNoticia;
+			this.resumenNoticia = resumenNoticia;
+			this.foto = foto;
+			this.estado_suscripcion = estado_suscripcion;
+			this.fchaPublicacion = fchaPublicacion;
+			this.noticiaCategoria = noticiaCategoria;
+			this.usuario = usuario;
+		}
 
-		
 		// GETTER Y SETTER
+
+		/**
+		 * 
+		 */
+		public Noticia() {
+			super();
+			// TODO Auto-generated constructor stub
+		}
 
 		public long getIdNoticia() {
 			return idNoticia;
@@ -132,6 +158,14 @@ public class Noticia {
 
 		public void setNoticiaCategoria(Categoria noticiaCategoria) {
 			this.noticiaCategoria = noticiaCategoria;
+		}
+
+		public String getResumenNoticia() {
+			return resumenNoticia;
+		}
+
+		public void setResumenNoticia(String resumenNoticia) {
+			this.resumenNoticia = resumenNoticia;
 		}
 
 		@Override

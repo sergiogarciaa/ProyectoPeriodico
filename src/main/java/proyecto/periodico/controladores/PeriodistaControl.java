@@ -67,13 +67,18 @@ public class PeriodistaControl {
 
 	        // Consultar la categoría por ID desde la base de datos o utilizarla directamente si la tienes en el DTO
 	        Categoria categoria = categoriaServicio.buscarPorId(noticiaDTO.getIdCategoria());
+	        
+	        // Calcular el resumen de la noticia (primeras 50 palabras)
+	        String resumen = noticiaServicio.calcularResumen(noticiaDTO.getDescNoticia(), 50);
+	        
 	        // Obtener la fecha y hora actual
 	        Calendar fechaActual = Calendar.getInstance();
-
 	        // Formatear la fecha y hora actual como una cadena
 	        SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	        noticiaDTO.setFchaPublicacionMostrarWeb(formatoFecha.format(fechaActual.getTime()));
 	        System.out.println(noticiaDTO.getFchaPublicacionMostrarWeb());
+	        noticiaDTO.setResumenNoticia(resumen);
+	        System.out.println(resumen);
 	        // Crear una entidad Noticia a partir del DTO
 	        Noticia noticia = noticiaToDao.noticiaToDao(noticiaDTO, usuario, categoria);
 
