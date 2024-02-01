@@ -79,6 +79,16 @@ public interface InterfazUsuario {
      * @param id Identificador del usuario.
      * @return El DTO del usuario encontrado o null si no existe.
      */
+	
     public UsuarioDTO buscarDtoPorId(Long id);
+    
+    /**
+	 * Comprueba si el usuario existe y si su cuenta ha sido confirmada
+	 * @param email El email del usuario
+	 * @return true si el usuario existe y su cuenta ha sido confirmada, false en caso contrario
+	 */
+	public boolean estaLaCuentaConfirmada(String email);
+
+	boolean confirmarCuenta(String token);
 
 }

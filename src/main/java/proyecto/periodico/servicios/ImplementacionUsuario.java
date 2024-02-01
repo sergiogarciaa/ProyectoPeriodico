@@ -73,13 +73,50 @@ public class ImplementacionUsuario implements InterfazUsuario {
 
 						return userDto;
 					} catch (IllegalArgumentException iae) {
-						System.out.println("[Error UsuarioServicioImpl - registrarUsuario()] Argumento no valido al registrar usuario " + iae.getMessage());
+						System.out.println("[Error ImplementacionUsuario - registrarUsuario()] Argumento no valido al registrar usuario " + iae.getMessage());
 					} catch (PersistenceException e) {
-						System.out.println("[Error UsuarioServicioImpl - registrarUsuario()] Error de persistencia al registrar usuario " + e.getMessage());
+						System.out.println("[Error ImplementacionUsuario - registrarUsuario()] Error de persistencia al registrar usuario " + e.getMessage());
 					}
 					return null;
 	}
 
+	@Override
+	public boolean estaLaCuentaConfirmada(String email) {
+		try {
+			Usuario usuarioExistente = repositorio.findFirstByEmailUsuario(email);
+			if (usuarioExistente != null && usuarioExistente.isCuentaConfirmada()) {
+				return true;
+			}
+		} catch (Exception e) {
+			System.out.println("[Error ImplementacionUsuario - estaLaCuentaConfirmada()] Error al comprobar si la cuenta ya ha sido confirmada" + e.getMessage());
+		}	
+		return false;
+	}
+	
+	@Override
+	public boolean confirmarCuenta(String token) {
+		try {
+			Usuario usuarioExistente = repositorio.findByToken(token);
+
+			if (usuarioExistente != null && !usuarioExistente.isCuentaConfirmada()) {
+				// Entra en esta condición si el usuario existe y su cuenta no se ha confirmado
+				usuarioExistente.setCuentaConfirmada(true);
+				usuarioExistente.setToken(null);
+				repositorio.save(usuarioExistente);
+
+				return true;
+			} else {
+				System.out.println("La cuenta no existe o ya está confirmada");
+				return false;
+			}
+		} catch (IllegalArgumentException iae) {
+			System.out.println("[Error ImplementacionUsuario - confirmarCuenta()] Error al confirmar la cuenta " + iae.getMessage());
+			return false;
+		} catch (PersistenceException e) {
+			System.out.println("[Error ImplementacionUsuario - confirmarCuenta()] Error de persistencia al confirmar la cuenta" + e.getMessage());
+			return false;
+		}
+	}
 	
 	@Override
 	public boolean iniciarResetPassConEmail(String emailUsuario) {

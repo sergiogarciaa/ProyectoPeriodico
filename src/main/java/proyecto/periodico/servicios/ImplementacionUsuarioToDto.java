@@ -25,7 +25,7 @@ public class ImplementacionUsuarioToDto implements InterfazUsuarioToDTO {
 			dto.setToken(u.getToken());
 			dto.setExpiracionToken(u.getExpiracionToken());
 			dto.setId(u.getIdUsuario());
-			
+			dto.setCuentaConfirmada(u.isCuentaConfirmada());
 			return dto;
 		} catch (Exception e) {
 			System.out.println(

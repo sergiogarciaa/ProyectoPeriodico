@@ -55,6 +55,7 @@ public class loginRegistroControl {
 	public String login(Model model) {
 		// Se agrega un nuevo objeto UsuarioDTO al modelo para el formulario de login
 		model.addAttribute("usuarioDTO", new UsuarioDTO());
+		
 		return "login";
 	}
 
@@ -134,12 +135,39 @@ public class loginRegistroControl {
 	 */
 	@GetMapping("/privada/index")
 	public String loginCorrecto(Model model, Authentication authentication) {
-		Usuario usuario = usuarioServicio.buscarPorEmail(authentication.getName());
-		String email = usuario.getEmailUsuario();
-		model.addAttribute("nombreUsuario", email);
-		System.out.println(authentication.getAuthorities());
-		return "index";
+		try {
+	            boolean cuentaConfirmada = usuarioServicio.estaLaCuentaConfirmada(authentication.getName());
+
+	            if (cuentaConfirmada) {
+	                model.addAttribute("nombreUsuario", authentication.getName());
+	                Usuario usu = usuarioServicio.buscarPorEmail(authentication.getName());
+	                return "index";
+	            } else {
+	                model.addAttribute("cuentaNoVerificada", "Error al confirmar su email");
+	                return "login";
+	            }
+	        } catch (Exception e) {
+	            model.addAttribute("error", "Error al procesar la solicitud. Por favor, inténtelo de nuevo.");
+	            return "login";
+	        }
 	}
+	  @GetMapping("/auth/confirmacionCorreo")
+	    public String confirmarCuenta(Model model, @RequestParam("token") String token) {
+	        try {
+	            boolean confirmacionExitosa = usuarioServicio.confirmarCuenta(token);
+
+	            if (confirmacionExitosa) {
+	                model.addAttribute("cuentaVerificada", "Su dirección de correo ha sido confirmada correctamente");
+	            } else {
+	                model.addAttribute("cuentaNoVerificada", "Error al confirmar su email");
+	            }
+
+	            return "login";
+	        } catch (Exception e) {
+	            model.addAttribute("error", "Error al procesar la solicitud. Por favor, inténtelo de nuevo.");
+	            return "login";
+	        }
+	    }
 	
 	@GetMapping("/auth/{idCategoria}/{idNoticia}")
     public String verNoticia(@PathVariable long idCategoria, @PathVariable long idNoticia, Model model) {

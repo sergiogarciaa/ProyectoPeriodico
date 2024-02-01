@@ -31,14 +31,15 @@ public class ImplementacionEmail implements InterfazEmail{
 	            String urlDeRecuperacion = String.format("%s/auth/recuperar?token=%s", urlDominio, token);
 
 	            String cuerpoMensaje = String.format(
-	    				"﻿<!DOCTYPE html> <html lang='es'> <body> "
-	    				+ "<div style='width: 600px; padding: 20px; border: 2px solid #ff9900; border-radius: 12px; font-family: Sans-serif'>"
-	    				+ " <h1 style='color:#192255'>Restablecer contraseña.<b style='color:#ff9900'> La Revista</b></h1>"
-	    				+ " <p style='margin-bottom:25px'>Estimado/a&nbsp;<b>%s</b>:</p> "
-	    				+ "<p style='margin-bottom:25px'>Recibiste este correo porque se solicitó un restablecimiento de contraseña para tu cuenta. Haz clic en el botón que aparece a continuación para cambiar tu contraseña.</p> <a style='padding: 10px 15px; border-radius: 20px; background-color: #285845; color: white; text-decoration: none' href='%s' target='_blank'>Cambiar contraseña</a> <p style='margin-top:25px'>Si no solicitaste este restablecimiento de contraseña, "
-	    				+ "puedes ignorar este correo de forma segura.</p>"
-	    				+ " <p>Gracias por utilizar nuestros servicios.</p> "
-	    				+ "</div> </body> </html>",
+	    				 "﻿<!DOCTYPE html> "
+			                + "<html lang='es'> "
+			                + "<body> "
+			                + "<div style='width: 600px; padding: 20px; border: 2px solid black; border-radius: 13px; background-color: #fff; font-family: Sans-serif;'>"
+			                + "<h1 style='color:rgb(192, 192, 192)'>Restablecer contraseña. - <b style='color:#285845; text-decoration: underline'>La Revista</b></h1>"
+			                + "<p style='margin-bottom:25px'>Estimad@&nbsp;<b>%s</b>:</p> <p style='margin-bottom:25px'>"
+			                + "Se ha enviado este correo para restablecer la contraseña de su cuenta. Haga click en el botón para proseguir. Si usted no ha solicitado este cambio, ignore este mensaje.</p>"
+			                + " <a style='padding: 10px 15px; border-radius: 20px; background-color: #285845; color: white; text-decoration: none' href='%s' target='_blank'>Cambiar contraseña</a>"
+			                + " <p style='margin-top:25px'>¡Gracías por confiar en nosotros!.</p> </div> </body> </html>",
 	                nombreUsuario, urlDeRecuperacion);
 
 
@@ -60,19 +61,23 @@ public class ImplementacionEmail implements InterfazEmail{
             MimeMessage mensaje = javaMailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(mensaje, true, "UTF-8");
 
-            helper.setFrom("nikoalvarezzapata@gmail.com");
+            helper.setFrom("recuperacionpass12@gmail.com");
             helper.setTo(emailDestino);
-            helper.setSubject("Confirmación de cuenta BikerConnect");
+            helper.setSubject("Confirmación de cuenta, Periodico La Revista");
 
             String urlDominio = "http://localhost:8080";
-            String urlDeConfirmacion = String.format("%s/auth/confirmar-cuenta?token=%s", urlDominio, token);
+            String urlDeConfirmacion = String.format("%s/auth/confirmacionCorreo?token=%s", urlDominio, token);
 
             String cuerpoMensaje = String.format(
-                "﻿<!DOCTYPE html> <html lang='es'> <body> <div style='width: 600px; padding: 20px; border: 2px solid black; border-radius: 13px; background-color: #DEDEDE; font-family: Sans-serif'> <h1 style='color:#1f3c85'>Confirmar cuenta<b style='color:#5993d3'> BikerConnect</b></h1>"
-                + " <p style='margin-bottom:25px'>Estimado/a&nbsp;<b>%s</b>:</p> <p style='margin-bottom:25px'>"
-                + "Bienvenido/a a BikerConnect. Para confirmar tu cuenta, haz clic en el botón que aparece a continuación:</p>"
+                "﻿<!DOCTYPE html> "
+                + "<html lang='es'> "
+                + "<body> "
+                + "<div style='width: 600px; padding: 20px; border: 2px solid black; border-radius: 13px; background-color: #fff; font-family: Sans-serif;'>"
+                + "<h1 style='color:rgb(192, 192, 192)'>Confirmar cuenta - <b style='color:#285845; text-decoration: underline'>La Revista</b></h1>"
+                + "<p style='margin-bottom:25px'>Estimad@&nbsp;<b>%s</b>:</p> <p style='margin-bottom:25px'>"
+                + "Bienvenid@ al Periodico La Revista. Para confirmar tu cuenta, haga click en el botón:</p>"
                 + " <a style='padding: 10px 15px; border-radius: 10px; background-color: #5993d3; color: white; text-decoration: none' href='%s' target='_blank'>Confirmar cuenta</a>"
-                + " <p style='margin-top:25px'>Gracias por unirte a BikerConnect.</p> </div> </body> </html>",
+                + " <p style='margin-top:25px'>¡Ahora somos uno más!.</p> </div> </body> </html>",
                 nombreUsuario, urlDeConfirmacion);
 
             helper.setText(cuerpoMensaje, true);

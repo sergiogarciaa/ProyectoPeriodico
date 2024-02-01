@@ -26,6 +26,7 @@ public class ImplementacionUsuarioToDao implements InterfazUsuarioToDao {
 			usuarioDao.setTlfUsuario(usuarioDTO.getTlfUsuario());
 			usuarioDao.setDniUsuario(usuarioDTO.getDniUsuario());
 			usuarioDao.setRol(usuarioDTO.getRol());
+			usuarioDao.setCuentaConfirmada(usuarioDTO.isCuentaConfirmada());
 			
 			return usuarioDao;
 

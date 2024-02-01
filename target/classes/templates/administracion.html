@@ -4,37 +4,57 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Listado</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.2/css/bootstrap.min.css"
+	<title>Panel Administrativo</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/blog/">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.2/css/bootstrap.min.css"
 		th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
-	<link rel="stylesheet" href="../static/css/estilo.css" th:href="@{/css/estilo.css}">
-	<link rel="stylesheet" href="../static/css/menu.css" th:href="@{/css/menu.css}">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-		th:src="@{/webjars/jquery/jquery.min.js}"></script>
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-	<script th:src="@{/script/script.js}"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.2/js/bootstrap.min.js"
-		th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+		<script th:src="@{/script/script.js}"></script>
+	  <link rel="stylesheet" href="../static/css/blog.css" th:href="@{/css/blog.css}">
+	   <link rel="stylesheet" href="../static/css/edicion.css" th:href="@{/css/edicion.css}">
+	  <link rel="stylesheet" href="../static/css/blog.rtl.css" th:href="@{/css/blog.rtl.css}">
+	  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	  
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap" rel="stylesheet">
 </head>
 
 <body >
-	<nav>
-		<div class="menu">
-			<div class="logo">
-				<a>Administracion</a>
-			</div>
-			<ul class="nav-links">
-				<li>
-					<a class="btn btn-dark mt-2" th:href="@{/privada/index}">Volver</a>
-				</li>
-				<li>
-					<form th:action="@{/auth/logout}" method="post" id="logoutForm">
-						<button type="button" class="btn btn-dark mt-2" onclick="confirmarLogout()">Salir</button>
+	
+	<header class="blog-header py-3 px-3">
+		    <div class="row flex-nowrap justify-content-between align-items-center">
+		      <div class="col-4 pt-1">
+		      </div>
+		      <div class="col-4 text-center">
+		        <a class="blog-header-logo text-dark" style="text-decoration: underline;">Panel Administrativo</a>
+		      </div>
+			      <div class="col-4 d-flex justify-content-end align-items-center">
+			        <a class="btn btn-sm btn-outline-secondary" style="margin-right: 5%;" th:href="@{/privada/index}">Volver</a>
+			        <form th:action="@{/auth/logout}" method="post" id="logoutForm">
+						<button type="button" class="btn btn-sm btn-outline-secondary" style="margin-left:10%;" onclick="confirmarLogout()">Salir</button>
 					</form>
-				</li>
-			</ul>
-		</div>
-	</nav>
+			      </div>
+		    </div>
+	  </header>
+	  
 	<div class="container py-4 mt-5">
 
 		<div class="card bg-light">
@@ -48,6 +68,7 @@
 							<th class="table-dark">nombre</th>
 							<th class="table-dark">apellidos</th>
 							<th class="table-dark">email</th>
+							<th class="table-dark">Confirmada</th>
 							<th class="table-dark">DNI</th>
 							<th class="table-dark">Editar</th>
 							<th class="table-dark">Eliminar</th>
@@ -58,6 +79,14 @@
 							<td th:text="${usuario. nombreUsuario}"></td>
 							<td th:text="${usuario.apellidosUsuario}"></td>
 							<td th:text="${usuario.emailUsuario}"></td>
+							<td>
+							    <span th:if="${usuario.cuentaConfirmada}">
+							        &#10004; <!-- Símbolo de verificación (tick) en verde -->
+							    </span>
+							    <span th:unless="${usuario.cuentaConfirmada}">
+							        ❌ <!-- Símbolo de X roja -->
+							    </span>
+							</td>
 							<td th:text="${usuario.dniUsuario}"></td>
 							<!-- botón de EDITAR, dentro está el cambio de rol -->
 							<td sec:authorize="hasAnyRole('ROLE_3', 'ROLE_4')">
