@@ -80,7 +80,7 @@
             <strong class="d-inline-block mb-2 text-primary" th:text="'Publicado por: ' + ${noticia.idUsuario.nombreUsuario}"></strong>
             <h3 class="mb-0" th:text="${noticia.tituloNoticia}"></h3>
             <div class="mb-1" th:text="${noticia.fchaPublicacionMostrarWeb}"></div>
-            <p class="card-text mb-auto" th:text="${noticia.resumenNoticia}"></p>
+            <p class="card-text" id="descripcionNoticia" th:text="${noticia.resumenNoticia}"></p>
             <a th:attr="data-idCategoria=${noticia.idCategoria.idCategoria}, data-idNoticia=${noticia.idNoticia}" onclick="confirmarRedireccion(event)" class="stretched-link">Seguir leyendo</a>
         </div>
         <div class="col-auto d-none d-lg-block">

@@ -21,7 +21,7 @@ import jakarta.persistence.Table;
 // Rol: 1 = Usuario, 2 = Periodista, 3 = Administrador, 4 = SuperAdmin
 
 @Entity
-@Table(name = "Usuarios", schema = "prdc_schema")
+@Table(name = "Usuarios", schema = "prdc_schema_usuarios")
 public class Usuario {
 
 	// ATRIBUTOS

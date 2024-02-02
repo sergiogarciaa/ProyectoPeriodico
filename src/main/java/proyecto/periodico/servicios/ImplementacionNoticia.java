@@ -53,12 +53,17 @@ public class ImplementacionNoticia implements InterfazNoticia  {
 		}
 		
 	}
-	
-	// Método para calcular el resumen de la noticia
-	public String calcularResumen(String descNoticia, int palabras) {
-	    String[] palabrasArray = descNoticia.split("\\s+");
-	    int longitud = Math.min(palabrasArray.length, palabras);
-	    return String.join(" ", Arrays.copyOfRange(palabrasArray, 0, longitud));
+
+	@Override
+	public String resumirNoticia(String texto) {
+		// Verifica si el texto no es nulo y tiene al menos 50 caracteres
+        if (texto != null && texto.length() >= 35) {
+            // Subcadena que contiene los primeros 50 caracteres
+            return texto.substring(0, 35);
+        } else {
+            // Si el texto tiene menos de 50 caracteres o es nulo, devuelve el texto original
+            return texto;
+        }
 	}
 
 }
