@@ -28,6 +28,7 @@ import proyecto.periodico.servicios.InterfazCategoria;
 import proyecto.periodico.servicios.InterfazNoticia;
 import proyecto.periodico.servicios.InterfazNoticiaToDTO;
 import proyecto.periodico.servicios.InterfazUsuario;
+import proyecto.periodico.servicios.InterfazUsuarioToDTO;
 
 @Controller
 public class loginRegistroControl {
@@ -40,6 +41,9 @@ public class loginRegistroControl {
     
     @Autowired
     private InterfazNoticia noticiaServicio;
+    
+    @Autowired
+    private InterfazUsuarioToDTO usuarioToDTO;
 
 	
 	
@@ -55,8 +59,7 @@ public class loginRegistroControl {
 	public String login(Model model) {
 		// Se agrega un nuevo objeto UsuarioDTO al modelo para el formulario de login
 		model.addAttribute("usuarioDTO", new UsuarioDTO());
-		
-		return "login";
+	        return "login";
 	}
 
 
@@ -87,7 +90,6 @@ public class loginRegistroControl {
 		}
 		
 		System.out.println("Mostrando Todas las Noticias LANDING" + noticiaDTOlist);
-		System.out.println("VER RESUMEN: " + noticiaDTOlist);
 		model.addAttribute("noticias", noticiaDTOlist);
 		model.addAttribute("categorias", categoriaDTO);
 		return "landing";

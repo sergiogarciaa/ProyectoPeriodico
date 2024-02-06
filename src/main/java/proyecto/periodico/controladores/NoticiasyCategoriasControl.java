@@ -14,6 +14,7 @@ import proyecto.periodico.dao.Noticia;
 import proyecto.periodico.dto.CategoriaDTO;
 import proyecto.periodico.dto.NoticiaDTO;
 import proyecto.periodico.servicios.InterfazCategoria;
+import proyecto.periodico.servicios.InterfazCategoriasToDTO;
 import proyecto.periodico.servicios.InterfazNoticia;
 import proyecto.periodico.servicios.InterfazNoticiaToDAO;
 import proyecto.periodico.servicios.InterfazNoticiaToDTO;
@@ -33,6 +34,9 @@ public class NoticiasyCategoriasControl {
     
     @Autowired
     private InterfazNoticiaToDTO noticiaToDto;
+
+    @Autowired
+    private InterfazCategoriasToDTO categoriaToDto;
 	
 	
 	@GetMapping("/auth/{idCategoria}/{idNoticia}")
@@ -56,6 +60,30 @@ public class NoticiasyCategoriasControl {
 		        model.addAttribute("categorias", categoriasDTO);
 		        return "verNoticia";
 		 }
-        
     }
+	
+	@GetMapping("/privada/ver/{idCategoria}")
+		public String verCategoria(@PathVariable long idCategoria, Model model, Authentication authentication) {
+		 if (authentication == null || !authentication.isAuthenticated()) {
+		        // El usuario no está autenticado, muestra la notificación y redirige al inicio de sesión
+		        model.addAttribute("mensaje", "Debes estar logeado para acceder a esta página.");
+		        return "login";
+		    }
+		 else {
+			 	CategoriaDTO categoriaDTO = categoriaToDto.categoriaToDTO(categoriaServicio.buscarPorId(idCategoria));
+			 	 // Obtener noticias por categoría
+	            List<NoticiaDTO> noticiasPorCategoria = noticiaServicio.buscarPorCategoria(idCategoria);
+		       	// Este buscar todas para el header.
+		        List<CategoriaDTO> categoriaTodasDTO = categoriaServicio.buscarTodas();
+		        
+		        for (NoticiaDTO noticiaDTO : noticiasPorCategoria) {
+	       			 noticiaDTO.setResumenNoticia(noticiaServicio.resumirNoticia2(noticiaDTO.getDescNoticia()) + "...");
+	       		}
+		        // Puedes pasar la noticia y la categoría al modelo para que estén disponibles en la página
+		        model.addAttribute("noticiasPorCategoria", noticiasPorCategoria);
+		        model.addAttribute("categoria", categoriaDTO);
+		        model.addAttribute("categoriaTodasDTO", categoriaTodasDTO);
+		        return "verCategoria";
+		 }
+		}
 }

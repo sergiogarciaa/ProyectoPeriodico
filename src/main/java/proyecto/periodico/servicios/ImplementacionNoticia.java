@@ -3,10 +3,13 @@ package proyecto.periodico.servicios;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import proyecto.periodico.dao.Categoria;
 import proyecto.periodico.dao.Noticia;
@@ -37,29 +40,38 @@ public class ImplementacionNoticia implements InterfazNoticia  {
 		return toDto.listaNoticiasToDto(Nrepositorio.findAll());
 	}
 	
-	/**
-	 * Método que ejecuta la creación de una noticia.
-	 */
-	@Override
-	public NoticiaDTO noticiaCategoriaN(Usuario usu, Categoria categoria) {
-		try {
+	@PersistenceContext
+    private EntityManager entityManager;
 
-			return null;
-			// Guardar en el repositorio o realizar otras operaciones necesarias...
-			
-		} catch (Exception e) {
-			System.out.println("[IMPL-Noticia][InicializarNoticia] " + e.getMessage());
-			return null;
-		}
-		
-	}
+    @Override
+    public List<NoticiaDTO> buscarPorCategoria(Long idCategoria) {
+        return entityManager.createQuery(
+            "SELECT n FROM Noticia n WHERE n.noticiaCategoria.id = :idCategoria", Noticia.class)
+            .setParameter("idCategoria", idCategoria)
+            .getResultList()
+            .stream()
+            .map(toDto::noticiaToDto)
+            .collect(Collectors.toList());
+    }
 
 	@Override
 	public String resumirNoticia(String texto) {
 		// Verifica si el texto no es nulo y tiene al menos 50 caracteres
-        if (texto != null && texto.length() >= 35) {
+        if (texto != null && texto.length() >= 30) {
             // Subcadena que contiene los primeros 50 caracteres
             return texto.substring(0, 35);
+        } else {
+            // Si el texto tiene menos de 50 caracteres o es nulo, devuelve el texto original
+            return texto;
+        }
+	}
+	
+	@Override
+	public String resumirNoticia2(String texto) {
+		// Verifica si el texto no es nulo y tiene al menos 50 caracteres
+        if (texto != null && texto.length() >= 200) {
+            // Subcadena que contiene los primeros 50 caracteres
+            return texto.substring(0, 200);
         } else {
             // Si el texto tiene menos de 50 caracteres o es nulo, devuelve el texto original
             return texto;
