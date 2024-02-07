@@ -40,7 +40,6 @@
 				<a class="p-2 link-secondary" th:each="categoria : ${categoriaTodasDTO}" th:text="${categoria.tipoCategoria}"
 					th:attr="data-idCategoria=${categoria.idCategoria}"
 					onclick="RedireccionCategoriaSinInicio(event)"></a>
-			</nav>
 		</div>
 		</div>
 
@@ -49,6 +48,7 @@
         <img src="https://via.placeholder.com/286x180" class="card-img-top" alt="...">
         <div class="card-body" style="margin-bottom: 60px;">
             <h5 class="card-title" th:text="${noticia.tituloNoticia}">Título de la noticia</h5>
+            <p>Publicado el: <span th:text="${noticia.fchaPublicacionMostrarWeb}"></p>
             <p class="card-text" th:text="${noticia.resumenNoticia}">Descripción de la noticia.</p>
         </div>
         <div class="card-footer" style="position: absolute; bottom: 0; width: 100%;">

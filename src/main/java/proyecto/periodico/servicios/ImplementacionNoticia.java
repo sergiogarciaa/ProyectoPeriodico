@@ -11,11 +11,10 @@ import org.springframework.stereotype.Service;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
-import proyecto.periodico.dao.Categoria;
+
 import proyecto.periodico.dao.Noticia;
-import proyecto.periodico.dao.Usuario;
 import proyecto.periodico.dto.NoticiaDTO;
-import proyecto.periodico.dto.UsuarioDTO;
+
 import proyecto.periodico.repositorios.noticiaRepositorio;
 
 @Service
@@ -66,11 +65,6 @@ public class ImplementacionNoticia implements InterfazNoticia  {
         }
 	}
 	
-<<<<<<< HEAD
-	// Método para calcular el resumen de la noticia
-	public String calcularResumen(String descNoticia, int palabras) {
-            return null;
-=======
 	@Override
 	public String resumirNoticia2(String texto) {
 		// Verifica si el texto no es nulo y tiene al menos 50 caracteres
@@ -81,7 +75,6 @@ public class ImplementacionNoticia implements InterfazNoticia  {
             // Si el texto tiene menos de 50 caracteres o es nulo, devuelve el texto original
             return texto;
         }
->>>>>>> 52bd818dcfa9f5861e0df056fc10b3edbc0d8d7a
 	}
 
 }

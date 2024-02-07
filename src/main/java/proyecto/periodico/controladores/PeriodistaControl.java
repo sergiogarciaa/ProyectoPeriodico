@@ -73,10 +73,6 @@ public class PeriodistaControl {
 	        // Formatear la fecha y hora actual como una cadena
 	        SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	        noticiaDTO.setFchaPublicacionMostrarWeb(formatoFecha.format(fechaActual.getTime()));
-	        System.out.println(noticiaDTO.getFchaPublicacionMostrarWeb());
-	        noticiaDTO.setResumenNoticia(resumen);
-
-
 	        // Crear una entidad Noticia a partir del DTO
 	        Noticia noticia = noticiaToDao.noticiaToDao(noticiaDTO, usuario, categoria);
 

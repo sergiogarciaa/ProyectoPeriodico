@@ -170,7 +170,7 @@ public class Noticia {
 			int result = 1;
 			result = prime * result + Arrays.hashCode(foto);
 			result = prime * result + Objects.hash(descNoticia, estado_suscripcion, fchaPublicacion,
-					idNoticia, tituloNoticia, usuario, resumenNoticia);
+					idNoticia, tituloNoticia, usuario);
 			return result;
 		}
 
@@ -183,7 +183,7 @@ public class Noticia {
 			if (getClass() != obj.getClass())
 				return false;
 			Noticia other = (Noticia) obj;
-			return  Objects.equals(descNoticia, other.descNoticia) && Objects.equals(resumenNoticia, other.resumenNoticia)
+			return  Objects.equals(descNoticia, other.descNoticia)
 					&& Objects.equals(estado_suscripcion, other.estado_suscripcion)
 					&& Objects.equals(fchaPublicacion, other.fchaPublicacion) && Arrays.equals(foto, other.foto)
 					&& idNoticia == other.idNoticia && Objects.equals(tituloNoticia, other.tituloNoticia)
