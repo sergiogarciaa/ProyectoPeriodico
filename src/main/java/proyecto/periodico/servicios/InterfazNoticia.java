@@ -22,8 +22,7 @@ public interface InterfazNoticia {
 	 * @return la lista de todos los usuariosDTO
 	 */
 	public List<NoticiaDTO> buscarTodas();
-	public NoticiaDTO noticiaCategoriaN(Usuario usu, Categoria categoria);
-	
-	public String calcularResumen(String descNoticia, int palabras);
-
+	public String resumirNoticia(String texto);
+	public String resumirNoticia2(String texto);
+	List<NoticiaDTO> buscarPorCategoria(Long idCategoria);
 }

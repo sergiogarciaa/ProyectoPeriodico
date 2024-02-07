@@ -74,7 +74,7 @@ public class configuracionSeguridad {
                 login
                 	// -> / es la ruta del landing, por defecto
                     .loginPage("/") // Establece la página de inicio de sesión personalizada.
-                    .failureUrl("/login?error=true") // Redirección en caso de error
+                    .failureUrl("/auth/login") // Redirección en caso de error
                     .defaultSuccessUrl("/privada/index", true) // Establece la URL de redirección después de un inicio de sesión exitoso.
                     .loginProcessingUrl("/auth/login-post") // Establece la URL de procesamiento del formulario de inicio de sesión.
 

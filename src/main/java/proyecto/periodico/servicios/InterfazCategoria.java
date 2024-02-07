@@ -13,4 +13,6 @@ public interface InterfazCategoria {
 	public List<CategoriaDTO> buscarTodas();
 
 	public Categoria buscarPorId(Categoria categoria);
+
+	public Categoria buscarPorId(long idCategoria);
 }

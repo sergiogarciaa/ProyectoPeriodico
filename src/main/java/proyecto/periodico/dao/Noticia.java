@@ -36,9 +36,6 @@ public class Noticia {
 		@Column(name = "desc_noticia", nullable = true, length = 4000)
 		private String descNoticia;
 		
-		@Column(name = "resumen_noticia", nullable = true, length = 4000)
-		private String resumenNoticia;
-		
 		@Lob
 		@Column(name = "imagen_noticia", nullable = true)
 	    private byte[] foto;
@@ -70,13 +67,12 @@ public class Noticia {
 		 * @param noticiaCategoria
 		 * @param usuario
 		 */
-		public Noticia(long idNoticia, String tituloNoticia, String descNoticia, String resumenNoticia, byte[] foto,
+		public Noticia(long idNoticia, String tituloNoticia, String descNoticia, byte[] foto,
 				Boolean estado_suscripcion, String fchaPublicacion, Categoria noticiaCategoria, Usuario usuario) {
 			super();
 			this.idNoticia = idNoticia;
 			this.tituloNoticia = tituloNoticia;
 			this.descNoticia = descNoticia;
-			this.resumenNoticia = resumenNoticia;
 			this.foto = foto;
 			this.estado_suscripcion = estado_suscripcion;
 			this.fchaPublicacion = fchaPublicacion;
@@ -158,14 +154,6 @@ public class Noticia {
 
 		public void setNoticiaCategoria(Categoria noticiaCategoria) {
 			this.noticiaCategoria = noticiaCategoria;
-		}
-
-		public String getResumenNoticia() {
-			return resumenNoticia;
-		}
-
-		public void setResumenNoticia(String resumenNoticia) {
-			this.resumenNoticia = resumenNoticia;
 		}
 
 		@Override

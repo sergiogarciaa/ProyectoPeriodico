@@ -47,6 +47,13 @@ public class ImplementacionCategoria implements InterfazCategoria{
 	public Categoria buscarPorId(Categoria idCategoria) {
 		return Crepositorio.findById(idCategoria.getIdCategoria()).orElse(null);
 	}
+
+
+	@Override
+	public Categoria buscarPorId(long idCategoria) {
+		// TODO Auto-generated method stub
+		return Crepositorio.findById(idCategoria).orElse(null);
+	}
 	/**
 	 * Método que ejecuta la creación de un usuario administrador con su rol de
 	 * administrador.
@@ -131,6 +138,7 @@ public class ImplementacionCategoria implements InterfazCategoria{
 			System.out.println("[IMPL-Usu][onApplicationReady] " + e.getMessage());
 		}
 	}
-	
+
+
 	
 }

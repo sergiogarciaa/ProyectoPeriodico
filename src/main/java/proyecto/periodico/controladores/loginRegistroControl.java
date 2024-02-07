@@ -28,6 +28,7 @@ import proyecto.periodico.servicios.InterfazCategoria;
 import proyecto.periodico.servicios.InterfazNoticia;
 import proyecto.periodico.servicios.InterfazNoticiaToDTO;
 import proyecto.periodico.servicios.InterfazUsuario;
+import proyecto.periodico.servicios.InterfazUsuarioToDTO;
 
 @Controller
 public class loginRegistroControl {
@@ -40,6 +41,9 @@ public class loginRegistroControl {
     
     @Autowired
     private InterfazNoticia noticiaServicio;
+    
+    @Autowired
+    private InterfazUsuarioToDTO usuarioToDTO;
 
 	
 	
@@ -55,16 +59,21 @@ public class loginRegistroControl {
 	public String login(Model model) {
 		// Se agrega un nuevo objeto UsuarioDTO al modelo para el formulario de login
 		model.addAttribute("usuarioDTO", new UsuarioDTO());
-		
-		return "login";
+	        return "login";
 	}
 
 
 	@GetMapping("/")
 	public String index1(Model model) {
-		List<NoticiaDTO> noticiaDTO = noticiaServicio.buscarTodas();
+		List<NoticiaDTO> noticiaDTOlist = noticiaServicio.buscarTodas();
+		// Recorre la lista para agregarle a cada noticia su resumen.
+		for (NoticiaDTO noticiaDTO : noticiaDTOlist) {
+			 noticiaDTO.setResumenNoticia(noticiaServicio.resumirNoticia(noticiaDTO.getDescNoticia()) + "...");
+		}
+		
+		System.out.println("VER RESUMEN: " + noticiaDTOlist);
 		List<CategoriaDTO> categoriaDTO = categoriaServicio.buscarTodas();
-		model.addAttribute("noticias", noticiaDTO);
+		model.addAttribute("noticias", noticiaDTOlist);
 		model.addAttribute("categorias", categoriaDTO);
 		return "landing";
 	}
@@ -74,10 +83,14 @@ public class loginRegistroControl {
 	
 	@GetMapping("/auth/landing")
 	public String index(Model model) {
-		List<NoticiaDTO> noticiaDTO = noticiaServicio.buscarTodas();
+		List<NoticiaDTO> noticiaDTOlist = noticiaServicio.buscarTodas();
 		List<CategoriaDTO> categoriaDTO = categoriaServicio.buscarTodas();
-		System.out.println("Mostrando Todas las Noticias LANDING" + noticiaDTO);
-		model.addAttribute("noticias", noticiaDTO);
+		for (NoticiaDTO noticiaDTO : noticiaDTOlist) {
+			 noticiaDTO.setResumenNoticia(noticiaServicio.resumirNoticia(noticiaDTO.getDescNoticia()) + "...");
+		}
+		
+		System.out.println("Mostrando Todas las Noticias LANDING" + noticiaDTOlist);
+		model.addAttribute("noticias", noticiaDTOlist);
 		model.addAttribute("categorias", categoriaDTO);
 		return "landing";
 	}
@@ -141,9 +154,12 @@ public class loginRegistroControl {
 
 	            if (cuentaConfirmada) {
 	                model.addAttribute("nombreUsuario", authentication.getName());
-	                List<NoticiaDTO> noticiaDTO = noticiaServicio.buscarTodas();
+	                List<NoticiaDTO> noticiaDTOlist = noticiaServicio.buscarTodas();
 	        		List<CategoriaDTO> categoriaDTO = categoriaServicio.buscarTodas();
-	        		model.addAttribute("noticias", noticiaDTO);
+	        		for (NoticiaDTO noticiaDTO : noticiaDTOlist) {
+	       			 noticiaDTO.setResumenNoticia(noticiaServicio.resumirNoticia(noticiaDTO.getDescNoticia()) + "...");
+	       		}
+	        		model.addAttribute("noticias", noticiaDTOlist); 
 	        		model.addAttribute("categorias", categoriaDTO);
 	                return "index";
 	            } else {
@@ -172,27 +188,4 @@ public class loginRegistroControl {
 	            return "login";
 	        }
 	    }
-	
-	@GetMapping("/auth/{idCategoria}/{idNoticia}")
-    public String verNoticia(@PathVariable long idCategoria, @PathVariable long idNoticia, Model model, Authentication authentication) {
-        // Aquí deberías cargar la noticia y la categoría correspondiente usando los ID proporcionados
-        // por ejemplo, llamando a tu servicio NoticiaService
-		 if (authentication == null || !authentication.isAuthenticated()) {
-		        // El usuario no está autenticado, muestra la notificación y redirige al inicio de sesión
-		        model.addAttribute("mensaje", "Debes estar logeado para acceder a esta página.");
-		        return "login";
-		    }
-		 else {
-		        Noticia noticia = noticiaServicio.buscarNoticiaPorID(idNoticia);
-		        Categoria categoria = noticia.getNoticiaCategoria();
-		        List<CategoriaDTO> categoriasDTO = categoriaServicio.buscarTodas();
-		        System.out.println(noticia);
-		        // Puedes pasar la noticia y la categoría al modelo para que estén disponibles en la página
-		        model.addAttribute("noticia", noticia);
-		        model.addAttribute("categoria", categoria);
-		        model.addAttribute("categorias", categoriasDTO);
-		        return "verNoticia";
-		 }
-        
-    }
 }

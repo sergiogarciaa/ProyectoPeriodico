@@ -15,7 +15,6 @@ public class NoticiaDTO {
 	private String resumenNoticia;
     private byte[] foto;
 	private Boolean estado_suscripcion;
-	private Calendar fchaPublicacion;
 	private String fchaPublicacionMostrarWeb;
 	private Categoria idCategoria;
 	private Usuario idUsuario;
@@ -36,7 +35,6 @@ public class NoticiaDTO {
 		this.descNoticia = descNoticia;
 		this.foto = foto;
 		this.estado_suscripcion = estado_suscripcion;
-		this.fchaPublicacion = fchaPublicacion;
 		this.idCategoria = idCategoria;
 		this.idUsuario = idUsuario;
 		this.fchaPublicacionMostrarWeb = fchaPublicacionMostrarWeb;
@@ -79,12 +77,6 @@ public class NoticiaDTO {
 	public void setEstado_suscripcion(Boolean estado_suscripcion) {
 		this.estado_suscripcion = estado_suscripcion;
 	}
-	public Calendar getFchaPublicacion() {
-		return fchaPublicacion;
-	}
-	public void setFchaPublicacion(Calendar fchaPublicacion) {
-		this.fchaPublicacion = fchaPublicacion;
-	}
 	public Categoria getIdCategoria() {
 		return idCategoria;
 	}
@@ -115,7 +107,7 @@ public class NoticiaDTO {
 		int result = 1;
 		result = prime * result + Arrays.hashCode(foto);
 		result = prime * result
-				+ Objects.hash(descNoticia, estado_suscripcion, fchaPublicacion, idNoticia, tituloNoticia, idCategoria, idUsuario);
+				+ Objects.hash(descNoticia, estado_suscripcion, idNoticia, tituloNoticia, idCategoria, idUsuario, resumenNoticia);
 		return result;
 	}
 	@Override
@@ -128,8 +120,7 @@ public class NoticiaDTO {
 			return false;
 		NoticiaDTO other = (NoticiaDTO) obj;
 		return Objects.equals(descNoticia, other.descNoticia) && Objects.equals(resumenNoticia, other.resumenNoticia)
-				&& Objects.equals(estado_suscripcion, other.estado_suscripcion)
-				&& Objects.equals(fchaPublicacion, other.fchaPublicacion) && Arrays.equals(foto, other.foto)
+				&& Objects.equals(estado_suscripcion, other.estado_suscripcion) && Arrays.equals(foto, other.foto)
 				&& idNoticia == other.idNoticia && Objects.equals(tituloNoticia, other.tituloNoticia)&& Objects.equals(idCategoria, other.idCategoria)
 				&& Objects.equals(fchaPublicacionMostrarWeb, other.fchaPublicacionMostrarWeb) && Objects.equals(idUsuario, other.idUsuario);
 	}

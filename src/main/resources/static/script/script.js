@@ -58,9 +58,9 @@ function confirmarLogout() {
 }
 function confirmar() {
     return Swal.fire({
-        title: 'Esta acción es irrevertible',
+        title: 'Será redirigido',
         text: 'Deseas continuar?.',
-        icon: 'warning',
+        icon: 'info',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
@@ -121,7 +121,63 @@ function confirmarRedireccion(event) {
 	// Añadir comprobacion de rol para ver si esta logeado y poner SwalFire.
     const idNoticia = parseInt(event.currentTarget.getAttribute("data-idNoticia"), 10);
 	const idCategoria = parseInt(event.currentTarget.getAttribute("data-idCategoria"), 10);
+	const idUsuario = event.currentTarget.getAttribute("get-id");
+confirmar().then(function (confirmado) {
+   		if (idUsuario == null)
+   		{
+		return Swal.fire({
+        title: 'Necesita iniciar sesión',
+        icon: 'error',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Aceptar'
+    }).then((result) => {
+        return result.isConfirmed;
+    });
+		   }
+        if (confirmado) {
+            window.location.href = 'http://localhost:8080/auth/' + idCategoria + '/' + idNoticia;
+        }
+    });
 
+    
+}
+function confirmarRedireccionCategoria(event) {
+	// Añadir comprobacion de rol para ver si esta logeado y poner SwalFire.
+	const idCategoria = parseInt(event.currentTarget.getAttribute("data-idCategoria"), 10);
+	const idUsuario = event.currentTarget.getAttribute("get-id");
+confirmar().then(function (confirmado) {
+   		if (idUsuario == null)
+   		{
+		return Swal.fire({
+        title: 'Necesita iniciar sesión',
+        icon: 'error',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Aceptar'
+    }).then((result) => {
+        return result.isConfirmed;
+    });
+		   }
+        if (confirmado) {
+            window.location.href = 'http://localhost:8080/privada/ver/' + idCategoria;
+        }
+    });
 
-    window.location.href = 'http://localhost:8080/auth/' + idCategoria + '/' + idNoticia;
+    
+}
+
+function RedireccionCategoriaSinInicio(event) {
+	// Añadir comprobacion de rol para ver si esta logeado y poner SwalFire.
+	const idCategoria = parseInt(event.currentTarget.getAttribute("data-idCategoria"), 10);
+	window.location.href = 'http://localhost:8080/privada/ver/' + idCategoria;  
+}
+
+function RedireccionNoticiaSinInicio(event) {
+	// Añadir comprobacion de rol para ver si esta logeado y poner SwalFire.
+    const idNoticia = parseInt(event.currentTarget.getAttribute("data-idNoticia"), 10);
+	const idCategoria = parseInt(event.currentTarget.getAttribute("data-idCategoria"), 10);
+	window.location.href = 'http://localhost:8080/auth/' + idCategoria + '/' + idNoticia;
 }
