@@ -54,6 +54,12 @@ public class Noticia {
 		@ManyToOne // FK de Usuario
 	    @JoinColumn(name = "id_usuario_noticia", nullable = false)
 	    private Usuario usuario;
+		
+		@ManyToMany
+		@JoinTable(name = "noticia_comentarios", schema = "prdc_schema", 
+				   joinColumns = @JoinColumn(name = "id_noticia"), 
+				   inverseJoinColumns = @JoinColumn(name = "id_comentario"))
+		private List<Comentarios> noticiaComentario = new ArrayList<>();
 
 		
 		/**
@@ -156,6 +162,14 @@ public class Noticia {
 			this.noticiaCategoria = noticiaCategoria;
 		}
 
+		public List<Comentarios> getNoticiaComentario() {
+			return noticiaComentario;
+		}
+
+		public void setNoticiaComentario(List<Comentarios> noticiaComentario) {
+			this.noticiaComentario = noticiaComentario;
+		}
+
 		@Override
 		public String toString() {
 			return "Noticia [idNoticia=" + idNoticia + ", tituloNoticia=" + tituloNoticia + ", descNoticia="
@@ -170,7 +184,7 @@ public class Noticia {
 			int result = 1;
 			result = prime * result + Arrays.hashCode(foto);
 			result = prime * result + Objects.hash(descNoticia, estado_suscripcion, fchaPublicacion,
-					idNoticia, tituloNoticia, usuario);
+					idNoticia, tituloNoticia, usuario, noticiaComentario);
 			return result;
 		}
 
@@ -187,6 +201,6 @@ public class Noticia {
 					&& Objects.equals(estado_suscripcion, other.estado_suscripcion)
 					&& Objects.equals(fchaPublicacion, other.fchaPublicacion) && Arrays.equals(foto, other.foto)
 					&& idNoticia == other.idNoticia && Objects.equals(tituloNoticia, other.tituloNoticia)
-					&& Objects.equals(usuario, other.usuario);
+					&& Objects.equals(usuario, other.usuario) && Objects.equals(noticiaComentario, other.noticiaComentario);
 		}
 }

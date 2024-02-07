@@ -73,6 +73,19 @@
 		<p>Autor: <span th:text="${noticia.idUsuario.nombreUsuario}"></span></p>
 	</div>
 	
+	<!-- Formulario para agregar un nuevo comentario -->
+	<form id="formulario-comentario" th:action="@{/auth/{idCategoria}/{idNoticia}/comentario(idCategoria=${categoria.idCategoria}, idNoticia=${noticia.idNoticia})}" method="post">
+	    <textarea name="descComentario" rows="4" cols="50" required></textarea>
+	    <button type="submit">Enviar Comentario</button>
+	</form>
+	
+	<!-- Aquí se mostrarán los comentarios existentes -->
+	<div id="comentarios">
+	    <div th:each="comentario : ${noticia.comentarios}">
+	        <p th:text="${comentario.descComentario}"></p>
+	    </div>
+	</div>
+	
 	<script th:if="${not #strings.isEmpty(mensaje)}">
 	    mostrarNotificacion("¡Logeate!", "Necesita iniciar sesión", 'info');
 	</script>

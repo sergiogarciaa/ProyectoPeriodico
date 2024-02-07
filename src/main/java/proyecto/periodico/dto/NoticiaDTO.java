@@ -2,9 +2,11 @@ package proyecto.periodico.dto;
 
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Objects;
 
 import proyecto.periodico.dao.Categoria;
+import proyecto.periodico.dao.Comentarios;
 import proyecto.periodico.dao.Usuario;
 
 
@@ -18,7 +20,8 @@ public class NoticiaDTO {
 	private String fchaPublicacionMostrarWeb;
 	private Categoria idCategoria;
 	private Usuario idUsuario;
-	
+	private List<Comentarios> comentarios;
+
 	/**
 	 * @param idNoticia
 	 * @param tituloNoticia
@@ -28,7 +31,7 @@ public class NoticiaDTO {
 	 * @param fchaPublicacion
 	 */
 	public NoticiaDTO(long idNoticia, String tituloNoticia, String descNoticia, byte[] foto, Boolean estado_suscripcion,
-			Calendar fchaPublicacion, String fchaPublicacionMostrarWeb,Categoria idCategoria, Usuario idUsuario, String resumenNoticia) {
+			Calendar fchaPublicacion, String fchaPublicacionMostrarWeb,Categoria idCategoria, Usuario idUsuario, String resumenNoticia, List<Comentarios> comentarios) {
 		super();
 		this.idNoticia = idNoticia;
 		this.tituloNoticia = tituloNoticia;
@@ -39,6 +42,7 @@ public class NoticiaDTO {
 		this.idUsuario = idUsuario;
 		this.fchaPublicacionMostrarWeb = fchaPublicacionMostrarWeb;
 		this.resumenNoticia = resumenNoticia;
+		this.comentarios = comentarios;	
 	}
 	/**
 	 * 
@@ -101,13 +105,21 @@ public class NoticiaDTO {
 	public void setResumenNoticia(String resumenNoticia) {
 		this.resumenNoticia = resumenNoticia;
 	}
+	public List<Comentarios> getComentarios() {
+		return comentarios;
+	}
+	public void setComentarios(List<Comentarios> comentarios) {
+		this.comentarios = comentarios;
+	}
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + Arrays.hashCode(foto);
 		result = prime * result
-				+ Objects.hash(descNoticia, estado_suscripcion, idNoticia, tituloNoticia, idCategoria, idUsuario, resumenNoticia);
+				+ Objects.hash(descNoticia, estado_suscripcion, idNoticia, tituloNoticia, idCategoria, idUsuario, resumenNoticia, comentarios);
 		return result;
 	}
 	@Override
@@ -122,7 +134,8 @@ public class NoticiaDTO {
 		return Objects.equals(descNoticia, other.descNoticia) && Objects.equals(resumenNoticia, other.resumenNoticia)
 				&& Objects.equals(estado_suscripcion, other.estado_suscripcion) && Arrays.equals(foto, other.foto)
 				&& idNoticia == other.idNoticia && Objects.equals(tituloNoticia, other.tituloNoticia)&& Objects.equals(idCategoria, other.idCategoria)
-				&& Objects.equals(fchaPublicacionMostrarWeb, other.fchaPublicacionMostrarWeb) && Objects.equals(idUsuario, other.idUsuario);
+				&& Objects.equals(fchaPublicacionMostrarWeb, other.fchaPublicacionMostrarWeb) && Objects.equals(idUsuario, other.idUsuario) 
+				&& Objects.equals(comentarios, other.comentarios);
 	}
 	@Override
 	public String toString() {

@@ -1,5 +1,6 @@
 package proyecto.periodico.dao;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
@@ -10,6 +11,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -71,6 +75,12 @@ public class Usuario {
 	
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private List<Noticia> noticiaDeUsuario;
+	
+	@ManyToMany
+	@JoinTable(name = "usuario_comentarios", schema = "prdc_schema",
+			   joinColumns = @JoinColumn(name = "id_usuario"), 
+			   inverseJoinColumns = @JoinColumn(name = "id_comentario"))
+	private List<Comentarios> usuarioComentario = new ArrayList<>();
 
 	// CONSTRUCTORES
 
@@ -215,6 +225,15 @@ public class Usuario {
     public void setNoticias(List<Noticia> noticiaDeUsuario) {
         this.noticiaDeUsuario = noticiaDeUsuario;
     }
+    
+	public List<Comentarios> getUsuarioComentario() {
+		return usuarioComentario;
+	}
+
+
+	public void setUsuarioComentario(List<Comentarios> usuarioComentario) {
+		this.usuarioComentario = usuarioComentario;
+	}
 
 
 	// METODOS
@@ -246,7 +265,7 @@ public class Usuario {
 	public int hashCode() {
 		return Objects.hash(cuentaConfirmada, apellidosUsuario, claveUsuario, dniUsuario, emailUsuario, estado_suscripcion,
 				expiracionToken, fchAltaUsuario, fchBajaUsuario, idUsuario, nombreUsuario, noticiaDeUsuario, rol, tlfUsuario,
-				token);
+				token, usuarioComentario);
 	}
 
 
@@ -268,7 +287,7 @@ public class Usuario {
 				&& Objects.equals(fchBajaUsuario, other.fchBajaUsuario) && idUsuario == other.idUsuario
 				&& Objects.equals(nombreUsuario, other.nombreUsuario) && Objects.equals(noticiaDeUsuario, other.noticiaDeUsuario)
 				&& Objects.equals(rol, other.rol) && Objects.equals(tlfUsuario, other.tlfUsuario)
-				&& Objects.equals(token, other.token);
+				&& Objects.equals(token, other.token) && Objects.equals(usuarioComentario, other.usuarioComentario);
 	}
 
 

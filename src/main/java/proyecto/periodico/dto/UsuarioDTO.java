@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 import jakarta.servlet.http.HttpServletRequest;
+import proyecto.periodico.dao.Comentarios;
 
 
 /**
@@ -31,6 +32,7 @@ public class UsuarioDTO {
 	private Calendar expiracionToken;
 	private String rol = "ROLE_1";
 	private List<NoticiaDTO> misNoticias = new ArrayList<>();
+	private List<Comentarios> usuarioComentario;
 
 	//CONSTRUCTORES
 	public UsuarioDTO() {
@@ -165,6 +167,14 @@ public class UsuarioDTO {
 
 	public void setNoticiasUsuario(List <NoticiaDTO> misNoticias) {
 		this.misNoticias = misNoticias;
+	}
+
+	public List<Comentarios> getUsuarioComentario() {
+		return usuarioComentario;
+	}
+
+	public void setUsuarioComentario(List<Comentarios> usuarioComentario) {
+		this.usuarioComentario = usuarioComentario;
 	}
 
 	//METODOS

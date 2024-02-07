@@ -8,11 +8,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import proyecto.periodico.dao.Categoria;
+import proyecto.periodico.dao.Comentarios;
 import proyecto.periodico.dao.Noticia;
 import proyecto.periodico.dto.CategoriaDTO;
 import proyecto.periodico.dto.NoticiaDTO;
+import proyecto.periodico.repositorios.comentariosRepositorio;
 import proyecto.periodico.servicios.InterfazCategoria;
 import proyecto.periodico.servicios.InterfazCategoriasToDTO;
 import proyecto.periodico.servicios.InterfazNoticia;
@@ -31,6 +35,9 @@ public class NoticiasyCategoriasControl {
     
     @Autowired
     private InterfazNoticia noticiaServicio;
+    
+    @Autowired
+    private comentariosRepositorio cRepositorio;
     
     @Autowired
     private InterfazNoticiaToDTO noticiaToDto;
