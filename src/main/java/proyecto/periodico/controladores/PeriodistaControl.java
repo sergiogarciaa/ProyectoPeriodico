@@ -78,7 +78,6 @@ public class PeriodistaControl {
 	        noticiaDTO.setFchaPublicacionMostrarWeb(formatoFecha.format(fechaActual.getTime()));
 	        System.out.println(noticiaDTO.getFchaPublicacionMostrarWeb());
 	        noticiaDTO.setResumenNoticia(resumen);
-	        System.out.println(resumen);
 	        // Crear una entidad Noticia a partir del DTO
 	        Noticia noticia = noticiaToDao.noticiaToDao(noticiaDTO, usuario, categoria);
 

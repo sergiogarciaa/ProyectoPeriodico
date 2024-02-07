@@ -56,9 +56,7 @@ public class ImplementacionNoticia implements InterfazNoticia  {
 	
 	// Método para calcular el resumen de la noticia
 	public String calcularResumen(String descNoticia, int palabras) {
-	    String[] palabrasArray = descNoticia.split("\\s+");
-	    int longitud = Math.min(palabrasArray.length, palabras);
-	    return String.join(" ", Arrays.copyOfRange(palabrasArray, 0, longitud));
+            return null;
 	}
 
 }
