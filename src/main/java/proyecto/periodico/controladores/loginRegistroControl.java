@@ -45,6 +45,8 @@ public class loginRegistroControl {
     @Autowired
     private InterfazUsuarioToDTO usuarioToDTO;
 
+    @Autowired
+    private InterfazNoticiaToDTO noticiaToDTO;
 	
 	
 	/**
@@ -70,9 +72,13 @@ public class loginRegistroControl {
 		for (NoticiaDTO noticiaDTO : noticiaDTOlist) {
 			 noticiaDTO.setResumenNoticia(noticiaServicio.resumirNoticia(noticiaDTO.getDescNoticia()) + "...");
 		}
-		
-		System.out.println("VER RESUMEN: " + noticiaDTOlist);
+		   // Obtener la noticia más reciente
+        Noticia noticiaMasReciente = noticiaServicio.obtenerNoticiaMasReciente();
+        NoticiaDTO noticiaDTOMasReciente = noticiaToDTO.noticiaToDto(noticiaMasReciente);
+
 		List<CategoriaDTO> categoriaDTO = categoriaServicio.buscarTodas();
+		 // Agregar la noticia más reciente al modelo
+        model.addAttribute("noticiaMasReciente", noticiaDTOMasReciente);
 		model.addAttribute("noticias", noticiaDTOlist);
 		model.addAttribute("categorias", categoriaDTO);
 		return "landing";

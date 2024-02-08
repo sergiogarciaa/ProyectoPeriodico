@@ -29,4 +29,5 @@ public interface InterfazNoticia {
 	public String convertToBase64(byte[] bytes);
 
 	public byte[] convertToByteArray(String foto);
+	public Noticia obtenerNoticiaMasReciente();
 }

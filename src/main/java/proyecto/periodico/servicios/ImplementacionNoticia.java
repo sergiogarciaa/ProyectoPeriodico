@@ -22,6 +22,8 @@ import proyecto.periodico.repositorios.noticiaRepositorio;
 @Transactional
 public class ImplementacionNoticia implements InterfazNoticia  {
 	
+	@PersistenceContext
+    private EntityManager entityManager;
 	
 	@Autowired
 	private noticiaRepositorio Nrepositorio;
@@ -40,8 +42,6 @@ public class ImplementacionNoticia implements InterfazNoticia  {
 		return toDto.listaNoticiasToDto(Nrepositorio.findAll());
 	}
 	
-	@PersistenceContext
-    private EntityManager entityManager;
 
     @Override
     public List<NoticiaDTO> buscarPorCategoria(Long idCategoria) {
@@ -91,4 +91,18 @@ public class ImplementacionNoticia implements InterfazNoticia  {
 	        }
 	        return null;
 	    }
+	 
+	public Noticia obtenerNoticiaMasReciente() {
+		  // Recupera todas las noticias ordenadas por fecha de publicación en orden descendente
+        List<Noticia> noticias = Nrepositorio.findAllByOrderByFchaPublicacionDesc();
+
+        // Verifica si hay noticias
+        if (!noticias.isEmpty()) {
+            // La primera noticia en la lista será la más reciente debido al ordenamiento
+            return noticias.get(0);
+        } else {
+            // Si no hay noticias, devuelve null o maneja el caso según tus necesidades
+            return null;
+        }
+	}
 }

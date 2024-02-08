@@ -12,4 +12,7 @@ import proyecto.periodico.dao.Noticia;
 public interface noticiaRepositorio extends JpaRepository<Noticia, Long>{
 	// Método para obtener todas las noticias
 	List<Noticia> findAll();
+
+	List<Noticia> findAllByOrderByFchaPublicacionDesc();
+	
 }
