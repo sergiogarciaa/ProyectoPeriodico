@@ -68,14 +68,13 @@ public class loginRegistroControl {
 	@GetMapping("/")
 	public String index1(Model model) {
 		List<NoticiaDTO> noticiaDTOlist = noticiaServicio.buscarTodas();
+		Noticia noticiaMasReciente = noticiaServicio.obtenerNoticiaMasReciente();
+        NoticiaDTO noticiaDTOMasReciente = noticiaToDTO.noticiaToDto(noticiaMasReciente);
 		// Recorre la lista para agregarle a cada noticia su resumen.
 		for (NoticiaDTO noticiaDTO : noticiaDTOlist) {
 			 noticiaDTO.setResumenNoticia(noticiaServicio.resumirNoticia(noticiaDTO.getDescNoticia()) + "...");
+			 noticiaDTOMasReciente.setResumenNoticia2(noticiaServicio.resumirNoticia2(noticiaDTO.getDescNoticia()) + "...");
 		}
-		   // Obtener la noticia más reciente
-        Noticia noticiaMasReciente = noticiaServicio.obtenerNoticiaMasReciente();
-        NoticiaDTO noticiaDTOMasReciente = noticiaToDTO.noticiaToDto(noticiaMasReciente);
-
 		List<CategoriaDTO> categoriaDTO = categoriaServicio.buscarTodas();
 		 // Agregar la noticia más reciente al modelo
         model.addAttribute("noticiaMasReciente", noticiaDTOMasReciente);
@@ -89,16 +88,7 @@ public class loginRegistroControl {
 	
 	@GetMapping("/auth/landing")
 	public String index(Model model) {
-		List<NoticiaDTO> noticiaDTOlist = noticiaServicio.buscarTodas();
-		List<CategoriaDTO> categoriaDTO = categoriaServicio.buscarTodas();
-		for (NoticiaDTO noticiaDTO : noticiaDTOlist) {
-			 noticiaDTO.setResumenNoticia(noticiaServicio.resumirNoticia(noticiaDTO.getDescNoticia()) + "...");
-		}
-		
-		System.out.println("Mostrando Todas las Noticias LANDING" + noticiaDTOlist);
-		model.addAttribute("noticias", noticiaDTOlist);
-		model.addAttribute("categorias", categoriaDTO);
-		return "landing";
+		return "/";
 	}
 
 
@@ -162,9 +152,14 @@ public class loginRegistroControl {
 	                model.addAttribute("nombreUsuario", authentication.getName());
 	                List<NoticiaDTO> noticiaDTOlist = noticiaServicio.buscarTodas();
 	        		List<CategoriaDTO> categoriaDTO = categoriaServicio.buscarTodas();
+	        		Noticia noticiaMasReciente = noticiaServicio.obtenerNoticiaMasReciente();
+	                NoticiaDTO noticiaDTOMasReciente = noticiaToDTO.noticiaToDto(noticiaMasReciente);
+	        		// Recorre la lista para agregarle a cada noticia su resumen.
 	        		for (NoticiaDTO noticiaDTO : noticiaDTOlist) {
-	       			 noticiaDTO.setResumenNoticia(noticiaServicio.resumirNoticia(noticiaDTO.getDescNoticia()) + "...");
-	       		}
+	        			 noticiaDTO.setResumenNoticia(noticiaServicio.resumirNoticia(noticiaDTO.getDescNoticia()) + "...");
+	        			 noticiaDTOMasReciente.setResumenNoticia2(noticiaServicio.resumirNoticia2(noticiaDTO.getDescNoticia()) + "...");
+	        		}
+	        		model.addAttribute("noticiaMasReciente", noticiaDTOMasReciente);
 	        		model.addAttribute("noticias", noticiaDTOlist); 
 	        		model.addAttribute("categorias", categoriaDTO);
 	                return "index";

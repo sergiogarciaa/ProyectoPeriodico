@@ -62,20 +62,21 @@
 					onclick="RedireccionCategoriaSinInicio(event)"></a>
 		</div>
 	</div>
-	<div class="container pt-5">
-		<h3 th:text="${noticia.tituloNoticia}"></h3>
-		<!-- Le he puesto un lorem ipsum para que el texto sea más largo. -->
-		<p class="pt-3" th:text="${noticia.descNoticia} + 'Lorem ipsum dolor sit amet consectetur adipiscing, elit magna tellus hendrerit sociosqu nec, odio ut posuere placerat potenti. Pharetra quisque parturient ligula mollis, vestibulum eu mus facilisis quam, nullam netus rutrum. Facilisi laoreet senectus cursus vitae congue lectus porta nec in nisi sociosqu, blandit urna placerat dui etiam lacus non fringilla mus erat duis, conubia dictum potenti sed aliquam ultricies taciti phasellus risus vulputate.
-		Consequat pretium natoque phasellus curabitur sagittis primis molestie habitasse purus habitant, cubilia magna eleifend venenatis torquent pharetra sapien mollis iaculis. Velit quam cum facilisi dignissim accumsan commodo lobortis ornare, netus justo placerat mattis lacinia faucibus fermentum imperdiet, himenaeos cursus curabitur conubia mi vivamus sem. Dictum habitant ad iaculis pretium feugiat, fusce integer rhoncus tellus velit justo, a viverra vitae habitasse.
-		'"></p>
-	</div>
-	<div class="container">
-		<p>Publicado el: <span th:text="${noticia.fchaPublicacionMostrarWeb}"></p>
-		<p>Autor: <span th:text="${noticia.idUsuario.nombreUsuario}"></span></p>
-	</div>
+<div class="container pt-5" >
+    <h3 th:text="${noticia.tituloNoticia}"></h3>
+    <!-- Le he puesto un lorem ipsum para que el texto sea más largo. -->
+    <p class="pt-3" th:text="${noticia.descNoticia} + 'Lorem ipsum dolor sit amet consectetur adipiscing, elit magna tellus hendrerit sociosqu nec, odio ut posuere placerat potenti. Pharetra quisque parturient ligula mollis, vestibulum eu mus facilisis quam, nullam netus rutrum. Facilisi laoreet senectus cursus vitae congue lectus porta nec in nisi sociosqu, blandit urna placerat dui etiam lacus non fringilla mus erat duis, conubia dictum potenti sed aliquam ultricies taciti phasellus risus vulputate.
+    Consequat pretium natoque phasellus curabitur sagittis primis molestie habitasse purus habitant, cubilia magna eleifend venenatis torquent pharetra sapien mollis iaculis. Velit quam cum facilisi dignissim accumsan commodo lobortis ornare, netus justo placerat mattis lacinia faucibus fermentum imperdiet, himenaeos cursus curabitur conubia mi vivamus sem. Dictum habitant ad iaculis pretium feugiat, fusce integer rhoncus tellus velit justo, a viverra vitae habitasse.
+    '"></p>
+</div>
+<div class="container">
+    <p>Publicado el: <span th:text="${noticia.fchaPublicacionMostrarWeb}"></span></p>
+    <p>Autor: <span th:text="${noticia.idUsuario.nombreUsuario}"></span></p>
+</div>
+
 
 	<div class="d-flex justify-content-center" style="min-height: 300px;">
-		<div class="container mt-5 border-left border-right d-inline-flex" style="justify-content: space-between;">
+		<div class="container border-left border-right d-inline-flex" style="justify-content: space-between;">
 
 		<!-- Formulario para agregar un nuevo comentario -->
 		<form id="formulario-comentario" class="d-flex pt-3 pb-2"
@@ -105,6 +106,6 @@
 	<script th:if="${not #strings.isEmpty(mensaje)}">
 		mostrarNotificacion("¡Logeate!", "Necesita iniciar sesión", 'info');
 	</script>
-</body>
+</bodystyle="background-image: url('data:image/png;base64,${noticia.foto}'); background-size: cover;">
 
 </html>

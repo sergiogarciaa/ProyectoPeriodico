@@ -228,43 +228,6 @@ public class ImplementacionUsuario implements InterfazUsuario {
 		}
 	}
 
-	/**
-	 * Método que ejecuta la creación de un usuario administrador con su rol de
-	 * administrador.
-	 */
-	private void inicializarUsuarioAdmin() {
-		try {
-			// Comprueba si ya existe un usuario admin
-			if (!repositorio.existsByNombreUsuario("admin")) {
-				// Si no existe, crea un nuevo usuario con rol de administrador
-				Usuario admin = new Usuario();
-				admin.setNombreUsuario("admin");
-				admin.setClaveUsuario(passwordEncoder.encode("admin"));
-				admin.setDniUsuario("-");
-				admin.setEmailUsuario("admin@admin.com");
-				admin.setRol("ROLE_4");
-				admin.setCuentaConfirmada(true);
-				repositorio.save(admin);
-				toDto.usuarioToDto(admin);
-				
-			}
-		} catch (Exception e) {
-			System.out.println("[IMPL-Usu][inicializarUsuarioAdmin] " + e.getMessage());
-		}
-	}
-
-	/**
-	 * Método que automatiza la creación de un usuario administrador que se ejecuta
-	 * la primera vez que se despliega la aplicación.
-	 */
-	@EventListener(ApplicationReadyEvent.class)
-	public void onApplicationReady() {
-		try {
-			inicializarUsuarioAdmin();
-		} catch (Exception e) {
-			System.out.println("[IMPL-Usu][onApplicationReady] " + e.getMessage());
-		}
-	}
 
 	/**
 	 * Método para eliminar un usuario por su ID.

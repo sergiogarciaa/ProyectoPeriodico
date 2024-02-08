@@ -72,7 +72,7 @@
 			<div class="p-4 p-md-5 mb-4 text-white rounded bg-dark" th:style="'background-image: url(data:image/png;base64,' + ${noticiaMasReciente.foto} + '); background-size: cover;'">
 	    <div class="col-md-6 px-0">
 	        <h1 class="display-4 fst-italic" th:text="${noticiaMasReciente.tituloNoticia}" ></h1>
-	        <p class="lead my-3" th:text="${noticiaMasReciente.descNoticia}" style="word-wrap: break-word;"></p>
+	        <p class="lead my-3" th:text="${noticiaMasReciente.resumenNoticia2}" style="word-wrap: break-word;"></p>
 	    </div>
 	</div>
 		</div>
@@ -93,7 +93,7 @@
 							onclick="confirmarRedireccion(event)" class="stretched-link">Seguir leyendo</a>
 					</div>
 					<div class="col-auto d-none d-lg-block">
-                        <img style="width: 250px; height: 250px;" alt="Image" class="profile-image" width="200px"
+                        <img  alt="Image" class="profile-image" style="width: 220px; height: 300px;"
 							th:if="${noticia.foto!= null}"
 							th:src="'data:image/png;base64, ' + ${noticia.foto}" />
                         <svg th:unless="${noticia.foto != null}" class="bd-placeholder-img" width="200" height="250"

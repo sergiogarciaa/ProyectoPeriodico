@@ -43,9 +43,11 @@
 		</div>
 		</div>
 
-	<div class="container d-flex justify-content-around flex-wrap mt-5">
+	<div class="container d-flex justify-content-start flex-wrap mt-5 gap-3">
     <div class="card mb-4" style="width: 18rem; position: relative;" th:each="noticia : ${noticiasPorCategoria}">
-        <img src="https://via.placeholder.com/286x180" class="card-img-top" alt="...">
+         <img alt="Image" class="img-fluid w-100" style="height: 50%;" width="200px"
+							th:if="${noticia.foto!= null}"
+							th:src="'data:image/png;base64, ' + ${noticia.foto}" />
         <div class="card-body" style="margin-bottom: 60px;">
             <h5 class="card-title" th:text="${noticia.tituloNoticia}">Título de la noticia</h5>
             <p>Publicado el: <span th:text="${noticia.fchaPublicacionMostrarWeb}"></p>

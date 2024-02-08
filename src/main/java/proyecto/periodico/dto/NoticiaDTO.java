@@ -15,6 +15,7 @@ public class NoticiaDTO {
 	private String tituloNoticia;
 	private String descNoticia;
 	private String resumenNoticia;
+	private String resumenNoticia2;
     private	String foto;
 	private Boolean estado_suscripcion;
 	private String fchaPublicacionMostrarWeb;
@@ -31,7 +32,7 @@ public class NoticiaDTO {
 	 * @param fchaPublicacion
 	 */
 	public NoticiaDTO(long idNoticia, String tituloNoticia, String descNoticia, String foto, Boolean estado_suscripcion,
-			Calendar fchaPublicacion, String fchaPublicacionMostrarWeb,Categoria idCategoria, Usuario idUsuario, String resumenNoticia, List<Comentarios> comentarios) {
+			Calendar fchaPublicacion, String fchaPublicacionMostrarWeb,Categoria idCategoria, Usuario idUsuario, String resumenNoticia, String resumenNoticia2, List<Comentarios> comentarios) {
 		super();
 		this.idNoticia = idNoticia;
 		this.tituloNoticia = tituloNoticia;
@@ -42,6 +43,7 @@ public class NoticiaDTO {
 		this.idUsuario = idUsuario;
 		this.fchaPublicacionMostrarWeb = fchaPublicacionMostrarWeb;
 		this.resumenNoticia = resumenNoticia;
+		this.resumenNoticia2 = resumenNoticia2;
 		this.comentarios = comentarios;	
 	}
 	/**
@@ -105,6 +107,12 @@ public class NoticiaDTO {
 	public void setResumenNoticia(String resumenNoticia) {
 		this.resumenNoticia = resumenNoticia;
 	}
+	public String getResumenNoticia2() {
+		return resumenNoticia2;
+	}
+	public void setResumenNoticia2(String resumenNoticia2) {
+		this.resumenNoticia2 = resumenNoticia2;
+	}
 	public List<Comentarios> getComentarios() {
 		return comentarios;
 	}
@@ -114,7 +122,7 @@ public class NoticiaDTO {
 	@Override
 	public int hashCode() {
 		return Objects.hash(comentarios, descNoticia, estado_suscripcion, fchaPublicacionMostrarWeb, foto, idCategoria,
-				idNoticia, idUsuario, resumenNoticia, tituloNoticia);
+				idNoticia, idUsuario, resumenNoticia, tituloNoticia, resumenNoticia2);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -130,7 +138,7 @@ public class NoticiaDTO {
 				&& Objects.equals(fchaPublicacionMostrarWeb, other.fchaPublicacionMostrarWeb)
 				&& Objects.equals(foto, other.foto) && Objects.equals(idCategoria, other.idCategoria)
 				&& idNoticia == other.idNoticia && Objects.equals(idUsuario, other.idUsuario)
-				&& Objects.equals(resumenNoticia, other.resumenNoticia)
+				&& Objects.equals(resumenNoticia, other.resumenNoticia) && Objects.equals(resumenNoticia2, other.resumenNoticia2)
 				&& Objects.equals(tituloNoticia, other.tituloNoticia);
 	}
 	@Override

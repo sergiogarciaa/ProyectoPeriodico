@@ -74,19 +74,6 @@ public class ImplementacionCategoria implements InterfazCategoria{
 		}
 		try {
 			// Comprueba si ya existe un usuario admin
-			if (!Crepositorio.existsByTipoCategoria("Deporte")) {
-				// Si no existe, crea un nuevo usuario con rol de administrador
-				Categoria categoria2 = new Categoria();
-				categoria2.setTipoCategoria("Deporte");
-				categoria2.setDescCategoria("Esta categoría trata sobre deporte");
-				Crepositorio.save(categoria2);
-				toDto.categoriaToDTO(categoria2);	
-			}
-		} catch (Exception e) {
-			System.out.println("[IMPL-Categoria][inicializarCategorias] " + e.getMessage());
-		}
-		try {
-			// Comprueba si ya existe un usuario admin
 			if (!Crepositorio.existsByTipoCategoria("Mundo")) {
 				// Si no existe, crea un nuevo usuario con rol de administrador
 				Categoria categoria3 = new Categoria();

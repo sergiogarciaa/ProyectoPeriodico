@@ -58,14 +58,9 @@
     </div>
 		<!-- ..... -->
     <!-- Verificar si hay un error de login y mostrar SweetAlert -->
-    <script th:if="${loginError}">
-        Swal.fire({
-            icon: 'error',
-            title: 'Error de autenticación',
-            text: 'Credenciales incorrectas. Por favor, inténtelo de nuevo.',
-            confirmButtonText: 'Aceptar'
-        });
-    </script>
+	<script th:if="${param.error}">
+		    mostrarNotificacion("¡Error!","Las credenciales introducidas no son correctas", 'error');
+		</script>
 	<!-- ..... -->
 	<script th:if="${not #strings.isEmpty(cuentaVerificada)}">
 	    mostrarNotificacion("¡Cuenta verificada!", "La cuenta ha sido confirmada correctamente. Ya puede iniciar sesión", 'success');
