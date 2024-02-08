@@ -1,5 +1,8 @@
 package proyecto.periodico.controladores;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -43,6 +46,11 @@ public class ComentariosControl {
         Noticia noticia = noticiaServicio.buscarNoticiaPorID(idNoticia);
         Usuario usuario = usuarioServicio.buscarPorEmail(authentication.getName());
         System.out.println(comentarioDTO.getDescComentario());
+        // Obtener la fecha y hora actual
+        Calendar fechaActual = Calendar.getInstance();
+        // Formatear la fecha y hora actual como una cadena
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        comentarioDTO.setFchaPublicacionComentario(formatoFecha.format(fechaActual.getTime()));
         // Crear el comentario
         Comentarios comentario = comentarioToDao.comentarioToDao(comentarioDTO);
         

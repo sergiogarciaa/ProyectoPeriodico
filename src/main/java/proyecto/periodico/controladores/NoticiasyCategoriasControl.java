@@ -15,10 +15,13 @@ import proyecto.periodico.dao.Categoria;
 import proyecto.periodico.dao.Comentarios;
 import proyecto.periodico.dao.Noticia;
 import proyecto.periodico.dto.CategoriaDTO;
+import proyecto.periodico.dto.ComentariosDTO;
 import proyecto.periodico.dto.NoticiaDTO;
 import proyecto.periodico.repositorios.comentariosRepositorio;
 import proyecto.periodico.servicios.InterfazCategoria;
 import proyecto.periodico.servicios.InterfazCategoriasToDTO;
+import proyecto.periodico.servicios.InterfazComentario;
+import proyecto.periodico.servicios.InterfazComentarioToDTO;
 import proyecto.periodico.servicios.InterfazNoticia;
 import proyecto.periodico.servicios.InterfazNoticiaToDAO;
 import proyecto.periodico.servicios.InterfazNoticiaToDTO;
@@ -44,6 +47,12 @@ public class NoticiasyCategoriasControl {
 
     @Autowired
     private InterfazCategoriasToDTO categoriaToDto;
+    
+    @Autowired
+    private InterfazComentarioToDTO comentarioToDto;
+    
+    @Autowired
+	private InterfazComentario comentarioServicio;
 	
 	
 	@GetMapping("/auth/{idCategoria}/{idNoticia}")
@@ -59,12 +68,17 @@ public class NoticiasyCategoriasControl {
 		        Noticia noticia = noticiaServicio.buscarNoticiaPorID(idNoticia);
 		        NoticiaDTO noticiaDTO = noticiaToDto.noticiaToDto(noticia);
 		        Categoria categoria = noticia.getNoticiaCategoria();
-		        List<CategoriaDTO> categoriasDTO = categoriaServicio.buscarTodas();
-		        System.out.println(noticia);
-		        // Puedes pasar la noticia y la categoría al modelo para que estén disponibles en la página
+		        
+		        CategoriaDTO categoriaEspecifica = categoriaToDto.categoriaToDTO(categoria);
+		        List<CategoriaDTO> categoriasTodas = categoriaServicio.buscarTodas();
+		        
+		        List<Comentarios> comentarios = comentarioServicio.obtenerComentariosPorNoticia(noticia);
+		        List<ComentariosDTO> comentariosDTO = comentarioToDto.listaComentariosToDto(comentarios);
+
 		        model.addAttribute("noticia", noticiaDTO);
-		        model.addAttribute("categoria", categoria);
-		        model.addAttribute("categorias", categoriasDTO);
+		        model.addAttribute("categoria", categoriaEspecifica);
+		        model.addAttribute("comentarios", comentariosDTO);
+		        model.addAttribute("categorias", categoriasTodas);
 		        return "verNoticia";
 		 }
     }

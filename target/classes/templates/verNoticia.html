@@ -1,64 +1,65 @@
 <!doctype html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title th:text="${noticia.tituloNoticia} + ' - ' + ${categoria.tipoCategoria}"></title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/blog/">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.2/css/bootstrap.min.css"
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title th:text="${noticia.tituloNoticia} + ' - ' + ${categoria.tipoCategoria}"></title>
+
+	<link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/blog/">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.2/css/bootstrap.min.css"
 		th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
-		<script th:src="@{/script/script.js}"></script>
-	  <link rel="stylesheet" href="../static/css/blog.css" th:href="@{/css/blog.css}">
-	  <link rel="stylesheet" href="../static/css/blog.rtl.css" th:href="@{/css/blog.rtl.css}">
-	  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script th:src="@{/script/script.js}"></script>
+	<link rel="stylesheet" href="../static/css/blog.css" th:href="@{/css/blog.css}">
+	<link rel="stylesheet" href="../static/css/blog.rtl.css" th:href="@{/css/blog.rtl.css}">
+	<link rel="stylesheet" href="../static/css/Comentarios.css" th:href="@{/css/Comentarios.css}">
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
+	<style>
+		.bd-placeholder-img {
+			font-size: 1.125rem;
+			text-anchor: middle;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			user-select: none;
+		}
 
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
+		@media (min-width: 768px) {
+			.bd-placeholder-img-lg {
+				font-size: 3.5rem;
+			}
+		}
+	</style>
+</head>
 
-    
-    <!-- Custom styles for this template -->
-    <link href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap" rel="stylesheet">
-    <!-- Custom styles for this template -->
-    <link href="blog.css" rel="stylesheet">
-  </head>
-  <body>
+<body>
 	<div>
-	  <header class="blog-header py-3 px-3" >
-	    <div class="row flex-nowrap justify-content-between align-items-center">
-	      <div class="col-4 pt-1">
-	        <a class="link-secondary" href="#">Subscribe</a>
-	      </div>
-	      <div class="col-4 text-center">
-	        <a class="blog-header-logo text-dark" style="text-decoration: underline;" th:href="@{/privada/index}">La Revista</a>
-	      </div>
-	      <div class="col-4 d-flex justify-content-end align-items-center">
-	        <a class="btn btn-sm btn-outline-secondary" style="margin-right: 5%;" th:href="@{/privada/index}">Volver</a>
-	        <form th:action="@{/auth/logout}" method="post" id="logoutForm">
-						<button type="button" class="btn btn-sm btn-outline-secondary" style="margin-left:10%;" onclick="confirmarLogout()">Salir</button>
+		<header class="blog-header py-3 px-3">
+			<div class="row flex-nowrap justify-content-between align-items-center">
+				<div class="col-4 pt-1">
+					<a class="link-secondary" href="#">Subscribe</a>
+				</div>
+				<div class="col-4 text-center">
+					<a class="blog-header-logo text-dark" style="text-decoration: underline;"
+						th:href="@{/privada/index}">La Revista</a>
+				</div>
+				<div class="col-4 d-flex justify-content-end align-items-center">
+					<a class="btn btn-sm btn-outline-secondary" style="margin-right: 5%;"
+						th:href="@{/privada/index}">Volver</a>
+					<form th:action="@{/auth/logout}" method="post" id="logoutForm">
+						<button type="button" class="btn btn-sm btn-outline-secondary" style="margin-left:10%;"
+							onclick="confirmarLogout()">Salir</button>
 					</form>
-	      </div>
-	    </div>
-	  </header>
-	
-	  <div class="container nav-scroller py-1 mb-2">
-		    <nav class="nav d-flex justify-content-between">
-		    	<a class="p-2 link-secondary" th:each="categoria : ${categorias}" th:text="${categoria.tipoCategoria}"></a>
-			</nav>
+				</div>
+			</div>
+		</header>
+
+			<div class="nav-scroller py-1 mb-2">
+			<nav class="nav d-flex justify-content-between px-3">
+				<a class="p-2 link-secondary" th:each="categoria : ${categorias}" th:text="${categoria.tipoCategoria}"
+					th:attr="data-idCategoria=${categoria.idCategoria}"
+					onclick="RedireccionCategoriaSinInicio(event)"></a>
 		</div>
 	</div>
 	<div class="container pt-5">
@@ -66,28 +67,44 @@
 		<!-- Le he puesto un lorem ipsum para que el texto sea más largo. -->
 		<p class="pt-3" th:text="${noticia.descNoticia} + 'Lorem ipsum dolor sit amet consectetur adipiscing, elit magna tellus hendrerit sociosqu nec, odio ut posuere placerat potenti. Pharetra quisque parturient ligula mollis, vestibulum eu mus facilisis quam, nullam netus rutrum. Facilisi laoreet senectus cursus vitae congue lectus porta nec in nisi sociosqu, blandit urna placerat dui etiam lacus non fringilla mus erat duis, conubia dictum potenti sed aliquam ultricies taciti phasellus risus vulputate.
 		Consequat pretium natoque phasellus curabitur sagittis primis molestie habitasse purus habitant, cubilia magna eleifend venenatis torquent pharetra sapien mollis iaculis. Velit quam cum facilisi dignissim accumsan commodo lobortis ornare, netus justo placerat mattis lacinia faucibus fermentum imperdiet, himenaeos cursus curabitur conubia mi vivamus sem. Dictum habitant ad iaculis pretium feugiat, fusce integer rhoncus tellus velit justo, a viverra vitae habitasse.
-		'"></p>		
+		'"></p>
 	</div>
 	<div class="container">
 		<p>Publicado el: <span th:text="${noticia.fchaPublicacionMostrarWeb}"></p>
 		<p>Autor: <span th:text="${noticia.idUsuario.nombreUsuario}"></span></p>
 	</div>
-	
-	<!-- Formulario para agregar un nuevo comentario -->
-	<form id="formulario-comentario" th:action="@{/auth/{idCategoria}/{idNoticia}/comentario(idCategoria=${categoria.idCategoria}, idNoticia=${noticia.idNoticia})}" method="post">
-	    <textarea name="descComentario" rows="4" cols="50" required></textarea>
-	    <button type="submit">Enviar Comentario</button>
-	</form>
-	
-	<!-- Aquí se mostrarán los comentarios existentes -->
-	<div id="comentarios">
-	    <div th:each="comentario : ${noticia.comentarios}">
-	        <p th:text="${comentario.descComentario}"></p>
-	    </div>
+
+	<div class="d-flex justify-content-center" style="min-height: 300px;">
+		<div class="container mt-5 border-left border-right d-inline-flex" style="justify-content: space-between;">
+
+		<!-- Formulario para agregar un nuevo comentario -->
+		<form id="formulario-comentario" class="d-flex pt-3 pb-2"
+			th:action="@{/auth/{idCategoria}/{idNoticia}/comentario(idCategoria=${categoria.idCategoria}, idNoticia=${noticia.idNoticia})}"
+			method="post" style="height: 50%; width: 40%;">
+			<textarea name="descComentario" rows="2" cols="50" required></textarea>
+			<button type="submit">Enviar Comentario</button>
+		</form>
+
+	<!-- Mostrar los comentarios existentes -->
+		<div style="max-height: 250px; overflow-y: auto; margin-right: 5%;">
+			<div class="d-flex justify-content-center py-2" id="comentarios" th:each="comentario : ${comentarios}">
+				<div class="second py-2 px-2"> <span class="text1" th:text="${comentario.descComentario}"  style="word-wrap: break-word;">Type your
+						note, and hit enter to add it</span>
+					<div class="d-flex justify-content-between py-1 pt-2">
+						<div><img src="https://i.imgur.com/AgAC1Is.jpg" width="18"><span class="text2"
+								th:text="${comentario.usuarioComentario[0].nombreUsuario}">Martha</span></div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
+	</div>
+
 	
+
 	<script th:if="${not #strings.isEmpty(mensaje)}">
-	    mostrarNotificacion("¡Logeate!", "Necesita iniciar sesión", 'info');
+		mostrarNotificacion("¡Logeate!", "Necesita iniciar sesión", 'info');
 	</script>
 </body>
+
 </html>
