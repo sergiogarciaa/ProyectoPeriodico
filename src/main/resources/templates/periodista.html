@@ -46,7 +46,7 @@
 				
 				<div class="contenedor form-registro">
 	         	
-	         		<form class="formEspecial" th:action="@{/guardarNoticia}" method="post" th:object="${noticiaDTO}">
+	         		<form class="formEspecial" th:action="@{/guardarNoticia}" method="post" enctype="multipart/form-data" th:object="${noticiaDTO}">
 					    <input type="hidden" id="idNoticia" name="idNoticia" th:value="*{idNoticia}">
 					    
 					    <input type="text" id="tituloNoticia" name="tituloNoticia" class="input" placeholder="Título de la Noticia"
@@ -65,8 +65,8 @@
 					        </option>
 					    </select>
 					     </div>
+					     <input type="file" id="foto" name="file" accept="image/*">
 
-					
 					    <button type="submit" id="btnGuardarNoticia" class="form-btn">Guardar Noticia</button>
 					    <div class="mensajeContrasenya" id="mensajeContrasenya"></div>
 					</form>

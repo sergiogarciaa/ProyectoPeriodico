@@ -36,7 +36,6 @@ public class Noticia {
 		@Column(name = "desc_noticia", nullable = true, length = 4000)
 		private String descNoticia;
 		
-		@Lob
 		@Column(name = "imagen_noticia", nullable = true)
 	    private byte[] foto;
 		

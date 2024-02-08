@@ -25,4 +25,8 @@ public interface InterfazNoticia {
 	public String resumirNoticia(String texto);
 	public String resumirNoticia2(String texto);
 	List<NoticiaDTO> buscarPorCategoria(Long idCategoria);
+	
+	public String convertToBase64(byte[] bytes);
+
+	public byte[] convertToByteArray(String foto);
 }

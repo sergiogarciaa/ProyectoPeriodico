@@ -3,6 +3,7 @@ package proyecto.periodico.servicios;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import proyecto.periodico.dao.Noticia;
@@ -13,14 +14,16 @@ import proyecto.periodico.dto.UsuarioDTO;
 @Service
 public class ImplementacionNoticiaToDTO implements InterfazNoticiaToDTO {
 
+	
     @Override
     public NoticiaDTO noticiaToDto(Noticia noticia) {
         try {
+        	ImplementacionNoticia iPac = new ImplementacionNoticia();
             NoticiaDTO dto = new NoticiaDTO();
             dto.setIdNoticia(noticia.getIdNoticia());
             dto.setTituloNoticia(noticia.getTituloNoticia());
             dto.setDescNoticia(noticia.getDescNoticia());
-            dto.setFoto(noticia.getFoto());
+            dto.setFoto(iPac.convertToBase64(noticia.getFoto()));
             dto.setEstado_suscripcion(noticia.getEstado_suscripcion());
             dto.setFchaPublicacionMostrarWeb(noticia.getFchaPublicacion());
             dto.setIdCategoria(noticia.getNoticiaCategoria());

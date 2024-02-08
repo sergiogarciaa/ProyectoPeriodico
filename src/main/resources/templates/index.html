@@ -75,16 +75,18 @@
 						<a th:attr="data-idCategoria=${noticia.idCategoria.idCategoria}, data-idNoticia=${noticia.idNoticia}, get-id=${nombreUsuario}"
 							onclick="confirmarRedireccion(event)" class="stretched-link">Seguir leyendo</a>
 					</div>
-					<div class="col-auto d-none d-lg-block">
-						<svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg"
-							role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice"
-							focusable="false">
-							<title>Placeholder</title>
-							<rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
-								dy=".3em">Thumbnail</text>
-						</svg>
-					</div>
-				</div>
+				<div class="col-auto d-none d-lg-block">
+                        <img style="width: 250px; height: 250px;" alt="Image" class="profile-image" width="200px"
+							th:if="${noticia.foto!= null}"
+							th:src="'data:image/png;base64, ' + ${noticia.foto}" />
+                        <svg th:unless="${noticia.foto != null}" class="bd-placeholder-img" width="200" height="250"
+                            xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
+                            preserveAspectRatio="xMidYMid slice" focusable="false">
+                            <title>Placeholder</title>
+                            <rect width="100%" height="100%" fill="#55595c" />
+                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+                        </svg>
+                    </div>				</div>
 			</div>
 		</div>
 

@@ -1,6 +1,8 @@
 package proyecto.periodico.controladores;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Base64;
 import java.util.Calendar;
 import java.util.List;
 
@@ -11,6 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import jakarta.servlet.http.HttpServletRequest;
 import proyecto.periodico.dao.Categoria;
@@ -19,6 +23,7 @@ import proyecto.periodico.dao.Usuario;
 import proyecto.periodico.dto.CategoriaDTO;
 import proyecto.periodico.dto.NoticiaDTO;
 import proyecto.periodico.dto.UsuarioDTO;
+import proyecto.periodico.servicios.ImplementacionNoticia;
 import proyecto.periodico.servicios.InterfazCategoria;
 import proyecto.periodico.servicios.InterfazCategoriasToDTO;
 import proyecto.periodico.servicios.InterfazNoticia;
@@ -59,9 +64,14 @@ public class PeriodistaControl {
 		}
 		return "index";
 	}
+	
 	@PostMapping("/guardarNoticia")
-	public String guardarNoticia(@ModelAttribute("noticiaDTO") NoticiaDTO noticiaDTO, Authentication authentication) {
+	public String guardarNoticia(@ModelAttribute("noticiaDTO") NoticiaDTO noticiaDTO, Authentication authentication, @RequestParam("file") MultipartFile foto) {
 	    try {
+	    	if (!foto.isEmpty()) {
+				String convertedImage = noticiaServicio.convertToBase64(foto.getBytes());
+				noticiaDTO.setFoto(convertedImage);
+			}
 	    	// Consultar usuario a traves del email
 	    	Usuario usuario = usuarioServicio.buscarPorEmail(authentication.getName());
 

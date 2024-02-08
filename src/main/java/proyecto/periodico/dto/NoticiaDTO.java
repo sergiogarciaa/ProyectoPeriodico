@@ -15,7 +15,7 @@ public class NoticiaDTO {
 	private String tituloNoticia;
 	private String descNoticia;
 	private String resumenNoticia;
-    private byte[] foto;
+    private	String foto;
 	private Boolean estado_suscripcion;
 	private String fchaPublicacionMostrarWeb;
 	private Categoria idCategoria;
@@ -30,7 +30,7 @@ public class NoticiaDTO {
 	 * @param estado_suscripcion
 	 * @param fchaPublicacion
 	 */
-	public NoticiaDTO(long idNoticia, String tituloNoticia, String descNoticia, byte[] foto, Boolean estado_suscripcion,
+	public NoticiaDTO(long idNoticia, String tituloNoticia, String descNoticia, String foto, Boolean estado_suscripcion,
 			Calendar fchaPublicacion, String fchaPublicacionMostrarWeb,Categoria idCategoria, Usuario idUsuario, String resumenNoticia, List<Comentarios> comentarios) {
 		super();
 		this.idNoticia = idNoticia;
@@ -69,10 +69,10 @@ public class NoticiaDTO {
 	public void setDescNoticia(String descNoticia) {
 		this.descNoticia = descNoticia;
 	}
-	public byte[] getFoto() {
+	public String getFoto() {
 		return foto;
 	}
-	public void setFoto(byte[] foto) {
+	public void setFoto(String foto) {
 		this.foto = foto;
 	}
 	public Boolean getEstado_suscripcion() {
@@ -111,16 +111,10 @@ public class NoticiaDTO {
 	public void setComentarios(List<Comentarios> comentarios) {
 		this.comentarios = comentarios;
 	}
-	
-	
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + Arrays.hashCode(foto);
-		result = prime * result
-				+ Objects.hash(descNoticia, estado_suscripcion, idNoticia, tituloNoticia, idCategoria, idUsuario, resumenNoticia, comentarios);
-		return result;
+		return Objects.hash(comentarios, descNoticia, estado_suscripcion, fchaPublicacionMostrarWeb, foto, idCategoria,
+				idNoticia, idUsuario, resumenNoticia, tituloNoticia);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -131,16 +125,20 @@ public class NoticiaDTO {
 		if (getClass() != obj.getClass())
 			return false;
 		NoticiaDTO other = (NoticiaDTO) obj;
-		return Objects.equals(descNoticia, other.descNoticia) && Objects.equals(resumenNoticia, other.resumenNoticia)
-				&& Objects.equals(estado_suscripcion, other.estado_suscripcion) && Arrays.equals(foto, other.foto)
-				&& idNoticia == other.idNoticia && Objects.equals(tituloNoticia, other.tituloNoticia)&& Objects.equals(idCategoria, other.idCategoria)
-				&& Objects.equals(fchaPublicacionMostrarWeb, other.fchaPublicacionMostrarWeb) && Objects.equals(idUsuario, other.idUsuario) 
-				&& Objects.equals(comentarios, other.comentarios);
+		return Objects.equals(comentarios, other.comentarios) && Objects.equals(descNoticia, other.descNoticia)
+				&& Objects.equals(estado_suscripcion, other.estado_suscripcion)
+				&& Objects.equals(fchaPublicacionMostrarWeb, other.fchaPublicacionMostrarWeb)
+				&& Objects.equals(foto, other.foto) && Objects.equals(idCategoria, other.idCategoria)
+				&& idNoticia == other.idNoticia && Objects.equals(idUsuario, other.idUsuario)
+				&& Objects.equals(resumenNoticia, other.resumenNoticia)
+				&& Objects.equals(tituloNoticia, other.tituloNoticia);
 	}
 	@Override
 	public String toString() {
 		return "NoticiaDTO [idNoticia=" + idNoticia + ", tituloNoticia=" + tituloNoticia + ", descNoticia="
-				+ descNoticia + ", foto=" + Arrays.toString(foto) + ", estado_suscripcion=" + estado_suscripcion
-				+ ", fchaPublicacionWeb=" + fchaPublicacionMostrarWeb + ", resumen =" + resumenNoticia + "]";
+				+ descNoticia + ", resumenNoticia=" + resumenNoticia + ", foto=" + foto + ", estado_suscripcion="
+				+ estado_suscripcion + ", fchaPublicacionMostrarWeb=" + fchaPublicacionMostrarWeb + ", idCategoria="
+				+ idCategoria + ", idUsuario=" + idUsuario + ", comentarios=" + comentarios + "]";
 	}
+
 }

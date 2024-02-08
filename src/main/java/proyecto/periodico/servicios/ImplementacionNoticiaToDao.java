@@ -16,15 +16,17 @@ import proyecto.periodico.repositorios.noticiaRepositorio;
 public class ImplementacionNoticiaToDao implements InterfazNoticiaToDAO {
 	@Autowired
 	private noticiaRepositorio Nrepositorio;
+	
 
 	  @Override
 	    public Noticia noticiaToDao(NoticiaDTO noticiaDTO, Usuario usuario, Categoria categoria) {
 	        try {
+	        	ImplementacionNoticia iPac = new ImplementacionNoticia();
 	            Noticia noticiaDao = new Noticia();
 	            noticiaDao.setIdNoticia(noticiaDTO.getIdNoticia());
 	            noticiaDao.setTituloNoticia(noticiaDTO.getTituloNoticia());
 	            noticiaDao.setDescNoticia(noticiaDTO.getDescNoticia());
-	            noticiaDao.setFoto(noticiaDTO.getFoto());
+	            noticiaDao.setFoto(iPac.convertToByteArray(noticiaDTO.getFoto()));
 	            noticiaDao.setEstado_suscripcion(noticiaDTO.getEstado_suscripcion());
 	            noticiaDao.setFchaPublicacion(noticiaDTO.getFchaPublicacionMostrarWeb());
 	            // Asignar el usuario y la categoría a la noticia
