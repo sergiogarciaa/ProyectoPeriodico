@@ -23,7 +23,7 @@ public class ImplementacionEmail implements InterfazEmail{
 	            MimeMessage mensaje = javaMailSender.createMimeMessage();
 	            MimeMessageHelper helper = new MimeMessageHelper(mensaje, true, "UTF-8");
 
-	            helper.setFrom("recuperacionpasss12@gmail.com");
+	            helper.setFrom("sergiopeke6@gmail.com");
 	            helper.setTo(emailDestino);
 	            helper.setSubject("Recuperación de contraseña. La Revista");
 

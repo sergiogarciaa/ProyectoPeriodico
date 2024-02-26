@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.biblioteca.servicios.UsuarioServicioImpl;
-
 import jakarta.servlet.http.HttpServletRequest;
 import proyecto.periodico.dao.Usuario;
 import proyecto.periodico.dto.UsuarioDTO;
