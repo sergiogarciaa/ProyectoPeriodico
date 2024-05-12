@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -100,4 +101,48 @@ public class PeriodistaControl {
 	        return "redirect:/privada/index";
 	    }
 	}
+	
+	@GetMapping("/privada/crearCategoria")
+    public String crearCategoria(Model model, HttpServletRequest request) {
+		if (request.isUserInRole("ROLE_2") || request.isUserInRole("ROLE_4")) {
+			model.addAttribute("categorias", categoriaServicio.buscarTodas());
+	        model.addAttribute("categoriaForm", new Categoria());
+	        return "formularioNuevaCategoria";
+		}
+		else {
+			return "redirect:/privada/index";
+		}
+		
+		
+    }
+	
+	@PostMapping("/privada/guardarCategoria")
+    public String guardarCategoria(@ModelAttribute("categoriaForm") Categoria categoria) {
+		categoriaServicio.guardarCategoria(categoria);
+        return "redirect:/privada/zonaPeriodista";
+    }
+	
+	// Método para eliminar una categoría
+    @GetMapping("/privada/eliminarCategoria/{id}")
+    public String eliminarCategoria(@PathVariable("id") Long idCategoria, HttpServletRequest request, Model model) {
+    	if (request.isUserInRole("ROLE_2") || request.isUserInRole("ROLE_4")) {
+    		try {
+    			categoriaServicio.eliminar(idCategoria);
+    			model.addAttribute("categoriaBorrada", "Categoria borrada correctamente");
+    			model.addAttribute("categorias", categoriaServicio.buscarTodas());
+    	        model.addAttribute("categoriaForm", new Categoria());
+                return "formularioNuevaCategoria";
+                
+            } catch (Exception e) {
+                // Si hay un error al intentar eliminar la categoría, mostrar un mensaje de error
+                model.addAttribute("noSePuedeEliminar", "No se puede eliminar una categoría que tiene noticia/s");
+                model.addAttribute("categorias", categoriaServicio.buscarTodas());
+    	        model.addAttribute("categoriaForm", new Categoria());
+                return "formularioNuevaCategoria";
+            }
+    	}
+    	else {
+			return "redirect:/privada/index";
+		}
+    }
 }

@@ -15,4 +15,8 @@ public interface InterfazCategoria {
 	public Categoria buscarPorId(Categoria categoria);
 
 	public Categoria buscarPorId(long idCategoria);
+	
+	public void guardarCategoria(Categoria categoria);
+	
+	public void eliminar(Long idCategoria);
 }

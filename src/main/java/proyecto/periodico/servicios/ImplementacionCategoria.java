@@ -47,6 +47,10 @@ public class ImplementacionCategoria implements InterfazCategoria{
 	public Categoria buscarPorId(Categoria idCategoria) {
 		return Crepositorio.findById(idCategoria.getIdCategoria()).orElse(null);
 	}
+	
+	public void guardarCategoria(Categoria categoria) {
+		Crepositorio.save(categoria);
+    }
 
 
 	@Override
@@ -54,6 +58,15 @@ public class ImplementacionCategoria implements InterfazCategoria{
 		// TODO Auto-generated method stub
 		return Crepositorio.findById(idCategoria).orElse(null);
 	}
+	
+	public void eliminar(Long idCategoria) {
+        // Verificar si la categoría existe
+        Categoria categoria = Crepositorio.findById(idCategoria).orElse(null);
+        if (categoria != null) {
+            // Eliminar la categoría
+        	Crepositorio.delete(categoria);
+        }
+    }
 	/**
 	 * Método que ejecuta la creación de un usuario administrador con su rol de
 	 * administrador.
@@ -114,7 +127,7 @@ public class ImplementacionCategoria implements InterfazCategoria{
 	}
 
 	/**
-	 * Método que automatiza la creación de un usuario administrador que se ejecuta
+	 * Método que automatiza la creación de categorias, se ejecuta
 	 * la primera vez que se despliega la aplicación.
 	 */
 	@EventListener(ApplicationReadyEvent.class)
