@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>Panel de Usuario</title>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="../static/css/panelUsuario.css" th:href="@{/css/panelUsuario.css}">
+ <link rel="stylesheet" href="../static/css/blog.css" th:href="@{/css/blog.css}">
+    <link rel="stylesheet" href="../static/css/edicion.css" th:href="@{/css/edicion.css}">
+    <link rel="stylesheet" href="../static/css/blog.rtl.css" th:href="@{/css/blog.rtl.css}">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+
+<body>
+	
+		<header class="blog-header py-3 px-3">
+		    <div class="row flex-nowrap justify-content-between align-items-center">
+		      <div class="col-4 pt-1">
+		      </div>
+		      <div class="col-4 text-center">
+		        <a class="blog-header-logo text-dark" style="text-decoration: underline;">Panel de Usuario</a>
+		      </div>
+			      <div class="col-4 d-flex justify-content-end align-items-center">
+			        <a class="btn btn-sm btn-outline-secondary" style="margin-right: 5%;" th:href="@{/privada/index}">Volver</a>
+			        <form th:action="@{/auth/logout}" method="post" id="logoutForm">
+						<button type="button" class="btn btn-sm btn-outline-secondary" style="margin-left:10%;" onclick="confirmarLogout()">Salir</button>
+					</form>
+			      </div>
+		    </div>
+	  </header>
+	  
+<div class="container rounded bg-white mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+            <span class="font-weight-bold" th:text="${usuario.nombreUsuario} + ' ' + ${usuario.apellidosUsuario}"></span><span class="text-black-50" th:text="${usuario.emailUsuario}"></span><span> </span></div>
+        </div>
+        <div class="col-md-5 border-right">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">Panel de Usuario</h4>
+                </div>
+                <div class="accordion" id="accordionExample">
+				<!-- Div 1 -->
+				<div class="accordion-item">
+				  <h2 class="accordion-header" id="headingOne">
+				    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+				      Nombre y apellido
+				    </button>
+				  </h2>
+				  <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+				    <div class="accordion-body">
+				      <div class="col-md-12">
+				        <input type="text" class="form-control mb-3" placeholder="Nombre" th:value="${usuario.nombreUsuario}">
+				        <input type="text" class="form-control" placeholder="Apellido" th:value="${usuario.apellidosUsuario}">
+				      </div>
+				    </div>
+				  </div>
+				</div>
+				
+				  <!-- Div 2 -->
+				  <div class="accordion-item">
+				    <h2 class="accordion-header" id="headingTwo">
+				      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+				        Numero de telefono
+				      </button>
+				    </h2>
+				    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+				      <div class="accordion-body">
+				        <div class="col-md-12">
+				          <input type="text" class="form-control" placeholder="Numero de telefono"  th:value="${usuario.tlfUsuario}">
+				        </div>
+				      </div>
+				    </div>
+				  </div>
+				
+				  <!-- Div 3 -->
+				  <div class="accordion-item">
+				    <h2 class="accordion-header" id="headingThree">
+				      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+				        Email
+				      </button>
+				    </h2>
+				    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+				      <div class="accordion-body">
+				        <div class="col-md-12">
+				          <input type="text" class="form-control" placeholder="Email" readonly th:value="${usuario.emailUsuario}">
+				        </div>
+				      </div>
+				    </div>
+				  </div>
+				
+				  <!-- Div 4 -->
+				  <div class="accordion-item">
+				    <h2 class="accordion-header" id="headingFour">
+				      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+				        DNI
+				      </button>
+				    </h2>
+				    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+				      <div class="accordion-body">
+				        <div class="col-md-12">
+				          <input type="text" class="form-control" placeholder="DNI" th:value="${usuario.dniUsuario}">
+				        </div>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+                <div class="mt-3 text-center">
+					<button class="btn btn-primary profile-button" type="button">Guardar Datos</button>
+                </div>
+				  <div class="col-md-12 pt-3"><label class="labels">Suscripcion</label><input type="text" class="form-control" placeholder="Suscripcion" readonly th:value="${usuario.estado_suscripcion} ? 'Suscrito' : 'No tiene suscripción'"></div>
+				  <div class="col-md-12 pt-2">
+				      <label class="labels">Rol</label><input type="text" class="form-control" placeholder="Rol" readonly th:value="${usuario.rol}">
+	        	 </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-center align-items-center experience"><h3>Interacciones con La Revista</h3></div><br>
+                <h4 class="text-center">Comentarios del Usuario</h4>
+					<table class="table table-striped table-bordered">
+					    <thead class="thead-dark">
+					        <tr>
+					            <th scope="col">Noticia</th>
+					            <th scope="col">Comentario</th>
+					        </tr>
+					    </thead>
+					    <tbody>
+					        <tr th:each="comentario : ${comentarios}">
+					            <td>
+					                <span th:each="noticia : ${comentario.noticiaComentario}">
+					                    <span th:text="${noticia.tituloNoticia}"></span>
+					                </span>
+					            </td>
+					            <td th:text="${comentario.descComentario}"></td>
+					        </tr>
+					    </tbody>
+					</table>
+					 <br>
+                <div class="container" th:if="${usuario.rol == 'ROLE_2'}">
+				    <div class="row">
+				        <div class="col-md-12">
+				            <h4>Noticias Publicadas</h4>
+				            <table class="table">
+				                <thead>
+				                    <tr>
+				                        <th>Título</th>
+				                    </tr>
+				                </thead>
+				                <tbody>
+				                    <tr th:each="noticia : ${noticiasPublicadas}">
+				                        <td th:text="${noticia.tituloNoticia}"></td>
+				                    </tr>
+				                </tbody>
+				            </table>
+				        </div>
+				    </div>
+				</div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+</body>
+</html>
+

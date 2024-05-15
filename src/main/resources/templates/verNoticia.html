@@ -95,6 +95,11 @@
 						<div><img src="https://i.imgur.com/AgAC1Is.jpg" width="18"><span class="text2"
 								th:text="${comentario.usuarioComentario[0].nombreUsuario}">Martha</span></div>
 					</div>
+					 <!-- Botón para eliminar el comentario -->
+                        <form th:action="@{/auth/{idCategoria}/{idNoticia}/comentario/{idComentario}/eliminar(idCategoria=${categoria.idCategoria}, idNoticia=${noticia.idNoticia}, idComentario=${comentario.idComentario})}"
+                              method="post" sec:authorize="hasAnyRole('ROLE_3', 'ROLE_4')">
+                            <button type="submit">Eliminar</button>
+                        </form>
 				</div>
 			</div>
 		</div>
@@ -106,6 +111,12 @@
 	<script th:if="${not #strings.isEmpty(mensaje)}">
 		mostrarNotificacion("¡Logeate!", "Necesita iniciar sesión", 'info');
 	</script>
+	
+
+	<script th:if="${not #strings.isEmpty(comentarioAgregado)}">
+		mostrarNotificacion("¡comentarioAgregado!", "El comentario ha sido agregado correctamente", 'success');
+	</script>
+	
 </bodystyle="background-image: url('data:image/png;base64,${noticia.foto}'); background-size: cover;">
 
 </html>

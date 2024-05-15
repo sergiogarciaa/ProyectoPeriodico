@@ -34,6 +34,7 @@
 						Periodista</a>
 					<a class="btn btn-sm btn-outline-secondary" th:href="@{/privada/administracion}"
 						sec:authorize="hasAnyRole('ROLE_3', 'ROLE_4')">Administracion</a>
+					<a class="btn btn-sm btn-outline-secondary" th:href="@{/privada/panelUsuario}">Panel de Usuario</a>
 					<form th:action="@{/auth/logout}" method="post" id="logoutForm">
 						<button type="button" class="btn btn-sm btn-outline-secondary" style="margin-left:20%;"
 							onclick="confirmarLogout()">Salir</button>
