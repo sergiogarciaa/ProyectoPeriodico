@@ -183,6 +183,7 @@ public class ImplementacionNoticia implements InterfazNoticia  {
 						// 
 						noticia1.setUsuario(admin);
 						Nrepositorio.save(noticia1);
+						toDto.noticiaToDto(noticia1);
 					}
 		
 			}

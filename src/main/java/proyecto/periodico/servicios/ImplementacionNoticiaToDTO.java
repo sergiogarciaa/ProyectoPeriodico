@@ -28,7 +28,7 @@ public class ImplementacionNoticiaToDTO implements InterfazNoticiaToDTO {
             dto.setFchaPublicacionMostrarWeb(noticia.getFchaPublicacion());
             dto.setIdCategoria(noticia.getNoticiaCategoria());
             dto.setIdUsuario(noticia.getUsuario());
-            // Puedes agregar más atributos según sea necesario
+            dto.setComentarios(noticia.getNoticiaComentario());
 
             return dto;
         } catch (Exception e) {

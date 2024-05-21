@@ -11,15 +11,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.servlet.http.HttpServletRequest;
 import proyecto.periodico.dao.Usuario;
+import proyecto.periodico.dto.NoticiaDTO;
 import proyecto.periodico.dto.UsuarioDTO;
 import proyecto.periodico.servicios.ImplementacionUsuarioToDto;
+import proyecto.periodico.servicios.InterfazNoticia;
 import proyecto.periodico.servicios.InterfazUsuario;
 import proyecto.periodico.servicios.InterfazUsuarioToDTO;
-import proyecto.periodico.servicios.InterfazUsuarioToDao;
 
 
 @Controller
@@ -27,6 +27,8 @@ public class administracionControl {
 
 	@Autowired
 	private InterfazUsuario usuarioServicio;
+	 @Autowired
+    private InterfazNoticia noticiaServicio;
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 
@@ -49,8 +51,15 @@ public class administracionControl {
 		if (request.isUserInRole("ROLE_3") || request.isUserInRole("ROLE_4")) {
 			return "administracion";
 		}
-		return "redirect:/privada/index";
+		return "redire"
+				+ "ct:/privada/index";
 	}
+	@GetMapping("/administracion/generarPdf")
+    public String generarPdf(Model model) {
+        List<NoticiaDTO> noticias = noticiaServicio.buscarTodas();
+        model.addAttribute("noticias", noticias);
+        return "administracionPdf"; // Nombre de la vista
+    }
 	
 	/**
 	 * Maneja la solicitud HTTP GET para eliminar a un usuario por su ID.
