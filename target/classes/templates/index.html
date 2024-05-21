@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Home</title>
+	<title>Portada La Revista</title>
 	<link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/blog/">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -32,7 +32,7 @@
 					<a class="btn btn-sm btn-outline-secondary" style="margin-right: 2%;"
 						sec:authorize="hasAnyRole('ROLE_2', 'ROLE_4')" th:href="@{/privada/zonaPeriodista}">Zona
 						Periodista</a>
-					<a class="btn btn-sm btn-outline-secondary" th:href="@{/privada/administracion}"
+					<a class="btn btn-sm btn-outline-secondary" th:href="@{/privada/administracion}" style="margin-right: 2%;"
 						sec:authorize="hasAnyRole('ROLE_3', 'ROLE_4')">Administracion</a>
 					<a class="btn btn-sm btn-outline-secondary" th:href="@{/privada/panelUsuario}">Panel de Usuario</a>
 					<form th:action="@{/auth/logout}" method="post" id="logoutForm">

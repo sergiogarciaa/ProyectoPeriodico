@@ -202,4 +202,10 @@ public class ImplementacionNoticia implements InterfazNoticia  {
 			System.out.println("[IMPL-Usu][onApplicationReady] " + e.getMessage());
 		}
 	}
+
+	@Override
+	public void eliminar(Long id) {
+		Nrepositorio.deleteById(id);
+		
+	}
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import proyecto.periodico.dao.Categoria;
 import proyecto.periodico.dao.Comentarios;
 import proyecto.periodico.dao.Noticia;
+import proyecto.periodico.dao.Usuario;
 import proyecto.periodico.dto.CategoriaDTO;
 import proyecto.periodico.dto.ComentariosDTO;
 import proyecto.periodico.dto.NoticiaDTO;
@@ -65,6 +66,9 @@ public class NoticiasyCategoriasControl {
 		        return "login";
 		    }
 		 else {
+			 // Añadir información del usuario autenticado al modelo
+			    Usuario usuario = usuarioServicio.buscarPorEmail(authentication.getName());
+			    
 		        Noticia noticia = noticiaServicio.buscarNoticiaPorID(idNoticia);
 		        NoticiaDTO noticiaDTO = noticiaToDto.noticiaToDto(noticia);
 		        Categoria categoria = noticia.getNoticiaCategoria();
@@ -78,6 +82,7 @@ public class NoticiasyCategoriasControl {
 		        model.addAttribute("noticia", noticiaDTO);
 		        model.addAttribute("categoria", categoriaEspecifica);
 		        model.addAttribute("comentarios", comentariosDTO);
+		        model.addAttribute("usuarioAutenticado", usuario);
 		        model.addAttribute("categorias", categoriasTodas);
 		        return "verNoticia";
 		 }

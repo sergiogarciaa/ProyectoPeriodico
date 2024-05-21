@@ -44,6 +44,7 @@
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h4 class="text-right">Panel de Usuario</h4>
                 </div>
+                 <form th:action="@{/privada/guardarDatosUsuario}" th:object="${usuarioDTO}" method="post">
                 <div class="accordion" id="accordionExample">
 				<!-- Div 1 -->
 				<div class="accordion-item">
@@ -55,8 +56,8 @@
 				  <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 				    <div class="accordion-body">
 				      <div class="col-md-12">
-				        <input type="text" class="form-control mb-3" placeholder="Nombre" th:value="${usuario.nombreUsuario}">
-				        <input type="text" class="form-control" placeholder="Apellido" th:value="${usuario.apellidosUsuario}">
+				        <input type="text" class="form-control mb-3" placeholder="Nombre" name="nombreUsuario" th:value="${usuario.nombreUsuario}">
+				        <input type="text" class="form-control" placeholder="Apellido" name="apellidosUsuario" th:value="${usuario.apellidosUsuario}">
 				      </div>
 				    </div>
 				  </div>
@@ -72,7 +73,7 @@
 				    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
 				      <div class="accordion-body">
 				        <div class="col-md-12">
-				          <input type="text" class="form-control" placeholder="Numero de telefono"  th:value="${usuario.tlfUsuario}">
+				          <input type="text" class="form-control" placeholder="Numero de telefono" name="tlfUsuario" th:value="${usuario.tlfUsuario}">
 				        </div>
 				      </div>
 				    </div>
@@ -88,7 +89,7 @@
 				    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
 				      <div class="accordion-body">
 				        <div class="col-md-12">
-				          <input type="text" class="form-control" placeholder="Email" readonly th:value="${usuario.emailUsuario}">
+				          <input type="text" class="form-control" placeholder="Email" readonly name="emailUsuario" th:value="${usuario.emailUsuario}">
 				        </div>
 				      </div>
 				    </div>
@@ -104,15 +105,32 @@
 				    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
 				      <div class="accordion-body">
 				        <div class="col-md-12">
-				          <input type="text" class="form-control" placeholder="DNI" th:value="${usuario.dniUsuario}">
+				          <input type="text" class="form-control" placeholder="DNI" name="dniUsuario" th:value="${usuario.dniUsuario}">
+				        </div>
+				      </div>
+				    </div>
+				  </div>
+				  <!-- Div 5 -->
+				  <div class="accordion-item">
+				    <h2 class="accordion-header" id="headingFive">
+				      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+				        Cambiar contraseña
+				      </button>
+				    </h2>
+				    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+				      <div class="accordion-body">
+				        <div class="col-md-12">
+				          <input type="password" class="form-control" placeholder="" name="claveUsuario">
 				        </div>
 				      </div>
 				    </div>
 				  </div>
 				</div>
                 <div class="mt-3 text-center">
-					<button class="btn btn-primary profile-button" type="button">Guardar Datos</button>
+					<button class="form-control" type="submit">Guardar Datos</button>
                 </div>
+                 </form>
+                
 				  <div class="col-md-12 pt-3"><label class="labels">Suscripcion</label><input type="text" class="form-control" placeholder="Suscripcion" readonly th:value="${usuario.estado_suscripcion} ? 'Suscrito' : 'No tiene suscripción'"></div>
 				  <div class="col-md-12 pt-2">
 				      <label class="labels">Rol</label><input type="text" class="form-control" placeholder="Rol" readonly th:value="${usuario.rol}">

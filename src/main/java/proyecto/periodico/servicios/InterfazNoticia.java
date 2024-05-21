@@ -17,6 +17,8 @@ public interface InterfazNoticia {
 	 * @return El usuario buscado
 	 */
 	public Noticia buscarNoticiaPorID(long id);
+	
+	void eliminar(Long id);
 	/**
 	 * Busca todos los usuarios registrados
 	 * @return la lista de todos los usuariosDTO

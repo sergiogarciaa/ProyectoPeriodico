@@ -62,15 +62,15 @@
             </form>
         </div>
 
-        <div class="col-8">
-            <!-- Listado de categorías -->
-            <ul class="list-group">
-                <li th:each="categoria : ${categorias}" class="list-group-item d-flex justify-content-between align-items-center">
-                    <span th:text="${categoria.tipoCategoria} + ' - ' + ${categoria.descCategoria}"></span>
-                    <a th:href="@{'/privada/eliminarCategoria/' + ${categoria.idCategoria}}" class="btn btn-danger btn-sm">Eliminar</a>
-                </li>
-            </ul>
-        </div>
+       <div class="col-8">
+		    <!-- Listado de categorías -->
+		    <ul class="list-group">
+		        <li th:each="categoria : ${categorias}" class="list-group-item d-flex justify-content-between align-items-center">
+		            <span th:text="${categoria.tipoCategoria} + ' - ' + ${categoria.descCategoria}"></span>
+		            <a href="#" th:attr="data-href=@{'/privada/eliminarCategoria/' + ${categoria.idCategoria}}" class="btn btn-danger btn-sm confirm-delete-btn">Eliminar</a>
+		        </li>
+		    </ul>
+		</div>
     </div>
 </div>
 

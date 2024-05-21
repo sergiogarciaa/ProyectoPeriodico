@@ -145,4 +145,23 @@ public class PeriodistaControl {
 			return "redirect:/privada/index";
 		}
     }
+    
+    // Método para eliminar una noticia
+    @GetMapping("/privada/eliminarNoticia/{id}")
+    public String eliminarNoticia(@PathVariable("id") Long idNoticia, Authentication authentication, Model model) {
+        try {
+            Usuario usuario = usuarioServicio.buscarPorEmail(authentication.getName());
+            Noticia noticia = noticiaServicio.buscarNoticiaPorID(idNoticia);
+
+            if (noticia.getUsuario().getIdUsuario() == usuario.getIdUsuario()) {
+                noticiaServicio.eliminar(idNoticia);
+                model.addAttribute("noticiaBorrada", "Noticia borrada correctamente");
+            } else {
+                model.addAttribute("error", "No tienes permisos para borrar esta noticia.");
+            }
+        } catch (Exception e) {
+            model.addAttribute("error", "Error al intentar eliminar la noticia.");
+        }
+        return "redirect:/privada/zonaPeriodista";
+    }
 }

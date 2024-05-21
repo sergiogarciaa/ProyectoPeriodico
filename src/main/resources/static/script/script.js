@@ -39,6 +39,8 @@ function error(){
 }
 
 
+
+
 function confirmarLogout() {
     Swal.fire({
         title: '¿Estás seguro de que deseas cerrar sesión?',
@@ -181,3 +183,43 @@ function RedireccionNoticiaSinInicio(event) {
 	const idCategoria = parseInt(event.currentTarget.getAttribute("data-idCategoria"), 10);
 	window.location.href = 'http://localhost:8080/auth/' + idCategoria + '/' + idNoticia;
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    const deleteButtons = document.querySelectorAll('.confirm-delete-btn');
+
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', function (event) {
+            event.preventDefault(); // Evitar que el enlace redirija inmediatamente
+
+            const deleteUrl = this.getAttribute('data-href');
+            confirmarBorrarTexto(deleteUrl);
+        });
+    });
+});
+
+function confirmarBorrarTexto(deleteUrl) {
+    Swal.fire({
+        title: '¿Estás seguro?',
+        text: "Escriba 'borrar' para confirmar",
+        input: 'text',
+        inputPlaceholder: 'Escriba "borrar" aquí',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Eliminar',
+        cancelButtonText: 'Cancelar',
+        preConfirm: (inputValue) => {
+            if (inputValue.toLowerCase() === 'borrar') {
+                return true;
+            } else {
+                Swal.showValidationMessage('Debe escribir "borrar" para confirmar');
+                return false;
+            }
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = deleteUrl; // Redirigir a la URL de eliminación
+        }
+    });
+}
+
