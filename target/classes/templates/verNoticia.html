@@ -74,7 +74,7 @@
     <p class="text-secondary">Publicado: <span class="text-capitalize text-dark" th:text="${noticia.fchaPublicacionMostrarWeb}"></span></p>
     <div class="col-12 justify-content-between d-flex">
 		<p class="text-secondary">Autor: <span class="text-capitalize text-dark" th:text="${noticia.idUsuario.nombreUsuario}"></span></p>
-		<span th:if="${usuarioAutenticado.idUsuario == noticia.idUsuario.idUsuario || #authorization.expression('hasRole(''ROLE_3'')')}">
+		<span th:if="${usuarioAutenticado.idUsuario == noticia.idUsuario.idUsuario || #authorization.expression('hasAnyRole(''ROLE_3'', ''ROLE_4'')')}">
 	                <a href="#" th:attr="data-href=@{'/privada/eliminarNoticia/' + ${noticia.idNoticia}}" class="btn btn-outline-danger btn-sm confirm-delete-btn">Eliminar</a>
 	            </span>
 	</div>

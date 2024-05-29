@@ -191,6 +191,7 @@ public class ImplementacionNoticia implements InterfazNoticia  {
 			System.out.println("[IMPL-Categoria][inicializarCategorias] " + e.getMessage());
 		}
 	}
+	
 	/**
 	 * Método que automatiza la creación de un usuario administrador que se ejecuta
 	 * la primera vez que se despliega la aplicación.

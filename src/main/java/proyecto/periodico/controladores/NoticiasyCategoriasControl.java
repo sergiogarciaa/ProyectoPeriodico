@@ -90,15 +90,15 @@ public class NoticiasyCategoriasControl {
 	
 	@GetMapping("/privada/ver/{idCategoria}")
 		public String verCategoria(@PathVariable long idCategoria, Model model, Authentication authentication) {
-		 if (authentication == null || !authentication.isAuthenticated()) {
+		CategoriaDTO categoriaDTO = categoriaToDto.categoriaToDTO(categoriaServicio.buscarPorId(idCategoria));
+	 	 // Obtener noticias por categoría
+       List<NoticiaDTO> noticiasPorCategoria = noticiaServicio.buscarPorCategoria(idCategoria); 
+		if (authentication == null || !authentication.isAuthenticated()) {
 		        // El usuario no está autenticado, muestra la notificación y redirige al inicio de sesión
 		        model.addAttribute("mensaje", "Debes estar logeado para acceder a esta página.");
 		        return "login";
 		    }
 		 else {
-			 	CategoriaDTO categoriaDTO = categoriaToDto.categoriaToDTO(categoriaServicio.buscarPorId(idCategoria));
-			 	 // Obtener noticias por categoría
-	            List<NoticiaDTO> noticiasPorCategoria = noticiaServicio.buscarPorCategoria(idCategoria);
 		       	// Este buscar todas para el header.
 		        List<CategoriaDTO> categoriaTodasDTO = categoriaServicio.buscarTodas();
 		        

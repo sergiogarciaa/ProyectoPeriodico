@@ -153,7 +153,9 @@ public class PeriodistaControl {
             Usuario usuario = usuarioServicio.buscarPorEmail(authentication.getName());
             Noticia noticia = noticiaServicio.buscarNoticiaPorID(idNoticia);
 
-            if (noticia.getUsuario().getIdUsuario() == usuario.getIdUsuario()) {
+            if (noticia.getUsuario().getIdUsuario() == usuario.getIdUsuario() 
+            		|| usuario.getRol().equals("ROLE_3")
+            		|| usuario.getRol().equals("ROLE_4")) {
                 noticiaServicio.eliminar(idNoticia);
                 model.addAttribute("noticiaBorrada", "Noticia borrada correctamente");
             } else {
@@ -162,6 +164,6 @@ public class PeriodistaControl {
         } catch (Exception e) {
             model.addAttribute("error", "Error al intentar eliminar la noticia.");
         }
-        return "redirect:/privada/zonaPeriodista";
+        return "redirect:/privada/index";
     }
 }

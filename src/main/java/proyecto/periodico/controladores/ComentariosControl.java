@@ -88,7 +88,9 @@ public class ComentariosControl {
             
             // Verificar si el usuario autenticado es el que creó el comentario
             for (Usuario usuario : comentario.getUsuarioComentario()) {
-                if (usuario.getEmailUsuario().equals(usuarioAutenticado.getEmailUsuario())) {
+            	  if (usuario.getIdUsuario() == usuarioAutenticado.getIdUsuario() 
+                  		|| usuarioAutenticado.getRol().equals("ROLE_3")
+                  		|| usuarioAutenticado.getRol().equals("ROLE_4")) {
                 	comentario.getNoticiaComentario().remove(noticia);
                     // Si coincide, eliminar el comentario
                 	noticia.getNoticiaComentario().remove(comentario);

@@ -178,7 +178,6 @@ function RedireccionCategoriaSinInicio(event) {
 }
 
 function RedireccionNoticiaSinInicio(event) {
-	// Añadir comprobacion de rol para ver si esta logeado y poner SwalFire.
     const idNoticia = parseInt(event.currentTarget.getAttribute("data-idNoticia"), 10);
 	const idCategoria = parseInt(event.currentTarget.getAttribute("data-idCategoria"), 10);
 	window.location.href = 'http://localhost:8080/auth/' + idCategoria + '/' + idNoticia;

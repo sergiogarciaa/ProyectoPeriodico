@@ -27,7 +27,7 @@ public class ImplementacionEmail implements InterfazEmail{
 	            helper.setTo(emailDestino);
 	            helper.setSubject("Recuperación de contraseña. La Revista");
 
-	            String urlDominio = "http://localhost:8080";
+	            String urlDominio = "https://tomcat.sergioogarciaa.es:8080";
 	            String urlDeRecuperacion = String.format("%s/auth/recuperar?token=%s", urlDominio, token);
 
 	            String cuerpoMensaje = String.format(
@@ -61,11 +61,11 @@ public class ImplementacionEmail implements InterfazEmail{
             MimeMessage mensaje = javaMailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(mensaje, true, "UTF-8");
 
-            helper.setFrom("recuperacionpass12@gmail.com");
+            helper.setFrom("sergiopeke6@gmail.com");
             helper.setTo(emailDestino);
             helper.setSubject("Confirmación de cuenta, Periodico La Revista");
 
-            String urlDominio = "http://localhost:8080";
+            String urlDominio = "https://tomcat.sergioogarciaa.es:8080";
             String urlDeConfirmacion = String.format("%s/auth/confirmacionCorreo?token=%s", urlDominio, token);
 
             String cuerpoMensaje = String.format(
