@@ -91,7 +91,7 @@ function confirmarEliminar(event) {
     });
 		   }
         if (confirmado && rol != "ROLE_3") {
-            window.location.href = 'http://localhost:8080/privada/eliminar/' + idUsuario;
+            window.location.href = 'https://tomcat.sergioogarciaa.es/privada/eliminar/' + idUsuario;
         }
     });
 }
@@ -114,7 +114,7 @@ function confirmarEdicion(event) {
     });
 		   }
         if (confirmado && rol != "ROLE_4") {
-            window.location.href = 'http://localhost:8080/privada/editar/' + idUsuario;
+            window.location.href = 'https://tomcat.sergioogarciaa.es/privada/editar/' + idUsuario;
         }
     });
 }
@@ -139,7 +139,7 @@ confirmar().then(function (confirmado) {
     });
 		   }
         if (confirmado) {
-            window.location.href = 'http://localhost:8080/auth/' + idCategoria + '/' + idNoticia;
+            window.location.href = 'https://tomcat.sergioogarciaa.es/auth/' + idCategoria + '/' + idNoticia;
         }
     });
 
@@ -164,7 +164,7 @@ confirmar().then(function (confirmado) {
     });
 		   }
         if (confirmado) {
-            window.location.href = 'http://localhost:8080/privada/ver/' + idCategoria;
+            window.location.href = 'https://tomcat.sergioogarciaa.es/privada/ver/' + idCategoria;
         }
     });
 
@@ -174,13 +174,13 @@ confirmar().then(function (confirmado) {
 function RedireccionCategoriaSinInicio(event) {
 	// Añadir comprobacion de rol para ver si esta logeado y poner SwalFire.
 	const idCategoria = parseInt(event.currentTarget.getAttribute("data-idCategoria"), 10);
-	window.location.href = 'http://localhost:8080/privada/ver/' + idCategoria;  
+	window.location.href = 'https://tomcat.sergioogarciaa.es/privada/ver/' + idCategoria;  
 }
 
 function RedireccionNoticiaSinInicio(event) {
     const idNoticia = parseInt(event.currentTarget.getAttribute("data-idNoticia"), 10);
 	const idCategoria = parseInt(event.currentTarget.getAttribute("data-idCategoria"), 10);
-	window.location.href = 'http://localhost:8080/auth/' + idCategoria + '/' + idNoticia;
+	window.location.href = 'https://tomcat.sergioogarciaa.es/auth/' + idCategoria + '/' + idNoticia;
 }
 
 document.addEventListener('DOMContentLoaded', function () {

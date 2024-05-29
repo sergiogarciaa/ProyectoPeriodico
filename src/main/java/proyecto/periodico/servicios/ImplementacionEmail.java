@@ -27,7 +27,7 @@ public class ImplementacionEmail implements InterfazEmail{
 	            helper.setTo(emailDestino);
 	            helper.setSubject("Recuperación de contraseña. La Revista");
 
-	            String urlDominio = "https://tomcat.sergioogarciaa.es:8080";
+	            String urlDominio = "https://tomcat.sergioogarciaa.es";
 	            String urlDeRecuperacion = String.format("%s/auth/recuperar?token=%s", urlDominio, token);
 
 	            String cuerpoMensaje = String.format(
@@ -65,7 +65,7 @@ public class ImplementacionEmail implements InterfazEmail{
             helper.setTo(emailDestino);
             helper.setSubject("Confirmación de cuenta, Periodico La Revista");
 
-            String urlDominio = "https://tomcat.sergioogarciaa.es:8080";
+            String urlDominio = "https://tomcat.sergioogarciaa.es";
             String urlDeConfirmacion = String.format("%s/auth/confirmacionCorreo?token=%s", urlDominio, token);
 
             String cuerpoMensaje = String.format(
