@@ -139,7 +139,7 @@ confirmar().then(function (confirmado) {
     });
 		   }
         if (confirmado) {
-            window.location.href = 'https://tomcat.sergioogarciaa.es/auth/' + idCategoria + '/' + idNoticia;
+            window.location.href = 'http://tomcat.sergioogarciaa.es/auth/' + idCategoria + '/' + idNoticia;
         }
     });
 

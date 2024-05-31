@@ -41,6 +41,7 @@ public class panelUsuarioControl {
 	public String mostrarPanelUsuario(Authentication authentication, Model model) {
 	    Usuario usuario = usuarioServicio.buscarPorEmail(authentication.getName());
 	    UsuarioDTO usuarioDTO = usuarioToDTO.usuarioToDto(usuario);
+	    usuarioDTO.setRol(usuario.getRol());
 	    List<Comentarios> comentarios = usuario.getUsuarioComentario();
 	    List<Noticia> noticiasPublicadas = usuario.getNoticias();
 	    System.out.println(noticiasPublicadas);

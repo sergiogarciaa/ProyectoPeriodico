@@ -31,6 +31,15 @@
 				font-size: 3.5rem;
 			}
 		}
+
+        #formulario-comentario textarea {
+            width: 100%;
+            resize: none;
+        }
+
+        #comentarios .second {
+            word-wrap: break-word;
+        }
 	</style>
 </head>
 
@@ -42,93 +51,84 @@
 					<a class="link-secondary" href="#">Subscribe</a>
 				</div>
 				<div class="col-4 text-center">
-					<a class="blog-header-logo text-dark" style="text-decoration: underline;"
-						th:href="@{/privada/index}">La Revista</a>
+					<a class="blog-header-logo text-dark" style="text-decoration: underline;" th:href="@{/privada/index}">La Revista</a>
 				</div>
 				<div class="col-4 d-flex justify-content-end align-items-center">
-					<a class="btn btn-sm btn-outline-secondary" style="margin-right: 5%;"
-						th:href="@{/privada/index}">Volver</a>
+					<a class="btn btn-sm btn-outline-secondary" style="margin-right: 5%;" th:href="@{/privada/index}">Volver</a>
 					<form th:action="@{/auth/logout}" method="post" id="logoutForm">
-						<button type="button" class="btn btn-sm btn-outline-secondary" style="margin-left:10%;"
-							onclick="confirmarLogout()">Salir</button>
+						<button type="button" class="btn btn-sm btn-outline-secondary" style="margin-left:10%;" onclick="confirmarLogout()">Salir</button>
 					</form>
 				</div>
 			</div>
 		</header>
 
-			<div class="nav-scroller py-1 mb-2">
+		<div class="nav-scroller py-1 mb-2">
 			<nav class="nav d-flex justify-content-between px-3">
-				<a class="p-2 link-secondary" th:each="categoria : ${categorias}" th:text="${categoria.tipoCategoria}"
-					th:attr="data-idCategoria=${categoria.idCategoria}"
-					onclick="RedireccionCategoriaSinInicio(event)"></a>
+				<a class="p-2 link-secondary" th:each="categoria : ${categorias}" th:text="${categoria.tipoCategoria}" th:attr="data-idCategoria=${categoria.idCategoria}" onclick="RedireccionCategoriaSinInicio(event)"></a>
+			</nav>
 		</div>
 	</div>
-<div class="container pt-5" >
-    <h3 th:text="${noticia.tituloNoticia}"></h3>
-    <!-- Le he puesto un lorem ipsum para que el texto sea más largo. -->
-    <p class="pt-3 text-break" th:text="${noticia.descNoticia} + 'Lorem ipsum dolor sit amet consectetur adipiscing, elit magna tellus hendrerit sociosqu nec, odio ut posuere placerat potenti. Pharetra quisque parturient ligula mollis, vestibulum eu mus facilisis quam, nullam netus rutrum. Facilisi laoreet senectus cursus vitae congue lectus porta nec in nisi sociosqu, blandit urna placerat dui etiam lacus non fringilla mus erat duis, conubia dictum potenti sed aliquam ultricies taciti phasellus risus vulputate.
-    Consequat pretium natoque phasellus curabitur sagittis primis molestie habitasse purus habitant, cubilia magna eleifend venenatis torquent pharetra sapien mollis iaculis. Velit quam cum facilisi dignissim accumsan commodo lobortis ornare, netus justo placerat mattis lacinia faucibus fermentum imperdiet, himenaeos cursus curabitur conubia mi vivamus sem. Dictum habitant ad iaculis pretium feugiat, fusce integer rhoncus tellus velit justo, a viverra vitae habitasse.
-    '"></p>
-</div>
-<div class="container">
-    <p class="text-secondary">Publicado: <span class="text-capitalize text-dark" th:text="${noticia.fchaPublicacionMostrarWeb}"></span></p>
-    <div class="col-12 justify-content-between d-flex">
-		<p class="text-secondary">Autor: <span class="text-capitalize text-dark" th:text="${noticia.idUsuario.nombreUsuario}"></span></p>
-		<span th:if="${usuarioAutenticado.idUsuario == noticia.idUsuario.idUsuario || #authorization.expression('hasAnyRole(''ROLE_3'', ''ROLE_4'')')}">
-	                <a href="#" th:attr="data-href=@{'/privada/eliminarNoticia/' + ${noticia.idNoticia}}" class="btn btn-outline-danger btn-sm confirm-delete-btn">Eliminar</a>
-	            </span>
+	
+	<div class="container pt-5">
+		<h3 th:text="${noticia.tituloNoticia}"></h3>
+		<!-- Le he puesto un lorem ipsum para que el texto sea más largo. -->
+		<p class="pt-3 text-break" th:text="${noticia.descNoticia} + 'Lorem ipsum dolor sit amet consectetur adipiscing, elit magna tellus hendrerit sociosqu nec, odio ut posuere placerat potenti. Pharetra quisque parturient ligula mollis, vestibulum eu mus facilisis quam, nullam netus rutrum. Facilisi laoreet senectus cursus vitae congue lectus porta nec in nisi sociosqu, blandit urna placerat dui etiam lacus non fringilla mus erat duis, conubia dictum potenti sed aliquam ultricies taciti phasellus risus vulputate.
+		Consequat pretium natoque phasellus curabitur sagittis primis molestie habitasse purus habitant, cubilia magna eleifend venenatis torquent pharetra sapien mollis iaculis. Velit quam cum facilisi dignissim accumsan commodo lobortis ornare, netus justo placerat mattis lacinia faucibus fermentum imperdiet, himenaeos cursus curabitur conubia mi vivamus sem. Dictum habitant ad iaculis pretium feugiat, fusce integer rhoncus tellus velit justo, a viverra vitae habitasse.
+		'"></p>
 	</div>
-</div>
 	
+	<div class="container">
+		<p class="text-secondary">Publicado: <span class="text-capitalize text-dark" th:text="${noticia.fchaPublicacionMostrarWeb}"></span></p>
+		<div class="col-12 justify-content-between d-flex">
+			<p class="text-secondary">Autor: <span class="text-capitalize text-dark" th:text="${noticia.idUsuario.nombreUsuario}"></span></p>
+			<span th:if="${usuarioAutenticado.idUsuario == noticia.idUsuario.idUsuario || #authorization.expression('hasAnyRole(''ROLE_3'', ''ROLE_4'')')}">
+				<a href="#" th:attr="data-href=@{'/privada/eliminarNoticia/' + ${noticia.idNoticia}}" class="btn btn-outline-danger btn-sm confirm-delete-btn">Eliminar</a>
+			</span>
+		</div>
+	</div>
 	
-	<div class="d-flex justify-content-center" style="min-height: 300px;">
-		<div class="container border-left border-right d-inline-flex" style="justify-content: space-between;">
+	<div class="container">
+		<div class="row d-flex justify-content-center" style="min-height: 300px;">
+			<!-- Formulario para agregar un nuevo comentario -->
+			<div class="col-12 col-md-8">
+				<form id="formulario-comentario" class="d-flex flex-column pt-3 pb-2" th:action="@{/auth/{idCategoria}/{idNoticia}/comentario(idCategoria=${categoria.idCategoria}, idNoticia=${noticia.idNoticia})}" method="post">
+					<textarea name="descComentario" rows="2" required></textarea>
+					<button type="submit" class="btn btn-primary mt-2">Enviar Comentario</button>
+				</form>
+			</div>
 
-		<!-- Formulario para agregar un nuevo comentario -->
-		<form id="formulario-comentario" class="d-flex pt-3 pb-2"
-			th:action="@{/auth/{idCategoria}/{idNoticia}/comentario(idCategoria=${categoria.idCategoria}, idNoticia=${noticia.idNoticia})}"
-			method="post" style="height: 50%; width: 40%;">
-			<textarea name="descComentario" rows="2" cols="50" required></textarea>
-			<button type="submit">Enviar Comentario</button>
-		</form>
-
-	<!-- Mostrar los comentarios existentes -->
-		<div style="max-height: 250px; overflow-y: auto; margin-right: 5%;">
-			<div class="d-flex justify-content-center py-2" id="comentarios" th:each="comentario : ${comentarios}">
-				<div class="second py-2 px-2"> <span class="text1" th:text="${comentario.descComentario}"  style="word-wrap: break-word;">Type your
-						note, and hit enter to add it</span>
-					<div class="d-flex justify-content-between">
-						<div>
-							<img src="https://i.imgur.com/AgAC1Is.jpg" width="18">
-							<span class="text2"
-								th:text="${comentario.usuarioComentario[0].nombreUsuario}">
-							</span>
+			<!-- Mostrar los comentarios existentes -->
+			<div class="col-12 col-md-8 mt-4">
+				<div style="max-height: 250px; overflow-y: auto;">
+					<div class="d-flex justify-content-center py-2" id="comentarios" th:each="comentario : ${comentarios}">
+						<div class="second py-2 px-2 w-100">
+							<span class="text1" th:text="${comentario.descComentario}" style="word-wrap: break-word;">Type your note, and hit enter to add it</span>
+							<div class="d-flex justify-content-between mt-2">
+								<div>
+									<img src="https://i.imgur.com/AgAC1Is.jpg" width="18">
+									<span class="text2" th:text="${comentario.usuarioComentario[0].nombreUsuario}"></span>
+								</div>
+								<form th:action="@{/auth/{idCategoria}/{idNoticia}/comentario/{idComentario}/eliminar(idCategoria=${categoria.idCategoria}, idNoticia=${noticia.idNoticia}, idComentario=${comentario.idComentario})}" method="post">
+									<button th:if="${usuarioAutenticado.idUsuario == comentario.usuarioComentario[0].idUsuario || #authorization.expression('hasAnyRole(''ROLE_3'', ''ROLE_4'')')}" class="border-0 bg-transparent" type="submit"><i class="fa fa-trash-o" style="font-size:16px"></i></button>
+								</form>
+							</div>
 						</div>
-								<form th:action="@{/auth/{idCategoria}/{idNoticia}/comentario/{idComentario}/eliminar(idCategoria=${categoria.idCategoria}, idNoticia=${noticia.idNoticia}, idComentario=${comentario.idComentario})}"
-                              method="post">
-								<button th:if="${usuarioAutenticado.idUsuario == comentario.usuarioComentario[0].idUsuario || #authorization.expression('hasAnyRole(''ROLE_3'', ''ROLE_4'')')}" class="border-0 bg-transparent" type="submit"><i class="fa fa-trash-o" style="font-size:16px"></i></button> 
-		                        </form>
-						
 					</div>
-					 <!-- Botón para eliminar el comentario -->
-                        
 				</div>
 			</div>
 		</div>
 	</div>
-	</div>
-
 	
-
 	<script th:if="${not #strings.isEmpty(mensaje)}">
 		mostrarNotificacion("¡Logeate!", "Necesita iniciar sesión", 'info');
 	</script>
 	
-
 	<script th:if="${not #strings.isEmpty(comentarioAgregado)}">
 		mostrarNotificacion("¡comentarioAgregado!", "El comentario ha sido agregado correctamente", 'success');
 	</script>
 	
-</bodystyle="background-image: url('data:image/png;base64,${noticia.foto}'); background-size: cover;">
+	<style style="background-image: url('data:image/png;base64,${noticia.foto}'); background-size: cover;">
+	</style>
+</body>
 
 </html>
