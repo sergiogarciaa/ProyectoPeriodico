@@ -23,6 +23,7 @@ public class ImplementacionUsuarioToDto implements InterfazUsuarioToDTO {
 			dto.setEmailUsuario(u.getEmailUsuario());
 			dto.setClaveUsuario(u.getClaveUsuario());
 			dto.setToken(u.getToken());
+			dto.setRol(u.getRol());
 			dto.setExpiracionToken(u.getExpiracionToken());
 			dto.setId(u.getIdUsuario());
 			dto.setCuentaConfirmada(u.isCuentaConfirmada());

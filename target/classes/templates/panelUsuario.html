@@ -160,7 +160,7 @@
 					    </tbody>
 					</table>
 					 <br>
-                <div class="container" th:if="${usuario.rol == 'ROLE_2'}">
+                <div class="container" th:if="${usuario.rol == 'ROLE_2' || #lists.size(noticiasPublicadas) > 0}">
 				    <div class="row">
 				        <div class="col-md-12">
 				            <h4>Noticias Publicadas</h4>

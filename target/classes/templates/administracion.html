@@ -68,6 +68,7 @@
 							<th class="table-dark">email</th>
 							<th class="table-dark">Confirmada</th>
 							<th class="table-dark">DNI</th>
+							<th class="table-dark">ROL</th>
 							<th class="table-dark">Editar</th>
 							<th class="table-dark">Eliminar</th>
 						</tr>
@@ -86,6 +87,7 @@
 							    </span>
 							</td>
 							<td th:text="${usuario.dniUsuario}"></td>
+							<td th:text="${usuario.rol}"></td>
 							<!-- botón de EDITAR, dentro está el cambio de rol -->
 							<td sec:authorize="hasAnyRole('ROLE_3', 'ROLE_4')">
 							    <a class="btn btn-primary" th:attr="data-id=${usuario.id}" onclick="confirmarEdicion(event)" th:text="'Editar'"></a>
