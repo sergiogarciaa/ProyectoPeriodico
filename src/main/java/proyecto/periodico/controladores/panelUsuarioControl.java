@@ -1,5 +1,6 @@
 package proyecto.periodico.controladores;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -42,10 +43,18 @@ public class panelUsuarioControl {
 	    Usuario usuario = usuarioServicio.buscarPorEmail(authentication.getName());
 	    UsuarioDTO usuarioDTO = usuarioToDTO.usuarioToDto(usuario);
 	    usuarioDTO.setRol(usuario.getRol());
+	    
 	    List<Comentarios> comentarios = usuario.getUsuarioComentario();
 	    List<Noticia> noticiasPublicadas = usuario.getNoticias();
-	    System.out.println(noticiasPublicadas);
-	    model.addAttribute("noticiasPublicadas", noticiasPublicadas);
+	    List<String> titulosNoticias = new ArrayList<>();
+
+	    // Iterar sobre las noticias publicadas y extraer solo los títulos
+	    for (Noticia noticia : noticiasPublicadas) {
+	        titulosNoticias.add(noticia.getTituloNoticia());
+	    }
+
+	    // Añadir el ArrayList de títulos al modelo
+	    model.addAttribute("titulosNoticiasPublicadas", titulosNoticias);
 	    model.addAttribute("comentarios", comentarios);
 	    model.addAttribute("usuario", usuarioDTO);
 	    return "panelUsuario";

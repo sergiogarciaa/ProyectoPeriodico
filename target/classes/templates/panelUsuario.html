@@ -160,7 +160,7 @@
 					    </tbody>
 					</table>
 					 <br>
-                <div class="container" th:if="${usuario.rol == 'ROLE_2' || #lists.size(noticiasPublicadas) > 0}">
+              <div class="container" th:if="${usuario.rol == 'ROLE_2'}">
 				    <div class="row">
 				        <div class="col-md-12">
 				            <h4>Noticias Publicadas</h4>
@@ -171,14 +171,16 @@
 				                    </tr>
 				                </thead>
 				                <tbody>
-				                    <tr th:each="noticia : ${noticiasPublicadas}">
-				                        <td th:text="${noticia.tituloNoticia}"></td>
+				                    <!-- Iterar sobre los títulos de las noticias publicadas -->
+				                    <tr th:each="titulo : ${titulosNoticiasPublicadas}">
+				                        <td th:text="${titulo}"></td>
 				                    </tr>
 				                </tbody>
 				            </table>
 				        </div>
 				    </div>
 				</div>
+
 
             </div>
         </div>

@@ -628,3 +628,743 @@
 2024-05-31T16:44:37.567+02:00  INFO 13684 --- [http-nio-8080-exec-5] proyecto.periodico.utils.EscribirLog     : Entrando en el método usuarioToDto() de la clase proyecto.periodico.servicios.ImplementacionUsuarioToDto
 2024-05-31T16:44:37.567+02:00  INFO 13684 --- [http-nio-8080-exec-5] proyecto.periodico.utils.EscribirLog     : Saliendo del método usuarioToDto() de la clase proyecto.periodico.servicios.ImplementacionUsuarioToDto
 2024-05-31T16:44:37.586+02:00  INFO 13684 --- [http-nio-8080-exec-5] proyecto.periodico.utils.EscribirLog     : Saliendo del método mostrarPanelUsuario() de la clase proyecto.periodico.controladores.panelUsuarioControl
+2024-05-31T17:02:18.513+02:00  INFO 17748 --- [main] p.periodico.PeriodicoApplication         : Starting PeriodicoApplication using Java 21 with PID 17748 (C:\Users\Sergio\Desktop\DWS\periodico\target\classes started by Sergio in C:\Users\Sergio\Desktop\DWS\periodico)
+2024-05-31T17:02:18.515+02:00  INFO 17748 --- [main] p.periodico.PeriodicoApplication         : No active profile set, falling back to 1 default profile: "default"
+2024-05-31T17:02:19.005+02:00  INFO 17748 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-05-31T17:02:19.055+02:00  INFO 17748 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 45 ms. Found 4 JPA repository interfaces.
+2024-05-31T17:02:19.760+02:00  INFO 17748 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-05-31T17:02:19.779+02:00  INFO 17748 --- [main] o.apache.catalina.core.StandardService   : Arrancando servicio [Tomcat]
+2024-05-31T17:02:19.779+02:00  INFO 17748 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.12]
+2024-05-31T17:02:19.937+02:00  INFO 17748 --- [main] org.apache.jasper.servlet.TldScanner     : Al menos un JAR, que se ha explorado buscando TLDs, aún no contenía TLDs. Activar historial de depuración para este historiador para una completa lista de los JARs que fueron explorados y de los que nos se halló TLDs. Saltarse JARs no necesarios durante la exploración puede dar lugar a una mejora de tiempo significativa en el arranque y compilación de JSP .
+2024-05-31T17:02:19.945+02:00  INFO 17748 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-05-31T17:02:19.945+02:00  INFO 17748 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1397 ms
+2024-05-31T17:02:20.172+02:00  INFO 17748 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-05-31T17:02:20.243+02:00  INFO 17748 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-05-31T17:02:20.272+02:00  INFO 17748 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-05-31T17:02:20.445+02:00  INFO 17748 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-05-31T17:02:20.464+02:00  INFO 17748 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-05-31T17:02:21.572+02:00 ERROR 17748 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Exception during pool initialization.
+
+org.postgresql.util.PSQLException: FATAL: la autentificaci�n password fall� para el usuario �postgres�
+	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:693) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:203) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:258) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:54) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:263) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.Driver.makeConnection(Driver.java:443) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.Driver.connect(Driver.java:297) ~[postgresql-42.6.0.jar:42.6.0]
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:359) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:201) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:470) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:100) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112) ~[HikariCP-5.0.1.jar:na]
+	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:428) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcIsolationDelegate.delegateWork(JdbcIsolationDelegate.java:61) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.getJdbcEnvironmentUsingJdbcMetadata(JdbcEnvironmentInitiator.java:276) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:107) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:68) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:129) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:263) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:238) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:215) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.boot.model.relational.Database.<init>(Database.java:45) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.getDatabase(InFlightMetadataCollectorImpl.java:223) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.<init>(InFlightMetadataCollectorImpl.java:191) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:170) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1432) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1503) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75) ~[spring-orm-6.1.2.jar:6.1.2]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:376) ~[spring-orm-6.1.2.jar:6.1.2]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409) ~[spring-orm-6.1.2.jar:6.1.2]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396) ~[spring-orm-6.1.2.jar:6.1.2]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:352) ~[spring-orm-6.1.2.jar:6.1.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1820) ~[spring-beans-6.1.2.jar:6.1.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1769) ~[spring-beans-6.1.2.jar:6.1.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599) ~[spring-beans-6.1.2.jar:6.1.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521) ~[spring-beans-6.1.2.jar:6.1.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.1.2.jar:6.1.2]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.2.jar:6.1.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.2.jar:6.1.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.2.jar:6.1.2]
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1232) ~[spring-context-6.1.2.jar:6.1.2]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:950) ~[spring-context-6.1.2.jar:6.1.2]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:625) ~[spring-context-6.1.2.jar:6.1.2]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.2.1.jar:3.2.1]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:762) ~[spring-boot-3.2.1.jar:3.2.1]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:464) ~[spring-boot-3.2.1.jar:3.2.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334) ~[spring-boot-3.2.1.jar:3.2.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1358) ~[spring-boot-3.2.1.jar:3.2.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1347) ~[spring-boot-3.2.1.jar:3.2.1]
+	at proyecto.periodico.PeriodicoApplication.main(PeriodicoApplication.java:11) ~[classes/:na]
+
+2024-05-31T17:02:21.577+02:00  WARN 17748 --- [main] o.h.e.j.e.i.JdbcEnvironmentInitiator     : HHH000342: Could not obtain connection to query metadata
+
+java.lang.NullPointerException: Cannot invoke "org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(java.sql.SQLException, String)" because the return value of "org.hibernate.resource.transaction.backend.jdbc.internal.JdbcIsolationDelegate.sqlExceptionHelper()" is null
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcIsolationDelegate.delegateWork(JdbcIsolationDelegate.java:116) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.getJdbcEnvironmentUsingJdbcMetadata(JdbcEnvironmentInitiator.java:276) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:107) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:68) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:129) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:263) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:238) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:215) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.boot.model.relational.Database.<init>(Database.java:45) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.getDatabase(InFlightMetadataCollectorImpl.java:223) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.<init>(InFlightMetadataCollectorImpl.java:191) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:170) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1432) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1503) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75) ~[spring-orm-6.1.2.jar:6.1.2]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:376) ~[spring-orm-6.1.2.jar:6.1.2]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409) ~[spring-orm-6.1.2.jar:6.1.2]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396) ~[spring-orm-6.1.2.jar:6.1.2]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:352) ~[spring-orm-6.1.2.jar:6.1.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1820) ~[spring-beans-6.1.2.jar:6.1.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1769) ~[spring-beans-6.1.2.jar:6.1.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599) ~[spring-beans-6.1.2.jar:6.1.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521) ~[spring-beans-6.1.2.jar:6.1.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.1.2.jar:6.1.2]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.2.jar:6.1.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.2.jar:6.1.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.2.jar:6.1.2]
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1232) ~[spring-context-6.1.2.jar:6.1.2]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:950) ~[spring-context-6.1.2.jar:6.1.2]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:625) ~[spring-context-6.1.2.jar:6.1.2]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.2.1.jar:3.2.1]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:762) ~[spring-boot-3.2.1.jar:3.2.1]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:464) ~[spring-boot-3.2.1.jar:3.2.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334) ~[spring-boot-3.2.1.jar:3.2.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1358) ~[spring-boot-3.2.1.jar:3.2.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1347) ~[spring-boot-3.2.1.jar:3.2.1]
+	at proyecto.periodico.PeriodicoApplication.main(PeriodicoApplication.java:11) ~[classes/:na]
+
+2024-05-31T17:02:21.591+02:00  WARN 17748 --- [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-05-31T17:02:22.202+02:00  INFO 17748 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-05-31T17:02:22.215+02:00  INFO 17748 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-05-31T17:02:23.250+02:00 ERROR 17748 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Exception during pool initialization.
+
+org.postgresql.util.PSQLException: FATAL: la autentificaci�n password fall� para el usuario �postgres�
+	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:693) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:203) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:258) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:54) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:263) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.Driver.makeConnection(Driver.java:443) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.Driver.connect(Driver.java:297) ~[postgresql-42.6.0.jar:42.6.0]
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:359) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:201) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:470) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:100) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112) ~[HikariCP-5.0.1.jar:na]
+	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:428) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl.getIsolatedConnection(DdlTransactionIsolatorNonJtaImpl.java:46) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl.getIsolatedConnection(DdlTransactionIsolatorNonJtaImpl.java:39) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.tool.schema.internal.exec.ImprovedExtractionContextImpl.getJdbcConnection(ImprovedExtractionContextImpl.java:63) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.tool.schema.extract.spi.ExtractionContext.getQueryResults(ExtractionContext.java:43) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.tool.schema.extract.internal.SequenceInformationExtractorLegacyImpl.extractMetadata(SequenceInformationExtractorLegacyImpl.java:39) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.tool.schema.extract.internal.DatabaseInformationImpl.initializeSequences(DatabaseInformationImpl.java:66) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.tool.schema.extract.internal.DatabaseInformationImpl.<init>(DatabaseInformationImpl.java:60) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.tool.schema.internal.Helper.buildDatabaseInformation(Helper.java:185) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:98) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:286) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:145) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at java.base/java.util.HashMap.forEach(HashMap.java:1429) ~[na:na]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:142) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:315) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:450) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1507) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75) ~[spring-orm-6.1.2.jar:6.1.2]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:376) ~[spring-orm-6.1.2.jar:6.1.2]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409) ~[spring-orm-6.1.2.jar:6.1.2]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396) ~[spring-orm-6.1.2.jar:6.1.2]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:352) ~[spring-orm-6.1.2.jar:6.1.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1820) ~[spring-beans-6.1.2.jar:6.1.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1769) ~[spring-beans-6.1.2.jar:6.1.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599) ~[spring-beans-6.1.2.jar:6.1.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521) ~[spring-beans-6.1.2.jar:6.1.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.1.2.jar:6.1.2]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.2.jar:6.1.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.2.jar:6.1.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.2.jar:6.1.2]
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1232) ~[spring-context-6.1.2.jar:6.1.2]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:950) ~[spring-context-6.1.2.jar:6.1.2]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:625) ~[spring-context-6.1.2.jar:6.1.2]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.2.1.jar:3.2.1]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:762) ~[spring-boot-3.2.1.jar:3.2.1]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:464) ~[spring-boot-3.2.1.jar:3.2.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334) ~[spring-boot-3.2.1.jar:3.2.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1358) ~[spring-boot-3.2.1.jar:3.2.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1347) ~[spring-boot-3.2.1.jar:3.2.1]
+	at proyecto.periodico.PeriodicoApplication.main(PeriodicoApplication.java:11) ~[classes/:na]
+
+2024-05-31T17:02:23.253+02:00  WARN 17748 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 0, SQLState: 28P01
+2024-05-31T17:02:23.253+02:00 ERROR 17748 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : FATAL: la autentificaci�n password fall� para el usuario �postgres�
+2024-05-31T17:02:23.257+02:00 ERROR 17748 --- [main] j.LocalContainerEntityManagerFactoryBean : Failed to initialize JPA EntityManagerFactory: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.exception.GenericJDBCException: Unable to open JDBC Connection for DDL execution [FATAL: la autentificaci�n password fall� para el usuario �postgres�] [n/a]
+2024-05-31T17:02:23.257+02:00  WARN 17748 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.exception.GenericJDBCException: Unable to open JDBC Connection for DDL execution [FATAL: la autentificaci�n password fall� para el usuario �postgres�] [n/a]
+2024-05-31T17:02:23.258+02:00  INFO 17748 --- [main] o.apache.catalina.core.StandardService   : Parando servicio [Tomcat]
+2024-05-31T17:02:23.267+02:00  INFO 17748 --- [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-05-31T17:02:23.279+02:00 ERROR 17748 --- [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.exception.GenericJDBCException: Unable to open JDBC Connection for DDL execution [FATAL: la autentificaci�n password fall� para el usuario �postgres�] [n/a]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1773) ~[spring-beans-6.1.2.jar:6.1.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599) ~[spring-beans-6.1.2.jar:6.1.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521) ~[spring-beans-6.1.2.jar:6.1.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.1.2.jar:6.1.2]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.2.jar:6.1.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.2.jar:6.1.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.2.jar:6.1.2]
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1232) ~[spring-context-6.1.2.jar:6.1.2]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:950) ~[spring-context-6.1.2.jar:6.1.2]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:625) ~[spring-context-6.1.2.jar:6.1.2]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.2.1.jar:3.2.1]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:762) ~[spring-boot-3.2.1.jar:3.2.1]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:464) ~[spring-boot-3.2.1.jar:3.2.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334) ~[spring-boot-3.2.1.jar:3.2.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1358) ~[spring-boot-3.2.1.jar:3.2.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1347) ~[spring-boot-3.2.1.jar:3.2.1]
+	at proyecto.periodico.PeriodicoApplication.main(PeriodicoApplication.java:11) ~[classes/:na]
+Caused by: jakarta.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.exception.GenericJDBCException: Unable to open JDBC Connection for DDL execution [FATAL: la autentificaci�n password fall� para el usuario �postgres�] [n/a]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:421) ~[spring-orm-6.1.2.jar:6.1.2]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396) ~[spring-orm-6.1.2.jar:6.1.2]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:352) ~[spring-orm-6.1.2.jar:6.1.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1820) ~[spring-beans-6.1.2.jar:6.1.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1769) ~[spring-beans-6.1.2.jar:6.1.2]
+	... 16 common frames omitted
+Caused by: org.hibernate.exception.GenericJDBCException: Unable to open JDBC Connection for DDL execution [FATAL: la autentificaci�n password fall� para el usuario �postgres�] [n/a]
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:63) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:94) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl.getIsolatedConnection(DdlTransactionIsolatorNonJtaImpl.java:74) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl.getIsolatedConnection(DdlTransactionIsolatorNonJtaImpl.java:39) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.tool.schema.internal.exec.ImprovedExtractionContextImpl.getJdbcConnection(ImprovedExtractionContextImpl.java:63) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.tool.schema.extract.spi.ExtractionContext.getQueryResults(ExtractionContext.java:43) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.tool.schema.extract.internal.SequenceInformationExtractorLegacyImpl.extractMetadata(SequenceInformationExtractorLegacyImpl.java:39) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.tool.schema.extract.internal.DatabaseInformationImpl.initializeSequences(DatabaseInformationImpl.java:66) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.tool.schema.extract.internal.DatabaseInformationImpl.<init>(DatabaseInformationImpl.java:60) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.tool.schema.internal.Helper.buildDatabaseInformation(Helper.java:185) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:98) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:286) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:145) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at java.base/java.util.HashMap.forEach(HashMap.java:1429) ~[na:na]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:142) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:315) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:450) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1507) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75) ~[spring-orm-6.1.2.jar:6.1.2]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:376) ~[spring-orm-6.1.2.jar:6.1.2]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409) ~[spring-orm-6.1.2.jar:6.1.2]
+	... 20 common frames omitted
+Caused by: org.postgresql.util.PSQLException: FATAL: la autentificaci�n password fall� para el usuario �postgres�
+	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:693) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:203) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:258) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:54) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:263) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.Driver.makeConnection(Driver.java:443) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.Driver.connect(Driver.java:297) ~[postgresql-42.6.0.jar:42.6.0]
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:359) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:201) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:470) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:100) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112) ~[HikariCP-5.0.1.jar:na]
+	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:428) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl.getIsolatedConnection(DdlTransactionIsolatorNonJtaImpl.java:46) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
+	... 40 common frames omitted
+
+2024-05-31T17:02:33.043+02:00  INFO 8496 --- [main] p.periodico.PeriodicoApplication         : Starting PeriodicoApplication using Java 21 with PID 8496 (C:\Users\Sergio\Desktop\DWS\periodico\target\classes started by Sergio in C:\Users\Sergio\Desktop\DWS\periodico)
+2024-05-31T17:02:33.044+02:00  INFO 8496 --- [main] p.periodico.PeriodicoApplication         : No active profile set, falling back to 1 default profile: "default"
+2024-05-31T17:02:33.543+02:00  INFO 8496 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-05-31T17:02:33.595+02:00  INFO 8496 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 46 ms. Found 4 JPA repository interfaces.
+2024-05-31T17:02:34.287+02:00  INFO 8496 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-05-31T17:02:34.305+02:00  INFO 8496 --- [main] o.apache.catalina.core.StandardService   : Arrancando servicio [Tomcat]
+2024-05-31T17:02:34.306+02:00  INFO 8496 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.12]
+2024-05-31T17:02:34.464+02:00  INFO 8496 --- [main] org.apache.jasper.servlet.TldScanner     : Al menos un JAR, que se ha explorado buscando TLDs, aún no contenía TLDs. Activar historial de depuración para este historiador para una completa lista de los JARs que fueron explorados y de los que nos se halló TLDs. Saltarse JARs no necesarios durante la exploración puede dar lugar a una mejora de tiempo significativa en el arranque y compilación de JSP .
+2024-05-31T17:02:34.472+02:00  INFO 8496 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-05-31T17:02:34.472+02:00  INFO 8496 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1394 ms
+2024-05-31T17:02:34.717+02:00  INFO 8496 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-05-31T17:02:34.796+02:00  INFO 8496 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-05-31T17:02:34.823+02:00  INFO 8496 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-05-31T17:02:35.002+02:00  INFO 8496 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-05-31T17:02:35.021+02:00  INFO 8496 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-05-31T17:02:35.155+02:00  INFO 8496 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@6181bc4a
+2024-05-31T17:02:35.157+02:00  INFO 8496 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-05-31T17:02:35.179+02:00  WARN 8496 --- [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-05-31T17:02:35.869+02:00  INFO 8496 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-05-31T17:02:35.956+02:00  INFO 8496 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-05-31T17:02:36.430+02:00  INFO 8496 --- [main] proyecto.periodico.utils.EscribirLog     : Entrando en el método passwordEncoder() de la clase proyecto.periodico.seguridad.configuracionSeguridad$$SpringCGLIB$$0
+2024-05-31T17:02:36.432+02:00  INFO 8496 --- [main] proyecto.periodico.utils.EscribirLog     : Saliendo del método passwordEncoder() de la clase proyecto.periodico.seguridad.configuracionSeguridad$$SpringCGLIB$$0
+2024-05-31T17:02:36.603+02:00  WARN 8496 --- [main] o.s.aop.framework.CglibAopProxy          : Unable to proxy interface-implementing method [public final void org.springframework.web.context.support.WebApplicationObjectSupport.setServletContext(jakarta.servlet.ServletContext)] because it is marked as final, consider using interface-based JDK proxies instead.
+2024-05-31T17:02:36.604+02:00  WARN 8496 --- [main] o.s.aop.framework.CglibAopProxy          : Unable to proxy interface-implementing method [public final void org.springframework.context.support.ApplicationObjectSupport.setApplicationContext(org.springframework.context.ApplicationContext) throws org.springframework.beans.BeansException] because it is marked as final, consider using interface-based JDK proxies instead.
+2024-05-31T17:02:36.618+02:00  INFO 8496 --- [main] proyecto.periodico.utils.EscribirLog     : Entrando en el método authenticationProvider() de la clase proyecto.periodico.seguridad.configuracionSeguridad$$SpringCGLIB$$0
+2024-05-31T17:02:36.638+02:00  INFO 8496 --- [main] proyecto.periodico.utils.EscribirLog     : Saliendo del método authenticationProvider() de la clase proyecto.periodico.seguridad.configuracionSeguridad$$SpringCGLIB$$0
+2024-05-31T17:02:36.650+02:00  INFO 8496 --- [main] proyecto.periodico.utils.EscribirLog     : Entrando en el método authenticationManager() de la clase proyecto.periodico.seguridad.configuracionSeguridad$$SpringCGLIB$$0
+2024-05-31T17:02:36.667+02:00  INFO 8496 --- [main] proyecto.periodico.utils.EscribirLog     : Saliendo del método authenticationManager() de la clase proyecto.periodico.seguridad.configuracionSeguridad$$SpringCGLIB$$0
+2024-05-31T17:02:36.687+02:00  WARN 8496 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-05-31T17:02:36.755+02:00  INFO 8496 --- [main] proyecto.periodico.utils.EscribirLog     : Entrando en el método filterChain() de la clase proyecto.periodico.seguridad.configuracionSeguridad$$SpringCGLIB$$0
+2024-05-31T17:02:36.791+02:00  INFO 8496 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2024-05-31T17:02:37.072+02:00  INFO 8496 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@57330423, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2257590f, org.springframework.security.web.context.SecurityContextHolderFilter@72924f19, org.springframework.security.web.header.HeaderWriterFilter@37806ccb, org.springframework.web.filter.CorsFilter@c3e5e3c, org.springframework.security.web.authentication.logout.LogoutFilter@6b6bae60, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@3b22bcad, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4ff00844, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@20ee660b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@11f752d1, org.springframework.security.web.access.ExceptionTranslationFilter@34ac72c3, org.springframework.security.web.access.intercept.AuthorizationFilter@58a5b69c]
+2024-05-31T17:02:37.072+02:00  INFO 8496 --- [main] proyecto.periodico.utils.EscribirLog     : Saliendo del método filterChain() de la clase proyecto.periodico.seguridad.configuracionSeguridad$$SpringCGLIB$$0
+2024-05-31T17:02:37.073+02:00  INFO 8496 --- [main] proyecto.periodico.utils.EscribirLog     : Entrando en el método customBeanNameViewResolver() de la clase proyecto.periodico.utils.PdfConfig$$SpringCGLIB$$0
+2024-05-31T17:02:37.074+02:00  INFO 8496 --- [main] proyecto.periodico.utils.EscribirLog     : Saliendo del método customBeanNameViewResolver() de la clase proyecto.periodico.utils.PdfConfig$$SpringCGLIB$$0
+2024-05-31T17:02:37.431+02:00  INFO 8496 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2024-05-31T17:02:37.438+02:00  INFO 8496 --- [main] p.periodico.PeriodicoApplication         : Started PeriodicoApplication in 4.689 seconds (process running for 4.984)
+2024-05-31T17:02:37.445+02:00  INFO 8496 --- [main] proyecto.periodico.utils.EscribirLog     : Entrando en el método onApplicationReady() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:02:37.448+02:00  INFO 8496 --- [main] proyecto.periodico.utils.EscribirLog     : Entrando en el método existsById() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:02:37.713+02:00  INFO 8496 --- [main] proyecto.periodico.utils.EscribirLog     : Saliendo del método existsById() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:02:37.713+02:00  INFO 8496 --- [main] proyecto.periodico.utils.EscribirLog     : Saliendo del método onApplicationReady() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:42.246+02:00  INFO 8496 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-05-31T17:03:42.246+02:00  INFO 8496 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-05-31T17:03:42.247+02:00  INFO 8496 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-05-31T17:03:42.272+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Entrando en el método index1() de la clase proyecto.periodico.controladores.loginRegistroControl
+2024-05-31T17:03:42.273+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Entrando en el método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:42.273+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Entrando en el método findAll() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:03:42.311+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Saliendo del método findAll() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:03:42.311+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Entrando en el método listaNoticiasToDto() de la clase proyecto.periodico.servicios.ImplementacionNoticiaToDTO
+2024-05-31T17:03:42.315+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Saliendo del método listaNoticiasToDto() de la clase proyecto.periodico.servicios.ImplementacionNoticiaToDTO
+2024-05-31T17:03:42.315+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Saliendo del método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:42.323+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Entrando en el método obtenerNoticiaMasReciente() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:42.324+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Entrando en el método findAllByOrderByFchaPublicacionDesc() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:03:42.331+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Saliendo del método findAllByOrderByFchaPublicacionDesc() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:03:42.331+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Saliendo del método obtenerNoticiaMasReciente() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:42.331+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Entrando en el método noticiaToDto() de la clase proyecto.periodico.servicios.ImplementacionNoticiaToDTO
+2024-05-31T17:03:42.332+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Saliendo del método noticiaToDto() de la clase proyecto.periodico.servicios.ImplementacionNoticiaToDTO
+2024-05-31T17:03:42.332+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Entrando en el método resumirNoticia() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:42.332+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Saliendo del método resumirNoticia() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:42.332+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Entrando en el método resumirNoticia2() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:42.333+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Saliendo del método resumirNoticia2() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:42.333+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Entrando en el método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionCategoria
+2024-05-31T17:03:42.334+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Entrando en el método findAll() de la clase jdk.proxy2.$Proxy125
+2024-05-31T17:03:42.336+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Saliendo del método findAll() de la clase jdk.proxy2.$Proxy125
+2024-05-31T17:03:42.336+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Entrando en el método listaCategoriaToDto() de la clase proyecto.periodico.servicios.ImplementacionCategoriaToDTO
+2024-05-31T17:03:42.336+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Saliendo del método listaCategoriaToDto() de la clase proyecto.periodico.servicios.ImplementacionCategoriaToDTO
+2024-05-31T17:03:42.336+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Saliendo del método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionCategoria
+2024-05-31T17:03:42.337+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Saliendo del método index1() de la clase proyecto.periodico.controladores.loginRegistroControl
+2024-05-31T17:03:42.667+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Entrando en el método index1() de la clase proyecto.periodico.controladores.loginRegistroControl
+2024-05-31T17:03:42.667+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Entrando en el método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:42.668+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Entrando en el método findAll() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:03:42.672+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Saliendo del método findAll() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:03:42.672+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Entrando en el método listaNoticiasToDto() de la clase proyecto.periodico.servicios.ImplementacionNoticiaToDTO
+2024-05-31T17:03:42.672+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Saliendo del método listaNoticiasToDto() de la clase proyecto.periodico.servicios.ImplementacionNoticiaToDTO
+2024-05-31T17:03:42.673+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Saliendo del método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:42.673+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Entrando en el método obtenerNoticiaMasReciente() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:42.673+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Entrando en el método findAllByOrderByFchaPublicacionDesc() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:03:42.676+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Saliendo del método findAllByOrderByFchaPublicacionDesc() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:03:42.676+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Saliendo del método obtenerNoticiaMasReciente() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:42.676+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Entrando en el método noticiaToDto() de la clase proyecto.periodico.servicios.ImplementacionNoticiaToDTO
+2024-05-31T17:03:42.676+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Saliendo del método noticiaToDto() de la clase proyecto.periodico.servicios.ImplementacionNoticiaToDTO
+2024-05-31T17:03:42.677+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Entrando en el método resumirNoticia() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:42.677+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Saliendo del método resumirNoticia() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:42.677+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Entrando en el método resumirNoticia2() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:42.677+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Saliendo del método resumirNoticia2() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:42.678+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Entrando en el método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionCategoria
+2024-05-31T17:03:42.678+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Entrando en el método findAll() de la clase jdk.proxy2.$Proxy125
+2024-05-31T17:03:42.679+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Saliendo del método findAll() de la clase jdk.proxy2.$Proxy125
+2024-05-31T17:03:42.679+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Entrando en el método listaCategoriaToDto() de la clase proyecto.periodico.servicios.ImplementacionCategoriaToDTO
+2024-05-31T17:03:42.679+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Saliendo del método listaCategoriaToDto() de la clase proyecto.periodico.servicios.ImplementacionCategoriaToDTO
+2024-05-31T17:03:42.679+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Saliendo del método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionCategoria
+2024-05-31T17:03:42.680+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Saliendo del método index1() de la clase proyecto.periodico.controladores.loginRegistroControl
+2024-05-31T17:03:43.724+02:00  INFO 8496 --- [http-nio-8080-exec-7] proyecto.periodico.utils.EscribirLog     : Entrando en el método login() de la clase proyecto.periodico.controladores.loginRegistroControl
+2024-05-31T17:03:43.725+02:00  INFO 8496 --- [http-nio-8080-exec-7] proyecto.periodico.utils.EscribirLog     : Saliendo del método login() de la clase proyecto.periodico.controladores.loginRegistroControl
+2024-05-31T17:03:43.788+02:00  INFO 8496 --- [http-nio-8080-exec-3] proyecto.periodico.utils.EscribirLog     : Entrando en el método index1() de la clase proyecto.periodico.controladores.loginRegistroControl
+2024-05-31T17:03:43.788+02:00  INFO 8496 --- [http-nio-8080-exec-3] proyecto.periodico.utils.EscribirLog     : Entrando en el método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:43.789+02:00  INFO 8496 --- [http-nio-8080-exec-3] proyecto.periodico.utils.EscribirLog     : Entrando en el método findAll() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:03:43.793+02:00  INFO 8496 --- [http-nio-8080-exec-3] proyecto.periodico.utils.EscribirLog     : Saliendo del método findAll() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:03:43.793+02:00  INFO 8496 --- [http-nio-8080-exec-3] proyecto.periodico.utils.EscribirLog     : Entrando en el método listaNoticiasToDto() de la clase proyecto.periodico.servicios.ImplementacionNoticiaToDTO
+2024-05-31T17:03:43.794+02:00  INFO 8496 --- [http-nio-8080-exec-3] proyecto.periodico.utils.EscribirLog     : Saliendo del método listaNoticiasToDto() de la clase proyecto.periodico.servicios.ImplementacionNoticiaToDTO
+2024-05-31T17:03:43.794+02:00  INFO 8496 --- [http-nio-8080-exec-3] proyecto.periodico.utils.EscribirLog     : Saliendo del método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:43.794+02:00  INFO 8496 --- [http-nio-8080-exec-3] proyecto.periodico.utils.EscribirLog     : Entrando en el método obtenerNoticiaMasReciente() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:43.794+02:00  INFO 8496 --- [http-nio-8080-exec-3] proyecto.periodico.utils.EscribirLog     : Entrando en el método findAllByOrderByFchaPublicacionDesc() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:03:43.797+02:00  INFO 8496 --- [http-nio-8080-exec-3] proyecto.periodico.utils.EscribirLog     : Saliendo del método findAllByOrderByFchaPublicacionDesc() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:03:43.797+02:00  INFO 8496 --- [http-nio-8080-exec-3] proyecto.periodico.utils.EscribirLog     : Saliendo del método obtenerNoticiaMasReciente() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:43.798+02:00  INFO 8496 --- [http-nio-8080-exec-3] proyecto.periodico.utils.EscribirLog     : Entrando en el método noticiaToDto() de la clase proyecto.periodico.servicios.ImplementacionNoticiaToDTO
+2024-05-31T17:03:43.798+02:00  INFO 8496 --- [http-nio-8080-exec-3] proyecto.periodico.utils.EscribirLog     : Saliendo del método noticiaToDto() de la clase proyecto.periodico.servicios.ImplementacionNoticiaToDTO
+2024-05-31T17:03:43.798+02:00  INFO 8496 --- [http-nio-8080-exec-3] proyecto.periodico.utils.EscribirLog     : Entrando en el método resumirNoticia() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:43.798+02:00  INFO 8496 --- [http-nio-8080-exec-3] proyecto.periodico.utils.EscribirLog     : Saliendo del método resumirNoticia() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:43.799+02:00  INFO 8496 --- [http-nio-8080-exec-3] proyecto.periodico.utils.EscribirLog     : Entrando en el método resumirNoticia2() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:43.799+02:00  INFO 8496 --- [http-nio-8080-exec-3] proyecto.periodico.utils.EscribirLog     : Saliendo del método resumirNoticia2() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:43.799+02:00  INFO 8496 --- [http-nio-8080-exec-3] proyecto.periodico.utils.EscribirLog     : Entrando en el método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionCategoria
+2024-05-31T17:03:43.799+02:00  INFO 8496 --- [http-nio-8080-exec-3] proyecto.periodico.utils.EscribirLog     : Entrando en el método findAll() de la clase jdk.proxy2.$Proxy125
+2024-05-31T17:03:43.801+02:00  INFO 8496 --- [http-nio-8080-exec-3] proyecto.periodico.utils.EscribirLog     : Saliendo del método findAll() de la clase jdk.proxy2.$Proxy125
+2024-05-31T17:03:43.801+02:00  INFO 8496 --- [http-nio-8080-exec-3] proyecto.periodico.utils.EscribirLog     : Entrando en el método listaCategoriaToDto() de la clase proyecto.periodico.servicios.ImplementacionCategoriaToDTO
+2024-05-31T17:03:43.801+02:00  INFO 8496 --- [http-nio-8080-exec-3] proyecto.periodico.utils.EscribirLog     : Saliendo del método listaCategoriaToDto() de la clase proyecto.periodico.servicios.ImplementacionCategoriaToDTO
+2024-05-31T17:03:43.801+02:00  INFO 8496 --- [http-nio-8080-exec-3] proyecto.periodico.utils.EscribirLog     : Saliendo del método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionCategoria
+2024-05-31T17:03:43.802+02:00  INFO 8496 --- [http-nio-8080-exec-3] proyecto.periodico.utils.EscribirLog     : Saliendo del método index1() de la clase proyecto.periodico.controladores.loginRegistroControl
+2024-05-31T17:03:50.343+02:00  INFO 8496 --- [http-nio-8080-exec-2] proyecto.periodico.utils.EscribirLog     : Entrando en el método loadUserByUsername() de la clase proyecto.periodico.seguridad.detallesUsuarioSevicio
+2024-05-31T17:03:50.343+02:00  INFO 8496 --- [http-nio-8080-exec-2] proyecto.periodico.utils.EscribirLog     : Entrando en el método findFirstByEmailUsuario() de la clase jdk.proxy2.$Proxy122
+2024-05-31T17:03:50.366+02:00  INFO 8496 --- [http-nio-8080-exec-2] proyecto.periodico.utils.EscribirLog     : Saliendo del método findFirstByEmailUsuario() de la clase jdk.proxy2.$Proxy122
+2024-05-31T17:03:50.368+02:00  INFO 8496 --- [http-nio-8080-exec-2] proyecto.periodico.utils.EscribirLog     : Saliendo del método loadUserByUsername() de la clase proyecto.periodico.seguridad.detallesUsuarioSevicio
+2024-05-31T17:03:50.368+02:00  WARN 8496 --- [http-nio-8080-exec-2] o.s.s.c.bcrypt.BCryptPasswordEncoder     : Encoded password does not look like BCrypt
+2024-05-31T17:03:50.368+02:00  INFO 8496 --- [http-nio-8080-exec-2] proyecto.periodico.utils.EscribirLog     : Entrando en el método loadUserByUsername() de la clase proyecto.periodico.seguridad.detallesUsuarioSevicio
+2024-05-31T17:03:50.369+02:00  INFO 8496 --- [http-nio-8080-exec-2] proyecto.periodico.utils.EscribirLog     : Entrando en el método findFirstByEmailUsuario() de la clase jdk.proxy2.$Proxy122
+2024-05-31T17:03:50.371+02:00  INFO 8496 --- [http-nio-8080-exec-2] proyecto.periodico.utils.EscribirLog     : Saliendo del método findFirstByEmailUsuario() de la clase jdk.proxy2.$Proxy122
+2024-05-31T17:03:50.371+02:00  INFO 8496 --- [http-nio-8080-exec-2] proyecto.periodico.utils.EscribirLog     : Saliendo del método loadUserByUsername() de la clase proyecto.periodico.seguridad.detallesUsuarioSevicio
+2024-05-31T17:03:50.371+02:00  WARN 8496 --- [http-nio-8080-exec-2] o.s.s.c.bcrypt.BCryptPasswordEncoder     : Encoded password does not look like BCrypt
+2024-05-31T17:03:50.376+02:00  INFO 8496 --- [http-nio-8080-exec-5] proyecto.periodico.utils.EscribirLog     : Entrando en el método login() de la clase proyecto.periodico.controladores.loginRegistroControl
+2024-05-31T17:03:50.376+02:00  INFO 8496 --- [http-nio-8080-exec-5] proyecto.periodico.utils.EscribirLog     : Saliendo del método login() de la clase proyecto.periodico.controladores.loginRegistroControl
+2024-05-31T17:03:50.424+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Entrando en el método index1() de la clase proyecto.periodico.controladores.loginRegistroControl
+2024-05-31T17:03:50.424+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Entrando en el método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:50.424+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Entrando en el método findAll() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:03:50.429+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Saliendo del método findAll() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:03:50.429+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Entrando en el método listaNoticiasToDto() de la clase proyecto.periodico.servicios.ImplementacionNoticiaToDTO
+2024-05-31T17:03:50.430+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Saliendo del método listaNoticiasToDto() de la clase proyecto.periodico.servicios.ImplementacionNoticiaToDTO
+2024-05-31T17:03:50.430+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Saliendo del método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:50.430+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Entrando en el método obtenerNoticiaMasReciente() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:50.430+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Entrando en el método findAllByOrderByFchaPublicacionDesc() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:03:50.433+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Saliendo del método findAllByOrderByFchaPublicacionDesc() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:03:50.433+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Saliendo del método obtenerNoticiaMasReciente() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:50.433+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Entrando en el método noticiaToDto() de la clase proyecto.periodico.servicios.ImplementacionNoticiaToDTO
+2024-05-31T17:03:50.434+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Saliendo del método noticiaToDto() de la clase proyecto.periodico.servicios.ImplementacionNoticiaToDTO
+2024-05-31T17:03:50.434+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Entrando en el método resumirNoticia() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:50.434+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Saliendo del método resumirNoticia() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:50.434+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Entrando en el método resumirNoticia2() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:50.434+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Saliendo del método resumirNoticia2() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:50.434+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Entrando en el método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionCategoria
+2024-05-31T17:03:50.434+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Entrando en el método findAll() de la clase jdk.proxy2.$Proxy125
+2024-05-31T17:03:50.435+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Saliendo del método findAll() de la clase jdk.proxy2.$Proxy125
+2024-05-31T17:03:50.435+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Entrando en el método listaCategoriaToDto() de la clase proyecto.periodico.servicios.ImplementacionCategoriaToDTO
+2024-05-31T17:03:50.435+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Saliendo del método listaCategoriaToDto() de la clase proyecto.periodico.servicios.ImplementacionCategoriaToDTO
+2024-05-31T17:03:50.435+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Saliendo del método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionCategoria
+2024-05-31T17:03:50.436+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Saliendo del método index1() de la clase proyecto.periodico.controladores.loginRegistroControl
+2024-05-31T17:03:53.476+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Entrando en el método registrarGet() de la clase proyecto.periodico.controladores.loginRegistroControl
+2024-05-31T17:03:53.476+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Saliendo del método registrarGet() de la clase proyecto.periodico.controladores.loginRegistroControl
+2024-05-31T17:03:53.532+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Entrando en el método index1() de la clase proyecto.periodico.controladores.loginRegistroControl
+2024-05-31T17:03:53.533+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Entrando en el método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:53.533+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Entrando en el método findAll() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:03:53.538+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Saliendo del método findAll() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:03:53.538+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Entrando en el método listaNoticiasToDto() de la clase proyecto.periodico.servicios.ImplementacionNoticiaToDTO
+2024-05-31T17:03:53.539+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Saliendo del método listaNoticiasToDto() de la clase proyecto.periodico.servicios.ImplementacionNoticiaToDTO
+2024-05-31T17:03:53.539+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Saliendo del método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:53.539+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Entrando en el método obtenerNoticiaMasReciente() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:53.539+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Entrando en el método findAllByOrderByFchaPublicacionDesc() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:03:53.542+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Saliendo del método findAllByOrderByFchaPublicacionDesc() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:03:53.542+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Saliendo del método obtenerNoticiaMasReciente() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:53.542+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Entrando en el método noticiaToDto() de la clase proyecto.periodico.servicios.ImplementacionNoticiaToDTO
+2024-05-31T17:03:53.543+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Saliendo del método noticiaToDto() de la clase proyecto.periodico.servicios.ImplementacionNoticiaToDTO
+2024-05-31T17:03:53.543+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Entrando en el método resumirNoticia() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:53.543+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Saliendo del método resumirNoticia() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:53.543+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Entrando en el método resumirNoticia2() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:53.543+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Saliendo del método resumirNoticia2() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:53.544+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Entrando en el método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionCategoria
+2024-05-31T17:03:53.544+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Entrando en el método findAll() de la clase jdk.proxy2.$Proxy125
+2024-05-31T17:03:53.545+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Saliendo del método findAll() de la clase jdk.proxy2.$Proxy125
+2024-05-31T17:03:53.545+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Entrando en el método listaCategoriaToDto() de la clase proyecto.periodico.servicios.ImplementacionCategoriaToDTO
+2024-05-31T17:03:53.545+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Saliendo del método listaCategoriaToDto() de la clase proyecto.periodico.servicios.ImplementacionCategoriaToDTO
+2024-05-31T17:03:53.545+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Saliendo del método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionCategoria
+2024-05-31T17:03:53.545+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Saliendo del método index1() de la clase proyecto.periodico.controladores.loginRegistroControl
+2024-05-31T17:03:53.551+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Entrando en el método index1() de la clase proyecto.periodico.controladores.loginRegistroControl
+2024-05-31T17:03:53.552+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Entrando en el método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:53.552+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Entrando en el método findAll() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:03:53.560+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Saliendo del método findAll() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:03:53.560+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Entrando en el método listaNoticiasToDto() de la clase proyecto.periodico.servicios.ImplementacionNoticiaToDTO
+2024-05-31T17:03:53.561+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Saliendo del método listaNoticiasToDto() de la clase proyecto.periodico.servicios.ImplementacionNoticiaToDTO
+2024-05-31T17:03:53.561+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Saliendo del método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:53.561+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Entrando en el método obtenerNoticiaMasReciente() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:53.561+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Entrando en el método findAllByOrderByFchaPublicacionDesc() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:03:53.564+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Saliendo del método findAllByOrderByFchaPublicacionDesc() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:03:53.565+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Saliendo del método obtenerNoticiaMasReciente() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:53.565+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Entrando en el método noticiaToDto() de la clase proyecto.periodico.servicios.ImplementacionNoticiaToDTO
+2024-05-31T17:03:53.565+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Saliendo del método noticiaToDto() de la clase proyecto.periodico.servicios.ImplementacionNoticiaToDTO
+2024-05-31T17:03:53.565+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Entrando en el método resumirNoticia() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:53.565+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Saliendo del método resumirNoticia() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:53.566+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Entrando en el método resumirNoticia2() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:53.566+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Saliendo del método resumirNoticia2() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:53.566+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Entrando en el método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionCategoria
+2024-05-31T17:03:53.566+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Entrando en el método findAll() de la clase jdk.proxy2.$Proxy125
+2024-05-31T17:03:53.568+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Saliendo del método findAll() de la clase jdk.proxy2.$Proxy125
+2024-05-31T17:03:53.568+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Entrando en el método listaCategoriaToDto() de la clase proyecto.periodico.servicios.ImplementacionCategoriaToDTO
+2024-05-31T17:03:53.568+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Saliendo del método listaCategoriaToDto() de la clase proyecto.periodico.servicios.ImplementacionCategoriaToDTO
+2024-05-31T17:03:53.568+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Saliendo del método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionCategoria
+2024-05-31T17:03:53.568+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Saliendo del método index1() de la clase proyecto.periodico.controladores.loginRegistroControl
+2024-05-31T17:03:53.594+02:00  INFO 8496 --- [http-nio-8080-exec-5] proyecto.periodico.utils.EscribirLog     : Entrando en el método index1() de la clase proyecto.periodico.controladores.loginRegistroControl
+2024-05-31T17:03:53.594+02:00  INFO 8496 --- [http-nio-8080-exec-5] proyecto.periodico.utils.EscribirLog     : Entrando en el método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:53.594+02:00  INFO 8496 --- [http-nio-8080-exec-5] proyecto.periodico.utils.EscribirLog     : Entrando en el método findAll() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:03:53.598+02:00  INFO 8496 --- [http-nio-8080-exec-5] proyecto.periodico.utils.EscribirLog     : Saliendo del método findAll() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:03:53.598+02:00  INFO 8496 --- [http-nio-8080-exec-5] proyecto.periodico.utils.EscribirLog     : Entrando en el método listaNoticiasToDto() de la clase proyecto.periodico.servicios.ImplementacionNoticiaToDTO
+2024-05-31T17:03:53.598+02:00  INFO 8496 --- [http-nio-8080-exec-5] proyecto.periodico.utils.EscribirLog     : Saliendo del método listaNoticiasToDto() de la clase proyecto.periodico.servicios.ImplementacionNoticiaToDTO
+2024-05-31T17:03:53.598+02:00  INFO 8496 --- [http-nio-8080-exec-5] proyecto.periodico.utils.EscribirLog     : Saliendo del método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:53.599+02:00  INFO 8496 --- [http-nio-8080-exec-5] proyecto.periodico.utils.EscribirLog     : Entrando en el método obtenerNoticiaMasReciente() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:53.599+02:00  INFO 8496 --- [http-nio-8080-exec-5] proyecto.periodico.utils.EscribirLog     : Entrando en el método findAllByOrderByFchaPublicacionDesc() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:03:53.600+02:00  INFO 8496 --- [http-nio-8080-exec-5] proyecto.periodico.utils.EscribirLog     : Saliendo del método findAllByOrderByFchaPublicacionDesc() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:03:53.601+02:00  INFO 8496 --- [http-nio-8080-exec-5] proyecto.periodico.utils.EscribirLog     : Saliendo del método obtenerNoticiaMasReciente() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:53.601+02:00  INFO 8496 --- [http-nio-8080-exec-5] proyecto.periodico.utils.EscribirLog     : Entrando en el método noticiaToDto() de la clase proyecto.periodico.servicios.ImplementacionNoticiaToDTO
+2024-05-31T17:03:53.601+02:00  INFO 8496 --- [http-nio-8080-exec-5] proyecto.periodico.utils.EscribirLog     : Saliendo del método noticiaToDto() de la clase proyecto.periodico.servicios.ImplementacionNoticiaToDTO
+2024-05-31T17:03:53.601+02:00  INFO 8496 --- [http-nio-8080-exec-5] proyecto.periodico.utils.EscribirLog     : Entrando en el método resumirNoticia() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:53.601+02:00  INFO 8496 --- [http-nio-8080-exec-5] proyecto.periodico.utils.EscribirLog     : Saliendo del método resumirNoticia() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:53.602+02:00  INFO 8496 --- [http-nio-8080-exec-5] proyecto.periodico.utils.EscribirLog     : Entrando en el método resumirNoticia2() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:53.602+02:00  INFO 8496 --- [http-nio-8080-exec-5] proyecto.periodico.utils.EscribirLog     : Saliendo del método resumirNoticia2() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:03:53.602+02:00  INFO 8496 --- [http-nio-8080-exec-5] proyecto.periodico.utils.EscribirLog     : Entrando en el método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionCategoria
+2024-05-31T17:03:53.602+02:00  INFO 8496 --- [http-nio-8080-exec-5] proyecto.periodico.utils.EscribirLog     : Entrando en el método findAll() de la clase jdk.proxy2.$Proxy125
+2024-05-31T17:03:53.603+02:00  INFO 8496 --- [http-nio-8080-exec-5] proyecto.periodico.utils.EscribirLog     : Saliendo del método findAll() de la clase jdk.proxy2.$Proxy125
+2024-05-31T17:03:53.603+02:00  INFO 8496 --- [http-nio-8080-exec-5] proyecto.periodico.utils.EscribirLog     : Entrando en el método listaCategoriaToDto() de la clase proyecto.periodico.servicios.ImplementacionCategoriaToDTO
+2024-05-31T17:03:53.603+02:00  INFO 8496 --- [http-nio-8080-exec-5] proyecto.periodico.utils.EscribirLog     : Saliendo del método listaCategoriaToDto() de la clase proyecto.periodico.servicios.ImplementacionCategoriaToDTO
+2024-05-31T17:03:53.603+02:00  INFO 8496 --- [http-nio-8080-exec-5] proyecto.periodico.utils.EscribirLog     : Saliendo del método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionCategoria
+2024-05-31T17:03:53.604+02:00  INFO 8496 --- [http-nio-8080-exec-5] proyecto.periodico.utils.EscribirLog     : Saliendo del método index1() de la clase proyecto.periodico.controladores.loginRegistroControl
+2024-05-31T17:04:25.639+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Entrando en el método registrarPost() de la clase proyecto.periodico.controladores.loginRegistroControl
+2024-05-31T17:04:25.639+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Entrando en el método registrar() de la clase proyecto.periodico.servicios.ImplementacionUsuario
+2024-05-31T17:04:25.639+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Entrando en el método findFirstByEmailUsuario() de la clase jdk.proxy2.$Proxy122
+2024-05-31T17:04:25.641+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Saliendo del método findFirstByEmailUsuario() de la clase jdk.proxy2.$Proxy122
+2024-05-31T17:04:25.692+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Entrando en el método usuarioToDao() de la clase proyecto.periodico.servicios.ImplementacionUsuarioToDao
+2024-05-31T17:04:25.692+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Saliendo del método usuarioToDao() de la clase proyecto.periodico.servicios.ImplementacionUsuarioToDao
+2024-05-31T17:04:25.746+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Entrando en el método save() de la clase jdk.proxy2.$Proxy122
+2024-05-31T17:04:25.765+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Saliendo del método save() de la clase jdk.proxy2.$Proxy122
+2024-05-31T17:04:25.765+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Entrando en el método enviarEmailConfirmacion() de la clase proyecto.periodico.servicios.ImplementacionEmail
+2024-05-31T17:04:27.355+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Saliendo del método enviarEmailConfirmacion() de la clase proyecto.periodico.servicios.ImplementacionEmail
+2024-05-31T17:04:27.355+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Saliendo del método registrar() de la clase proyecto.periodico.servicios.ImplementacionUsuario
+2024-05-31T17:04:27.370+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Saliendo del método registrarPost() de la clase proyecto.periodico.controladores.loginRegistroControl
+2024-05-31T17:04:27.416+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Entrando en el método index1() de la clase proyecto.periodico.controladores.loginRegistroControl
+2024-05-31T17:04:27.416+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Entrando en el método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:04:27.416+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Entrando en el método findAll() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:04:27.420+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Saliendo del método findAll() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:04:27.420+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Entrando en el método listaNoticiasToDto() de la clase proyecto.periodico.servicios.ImplementacionNoticiaToDTO
+2024-05-31T17:04:27.420+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Saliendo del método listaNoticiasToDto() de la clase proyecto.periodico.servicios.ImplementacionNoticiaToDTO
+2024-05-31T17:04:27.420+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Saliendo del método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:04:27.421+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Entrando en el método obtenerNoticiaMasReciente() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:04:27.421+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Entrando en el método findAllByOrderByFchaPublicacionDesc() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:04:27.423+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Saliendo del método findAllByOrderByFchaPublicacionDesc() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:04:27.424+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Saliendo del método obtenerNoticiaMasReciente() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:04:27.424+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Entrando en el método noticiaToDto() de la clase proyecto.periodico.servicios.ImplementacionNoticiaToDTO
+2024-05-31T17:04:27.424+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Saliendo del método noticiaToDto() de la clase proyecto.periodico.servicios.ImplementacionNoticiaToDTO
+2024-05-31T17:04:27.425+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Entrando en el método resumirNoticia() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:04:27.425+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Saliendo del método resumirNoticia() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:04:27.425+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Entrando en el método resumirNoticia2() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:04:27.425+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Saliendo del método resumirNoticia2() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:04:27.426+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Entrando en el método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionCategoria
+2024-05-31T17:04:27.426+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Entrando en el método findAll() de la clase jdk.proxy2.$Proxy125
+2024-05-31T17:04:27.427+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Saliendo del método findAll() de la clase jdk.proxy2.$Proxy125
+2024-05-31T17:04:27.427+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Entrando en el método listaCategoriaToDto() de la clase proyecto.periodico.servicios.ImplementacionCategoriaToDTO
+2024-05-31T17:04:27.427+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Saliendo del método listaCategoriaToDto() de la clase proyecto.periodico.servicios.ImplementacionCategoriaToDTO
+2024-05-31T17:04:27.427+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Saliendo del método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionCategoria
+2024-05-31T17:04:27.428+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Saliendo del método index1() de la clase proyecto.periodico.controladores.loginRegistroControl
+2024-05-31T17:04:48.395+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Entrando en el método loadUserByUsername() de la clase proyecto.periodico.seguridad.detallesUsuarioSevicio
+2024-05-31T17:04:48.396+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Entrando en el método findFirstByEmailUsuario() de la clase jdk.proxy2.$Proxy122
+2024-05-31T17:04:48.399+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Saliendo del método findFirstByEmailUsuario() de la clase jdk.proxy2.$Proxy122
+2024-05-31T17:04:48.399+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Saliendo del método loadUserByUsername() de la clase proyecto.periodico.seguridad.detallesUsuarioSevicio
+2024-05-31T17:04:48.454+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Entrando en el método loginCorrecto() de la clase proyecto.periodico.controladores.loginRegistroControl
+2024-05-31T17:04:48.455+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Entrando en el método estaLaCuentaConfirmada() de la clase proyecto.periodico.servicios.ImplementacionUsuario
+2024-05-31T17:04:48.455+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Entrando en el método findFirstByEmailUsuario() de la clase jdk.proxy2.$Proxy122
+2024-05-31T17:04:48.457+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Saliendo del método findFirstByEmailUsuario() de la clase jdk.proxy2.$Proxy122
+2024-05-31T17:04:48.457+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Saliendo del método estaLaCuentaConfirmada() de la clase proyecto.periodico.servicios.ImplementacionUsuario
+2024-05-31T17:04:48.457+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Entrando en el método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:04:48.457+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Entrando en el método findAll() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:04:48.459+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Saliendo del método findAll() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:04:48.459+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Entrando en el método listaNoticiasToDto() de la clase proyecto.periodico.servicios.ImplementacionNoticiaToDTO
+2024-05-31T17:04:48.460+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Saliendo del método listaNoticiasToDto() de la clase proyecto.periodico.servicios.ImplementacionNoticiaToDTO
+2024-05-31T17:04:48.460+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Saliendo del método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:04:48.460+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Entrando en el método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionCategoria
+2024-05-31T17:04:48.460+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Entrando en el método findAll() de la clase jdk.proxy2.$Proxy125
+2024-05-31T17:04:48.462+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Saliendo del método findAll() de la clase jdk.proxy2.$Proxy125
+2024-05-31T17:04:48.462+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Entrando en el método listaCategoriaToDto() de la clase proyecto.periodico.servicios.ImplementacionCategoriaToDTO
+2024-05-31T17:04:48.462+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Saliendo del método listaCategoriaToDto() de la clase proyecto.periodico.servicios.ImplementacionCategoriaToDTO
+2024-05-31T17:04:48.462+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Saliendo del método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionCategoria
+2024-05-31T17:04:48.463+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Entrando en el método obtenerNoticiaMasReciente() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:04:48.463+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Entrando en el método findAllByOrderByFchaPublicacionDesc() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:04:48.464+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Saliendo del método findAllByOrderByFchaPublicacionDesc() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:04:48.464+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Saliendo del método obtenerNoticiaMasReciente() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:04:48.464+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Entrando en el método noticiaToDto() de la clase proyecto.periodico.servicios.ImplementacionNoticiaToDTO
+2024-05-31T17:04:48.465+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Saliendo del método noticiaToDto() de la clase proyecto.periodico.servicios.ImplementacionNoticiaToDTO
+2024-05-31T17:04:48.465+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Entrando en el método resumirNoticia() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:04:48.465+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Saliendo del método resumirNoticia() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:04:48.465+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Entrando en el método resumirNoticia2() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:04:48.465+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Saliendo del método resumirNoticia2() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:04:48.466+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Saliendo del método loginCorrecto() de la clase proyecto.periodico.controladores.loginRegistroControl
+2024-05-31T17:04:49.706+02:00  INFO 8496 --- [http-nio-8080-exec-9] proyecto.periodico.utils.EscribirLog     : Entrando en el método mostrarPanelUsuario() de la clase proyecto.periodico.controladores.panelUsuarioControl
+2024-05-31T17:04:49.706+02:00  INFO 8496 --- [http-nio-8080-exec-9] proyecto.periodico.utils.EscribirLog     : Entrando en el método buscarPorEmail() de la clase proyecto.periodico.servicios.ImplementacionUsuario
+2024-05-31T17:04:49.706+02:00  INFO 8496 --- [http-nio-8080-exec-9] proyecto.periodico.utils.EscribirLog     : Entrando en el método findFirstByEmailUsuario() de la clase jdk.proxy2.$Proxy122
+2024-05-31T17:04:49.709+02:00  INFO 8496 --- [http-nio-8080-exec-9] proyecto.periodico.utils.EscribirLog     : Saliendo del método findFirstByEmailUsuario() de la clase jdk.proxy2.$Proxy122
+2024-05-31T17:04:49.709+02:00  INFO 8496 --- [http-nio-8080-exec-9] proyecto.periodico.utils.EscribirLog     : Saliendo del método buscarPorEmail() de la clase proyecto.periodico.servicios.ImplementacionUsuario
+2024-05-31T17:04:49.710+02:00  INFO 8496 --- [http-nio-8080-exec-9] proyecto.periodico.utils.EscribirLog     : Entrando en el método usuarioToDto() de la clase proyecto.periodico.servicios.ImplementacionUsuarioToDto
+2024-05-31T17:04:49.710+02:00  INFO 8496 --- [http-nio-8080-exec-9] proyecto.periodico.utils.EscribirLog     : Saliendo del método usuarioToDto() de la clase proyecto.periodico.servicios.ImplementacionUsuarioToDto
+2024-05-31T17:04:49.713+02:00  INFO 8496 --- [http-nio-8080-exec-9] proyecto.periodico.utils.EscribirLog     : Saliendo del método mostrarPanelUsuario() de la clase proyecto.periodico.controladores.panelUsuarioControl
+2024-05-31T17:04:55.859+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Entrando en el método loginCorrecto() de la clase proyecto.periodico.controladores.loginRegistroControl
+2024-05-31T17:04:55.859+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Entrando en el método estaLaCuentaConfirmada() de la clase proyecto.periodico.servicios.ImplementacionUsuario
+2024-05-31T17:04:55.859+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Entrando en el método findFirstByEmailUsuario() de la clase jdk.proxy2.$Proxy122
+2024-05-31T17:04:55.861+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Saliendo del método findFirstByEmailUsuario() de la clase jdk.proxy2.$Proxy122
+2024-05-31T17:04:55.861+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Saliendo del método estaLaCuentaConfirmada() de la clase proyecto.periodico.servicios.ImplementacionUsuario
+2024-05-31T17:04:55.862+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Entrando en el método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:04:55.862+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Entrando en el método findAll() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:04:55.865+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Saliendo del método findAll() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:04:55.865+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Entrando en el método listaNoticiasToDto() de la clase proyecto.periodico.servicios.ImplementacionNoticiaToDTO
+2024-05-31T17:04:55.865+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Saliendo del método listaNoticiasToDto() de la clase proyecto.periodico.servicios.ImplementacionNoticiaToDTO
+2024-05-31T17:04:55.866+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Saliendo del método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:04:55.866+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Entrando en el método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionCategoria
+2024-05-31T17:04:55.866+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Entrando en el método findAll() de la clase jdk.proxy2.$Proxy125
+2024-05-31T17:04:55.867+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Saliendo del método findAll() de la clase jdk.proxy2.$Proxy125
+2024-05-31T17:04:55.867+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Entrando en el método listaCategoriaToDto() de la clase proyecto.periodico.servicios.ImplementacionCategoriaToDTO
+2024-05-31T17:04:55.867+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Saliendo del método listaCategoriaToDto() de la clase proyecto.periodico.servicios.ImplementacionCategoriaToDTO
+2024-05-31T17:04:55.867+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Saliendo del método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionCategoria
+2024-05-31T17:04:55.868+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Entrando en el método obtenerNoticiaMasReciente() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:04:55.868+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Entrando en el método findAllByOrderByFchaPublicacionDesc() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:04:55.870+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Saliendo del método findAllByOrderByFchaPublicacionDesc() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:04:55.870+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Saliendo del método obtenerNoticiaMasReciente() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:04:55.870+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Entrando en el método noticiaToDto() de la clase proyecto.periodico.servicios.ImplementacionNoticiaToDTO
+2024-05-31T17:04:55.870+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Saliendo del método noticiaToDto() de la clase proyecto.periodico.servicios.ImplementacionNoticiaToDTO
+2024-05-31T17:04:55.870+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Entrando en el método resumirNoticia() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:04:55.870+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Saliendo del método resumirNoticia() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:04:55.871+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Entrando en el método resumirNoticia2() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:04:55.871+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Saliendo del método resumirNoticia2() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:04:55.871+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Saliendo del método loginCorrecto() de la clase proyecto.periodico.controladores.loginRegistroControl
+2024-05-31T17:04:57.185+02:00  INFO 8496 --- [http-nio-8080-exec-2] proyecto.periodico.utils.EscribirLog     : Entrando en el método mostrarPanelUsuario() de la clase proyecto.periodico.controladores.panelUsuarioControl
+2024-05-31T17:04:57.186+02:00  INFO 8496 --- [http-nio-8080-exec-2] proyecto.periodico.utils.EscribirLog     : Entrando en el método buscarPorEmail() de la clase proyecto.periodico.servicios.ImplementacionUsuario
+2024-05-31T17:04:57.186+02:00  INFO 8496 --- [http-nio-8080-exec-2] proyecto.periodico.utils.EscribirLog     : Entrando en el método findFirstByEmailUsuario() de la clase jdk.proxy2.$Proxy122
+2024-05-31T17:04:57.188+02:00  INFO 8496 --- [http-nio-8080-exec-2] proyecto.periodico.utils.EscribirLog     : Saliendo del método findFirstByEmailUsuario() de la clase jdk.proxy2.$Proxy122
+2024-05-31T17:04:57.188+02:00  INFO 8496 --- [http-nio-8080-exec-2] proyecto.periodico.utils.EscribirLog     : Saliendo del método buscarPorEmail() de la clase proyecto.periodico.servicios.ImplementacionUsuario
+2024-05-31T17:04:57.189+02:00  INFO 8496 --- [http-nio-8080-exec-2] proyecto.periodico.utils.EscribirLog     : Entrando en el método usuarioToDto() de la clase proyecto.periodico.servicios.ImplementacionUsuarioToDto
+2024-05-31T17:04:57.189+02:00  INFO 8496 --- [http-nio-8080-exec-2] proyecto.periodico.utils.EscribirLog     : Saliendo del método usuarioToDto() de la clase proyecto.periodico.servicios.ImplementacionUsuarioToDto
+2024-05-31T17:04:57.189+02:00  INFO 8496 --- [http-nio-8080-exec-2] proyecto.periodico.utils.EscribirLog     : Saliendo del método mostrarPanelUsuario() de la clase proyecto.periodico.controladores.panelUsuarioControl
+2024-05-31T17:05:05.552+02:00  INFO 8496 --- [http-nio-8080-exec-8] proyecto.periodico.utils.EscribirLog     : Entrando en el método loginCorrecto() de la clase proyecto.periodico.controladores.loginRegistroControl
+2024-05-31T17:05:05.552+02:00  INFO 8496 --- [http-nio-8080-exec-8] proyecto.periodico.utils.EscribirLog     : Entrando en el método estaLaCuentaConfirmada() de la clase proyecto.periodico.servicios.ImplementacionUsuario
+2024-05-31T17:05:05.552+02:00  INFO 8496 --- [http-nio-8080-exec-8] proyecto.periodico.utils.EscribirLog     : Entrando en el método findFirstByEmailUsuario() de la clase jdk.proxy2.$Proxy122
+2024-05-31T17:05:05.554+02:00  INFO 8496 --- [http-nio-8080-exec-8] proyecto.periodico.utils.EscribirLog     : Saliendo del método findFirstByEmailUsuario() de la clase jdk.proxy2.$Proxy122
+2024-05-31T17:05:05.554+02:00  INFO 8496 --- [http-nio-8080-exec-8] proyecto.periodico.utils.EscribirLog     : Saliendo del método estaLaCuentaConfirmada() de la clase proyecto.periodico.servicios.ImplementacionUsuario
+2024-05-31T17:05:05.555+02:00  INFO 8496 --- [http-nio-8080-exec-8] proyecto.periodico.utils.EscribirLog     : Entrando en el método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:05:05.555+02:00  INFO 8496 --- [http-nio-8080-exec-8] proyecto.periodico.utils.EscribirLog     : Entrando en el método findAll() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:05:05.557+02:00  INFO 8496 --- [http-nio-8080-exec-8] proyecto.periodico.utils.EscribirLog     : Saliendo del método findAll() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:05:05.557+02:00  INFO 8496 --- [http-nio-8080-exec-8] proyecto.periodico.utils.EscribirLog     : Entrando en el método listaNoticiasToDto() de la clase proyecto.periodico.servicios.ImplementacionNoticiaToDTO
+2024-05-31T17:05:05.558+02:00  INFO 8496 --- [http-nio-8080-exec-8] proyecto.periodico.utils.EscribirLog     : Saliendo del método listaNoticiasToDto() de la clase proyecto.periodico.servicios.ImplementacionNoticiaToDTO
+2024-05-31T17:05:05.558+02:00  INFO 8496 --- [http-nio-8080-exec-8] proyecto.periodico.utils.EscribirLog     : Saliendo del método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:05:05.558+02:00  INFO 8496 --- [http-nio-8080-exec-8] proyecto.periodico.utils.EscribirLog     : Entrando en el método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionCategoria
+2024-05-31T17:05:05.558+02:00  INFO 8496 --- [http-nio-8080-exec-8] proyecto.periodico.utils.EscribirLog     : Entrando en el método findAll() de la clase jdk.proxy2.$Proxy125
+2024-05-31T17:05:05.559+02:00  INFO 8496 --- [http-nio-8080-exec-8] proyecto.periodico.utils.EscribirLog     : Saliendo del método findAll() de la clase jdk.proxy2.$Proxy125
+2024-05-31T17:05:05.559+02:00  INFO 8496 --- [http-nio-8080-exec-8] proyecto.periodico.utils.EscribirLog     : Entrando en el método listaCategoriaToDto() de la clase proyecto.periodico.servicios.ImplementacionCategoriaToDTO
+2024-05-31T17:05:05.559+02:00  INFO 8496 --- [http-nio-8080-exec-8] proyecto.periodico.utils.EscribirLog     : Saliendo del método listaCategoriaToDto() de la clase proyecto.periodico.servicios.ImplementacionCategoriaToDTO
+2024-05-31T17:05:05.559+02:00  INFO 8496 --- [http-nio-8080-exec-8] proyecto.periodico.utils.EscribirLog     : Saliendo del método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionCategoria
+2024-05-31T17:05:05.560+02:00  INFO 8496 --- [http-nio-8080-exec-8] proyecto.periodico.utils.EscribirLog     : Entrando en el método obtenerNoticiaMasReciente() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:05:05.560+02:00  INFO 8496 --- [http-nio-8080-exec-8] proyecto.periodico.utils.EscribirLog     : Entrando en el método findAllByOrderByFchaPublicacionDesc() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:05:05.561+02:00  INFO 8496 --- [http-nio-8080-exec-8] proyecto.periodico.utils.EscribirLog     : Saliendo del método findAllByOrderByFchaPublicacionDesc() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:05:05.561+02:00  INFO 8496 --- [http-nio-8080-exec-8] proyecto.periodico.utils.EscribirLog     : Saliendo del método obtenerNoticiaMasReciente() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:05:05.561+02:00  INFO 8496 --- [http-nio-8080-exec-8] proyecto.periodico.utils.EscribirLog     : Entrando en el método noticiaToDto() de la clase proyecto.periodico.servicios.ImplementacionNoticiaToDTO
+2024-05-31T17:05:05.562+02:00  INFO 8496 --- [http-nio-8080-exec-8] proyecto.periodico.utils.EscribirLog     : Saliendo del método noticiaToDto() de la clase proyecto.periodico.servicios.ImplementacionNoticiaToDTO
+2024-05-31T17:05:05.562+02:00  INFO 8496 --- [http-nio-8080-exec-8] proyecto.periodico.utils.EscribirLog     : Entrando en el método resumirNoticia() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:05:05.562+02:00  INFO 8496 --- [http-nio-8080-exec-8] proyecto.periodico.utils.EscribirLog     : Saliendo del método resumirNoticia() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:05:05.562+02:00  INFO 8496 --- [http-nio-8080-exec-8] proyecto.periodico.utils.EscribirLog     : Entrando en el método resumirNoticia2() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:05:05.562+02:00  INFO 8496 --- [http-nio-8080-exec-8] proyecto.periodico.utils.EscribirLog     : Saliendo del método resumirNoticia2() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:05:05.562+02:00  INFO 8496 --- [http-nio-8080-exec-8] proyecto.periodico.utils.EscribirLog     : Saliendo del método loginCorrecto() de la clase proyecto.periodico.controladores.loginRegistroControl
+2024-05-31T17:05:06.123+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Entrando en el método zonaPeriodista() de la clase proyecto.periodico.controladores.PeriodistaControl
+2024-05-31T17:05:06.124+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Entrando en el método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionCategoria
+2024-05-31T17:05:06.124+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Entrando en el método findAll() de la clase jdk.proxy2.$Proxy125
+2024-05-31T17:05:06.126+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Saliendo del método findAll() de la clase jdk.proxy2.$Proxy125
+2024-05-31T17:05:06.126+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Entrando en el método listaCategoriaToDto() de la clase proyecto.periodico.servicios.ImplementacionCategoriaToDTO
+2024-05-31T17:05:06.126+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Saliendo del método listaCategoriaToDto() de la clase proyecto.periodico.servicios.ImplementacionCategoriaToDTO
+2024-05-31T17:05:06.126+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Saliendo del método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionCategoria
+2024-05-31T17:05:06.128+02:00  INFO 8496 --- [http-nio-8080-exec-1] proyecto.periodico.utils.EscribirLog     : Saliendo del método zonaPeriodista() de la clase proyecto.periodico.controladores.PeriodistaControl
+2024-05-31T17:05:22.250+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Entrando en el método findById() de la clase jdk.proxy2.$Proxy125
+2024-05-31T17:05:22.254+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Saliendo del método findById() de la clase jdk.proxy2.$Proxy125
+2024-05-31T17:05:22.255+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Entrando en el método guardarNoticia() de la clase proyecto.periodico.controladores.PeriodistaControl
+2024-05-31T17:05:22.257+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Entrando en el método convertToBase64() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:05:22.262+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Saliendo del método convertToBase64() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:05:22.263+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Entrando en el método buscarPorEmail() de la clase proyecto.periodico.servicios.ImplementacionUsuario
+2024-05-31T17:05:22.263+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Entrando en el método findFirstByEmailUsuario() de la clase jdk.proxy2.$Proxy122
+2024-05-31T17:05:22.265+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Saliendo del método findFirstByEmailUsuario() de la clase jdk.proxy2.$Proxy122
+2024-05-31T17:05:22.265+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Saliendo del método buscarPorEmail() de la clase proyecto.periodico.servicios.ImplementacionUsuario
+2024-05-31T17:05:22.265+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Entrando en el método buscarPorId() de la clase proyecto.periodico.servicios.ImplementacionCategoria
+2024-05-31T17:05:22.265+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Entrando en el método findById() de la clase jdk.proxy2.$Proxy125
+2024-05-31T17:05:22.266+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Saliendo del método findById() de la clase jdk.proxy2.$Proxy125
+2024-05-31T17:05:22.266+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Saliendo del método buscarPorId() de la clase proyecto.periodico.servicios.ImplementacionCategoria
+2024-05-31T17:05:22.266+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Entrando en el método noticiaToDao() de la clase proyecto.periodico.servicios.ImplementacionNoticiaToDao
+2024-05-31T17:05:22.273+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Entrando en el método save() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:05:22.298+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Saliendo del método save() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:05:22.298+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Saliendo del método noticiaToDao() de la clase proyecto.periodico.servicios.ImplementacionNoticiaToDao
+2024-05-31T17:05:22.298+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Saliendo del método guardarNoticia() de la clase proyecto.periodico.controladores.PeriodistaControl
+2024-05-31T17:05:22.307+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Entrando en el método zonaPeriodista() de la clase proyecto.periodico.controladores.PeriodistaControl
+2024-05-31T17:05:22.307+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Entrando en el método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionCategoria
+2024-05-31T17:05:22.307+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Entrando en el método findAll() de la clase jdk.proxy2.$Proxy125
+2024-05-31T17:05:22.309+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Saliendo del método findAll() de la clase jdk.proxy2.$Proxy125
+2024-05-31T17:05:22.309+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Entrando en el método listaCategoriaToDto() de la clase proyecto.periodico.servicios.ImplementacionCategoriaToDTO
+2024-05-31T17:05:22.309+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Saliendo del método listaCategoriaToDto() de la clase proyecto.periodico.servicios.ImplementacionCategoriaToDTO
+2024-05-31T17:05:22.309+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Saliendo del método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionCategoria
+2024-05-31T17:05:22.309+02:00  INFO 8496 --- [http-nio-8080-exec-10] proyecto.periodico.utils.EscribirLog     : Saliendo del método zonaPeriodista() de la clase proyecto.periodico.controladores.PeriodistaControl
+2024-05-31T17:05:23.187+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Entrando en el método loginCorrecto() de la clase proyecto.periodico.controladores.loginRegistroControl
+2024-05-31T17:05:23.187+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Entrando en el método estaLaCuentaConfirmada() de la clase proyecto.periodico.servicios.ImplementacionUsuario
+2024-05-31T17:05:23.187+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Entrando en el método findFirstByEmailUsuario() de la clase jdk.proxy2.$Proxy122
+2024-05-31T17:05:23.191+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Saliendo del método findFirstByEmailUsuario() de la clase jdk.proxy2.$Proxy122
+2024-05-31T17:05:23.191+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Saliendo del método estaLaCuentaConfirmada() de la clase proyecto.periodico.servicios.ImplementacionUsuario
+2024-05-31T17:05:23.191+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Entrando en el método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:05:23.191+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Entrando en el método findAll() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:05:23.194+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Saliendo del método findAll() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:05:23.195+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Entrando en el método listaNoticiasToDto() de la clase proyecto.periodico.servicios.ImplementacionNoticiaToDTO
+2024-05-31T17:05:23.195+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Saliendo del método listaNoticiasToDto() de la clase proyecto.periodico.servicios.ImplementacionNoticiaToDTO
+2024-05-31T17:05:23.195+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Saliendo del método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:05:23.196+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Entrando en el método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionCategoria
+2024-05-31T17:05:23.196+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Entrando en el método findAll() de la clase jdk.proxy2.$Proxy125
+2024-05-31T17:05:23.197+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Saliendo del método findAll() de la clase jdk.proxy2.$Proxy125
+2024-05-31T17:05:23.197+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Entrando en el método listaCategoriaToDto() de la clase proyecto.periodico.servicios.ImplementacionCategoriaToDTO
+2024-05-31T17:05:23.197+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Saliendo del método listaCategoriaToDto() de la clase proyecto.periodico.servicios.ImplementacionCategoriaToDTO
+2024-05-31T17:05:23.197+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Saliendo del método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionCategoria
+2024-05-31T17:05:23.197+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Entrando en el método obtenerNoticiaMasReciente() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:05:23.197+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Entrando en el método findAllByOrderByFchaPublicacionDesc() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:05:23.199+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Saliendo del método findAllByOrderByFchaPublicacionDesc() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:05:23.199+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Saliendo del método obtenerNoticiaMasReciente() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:05:23.199+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Entrando en el método noticiaToDto() de la clase proyecto.periodico.servicios.ImplementacionNoticiaToDTO
+2024-05-31T17:05:23.200+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Saliendo del método noticiaToDto() de la clase proyecto.periodico.servicios.ImplementacionNoticiaToDTO
+2024-05-31T17:05:23.200+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Entrando en el método resumirNoticia() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:05:23.200+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Saliendo del método resumirNoticia() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:05:23.200+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Entrando en el método resumirNoticia2() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:05:23.200+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Saliendo del método resumirNoticia2() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:05:23.201+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Entrando en el método resumirNoticia() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:05:23.201+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Saliendo del método resumirNoticia() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:05:23.202+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Entrando en el método resumirNoticia2() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:05:23.202+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Saliendo del método resumirNoticia2() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:05:23.202+02:00  INFO 8496 --- [http-nio-8080-exec-4] proyecto.periodico.utils.EscribirLog     : Saliendo del método loginCorrecto() de la clase proyecto.periodico.controladores.loginRegistroControl
+2024-05-31T17:05:25.145+02:00  INFO 8496 --- [http-nio-8080-exec-5] proyecto.periodico.utils.EscribirLog     : Entrando en el método mostrarPanelUsuario() de la clase proyecto.periodico.controladores.panelUsuarioControl
+2024-05-31T17:05:25.146+02:00  INFO 8496 --- [http-nio-8080-exec-5] proyecto.periodico.utils.EscribirLog     : Entrando en el método buscarPorEmail() de la clase proyecto.periodico.servicios.ImplementacionUsuario
+2024-05-31T17:05:25.146+02:00  INFO 8496 --- [http-nio-8080-exec-5] proyecto.periodico.utils.EscribirLog     : Entrando en el método findFirstByEmailUsuario() de la clase jdk.proxy2.$Proxy122
+2024-05-31T17:05:25.148+02:00  INFO 8496 --- [http-nio-8080-exec-5] proyecto.periodico.utils.EscribirLog     : Saliendo del método findFirstByEmailUsuario() de la clase jdk.proxy2.$Proxy122
+2024-05-31T17:05:25.148+02:00  INFO 8496 --- [http-nio-8080-exec-5] proyecto.periodico.utils.EscribirLog     : Saliendo del método buscarPorEmail() de la clase proyecto.periodico.servicios.ImplementacionUsuario
+2024-05-31T17:05:25.148+02:00  INFO 8496 --- [http-nio-8080-exec-5] proyecto.periodico.utils.EscribirLog     : Entrando en el método usuarioToDto() de la clase proyecto.periodico.servicios.ImplementacionUsuarioToDto
+2024-05-31T17:05:25.148+02:00  INFO 8496 --- [http-nio-8080-exec-5] proyecto.periodico.utils.EscribirLog     : Saliendo del método usuarioToDto() de la clase proyecto.periodico.servicios.ImplementacionUsuarioToDto
+2024-05-31T17:05:25.190+02:00  INFO 8496 --- [http-nio-8080-exec-5] proyecto.periodico.utils.EscribirLog     : Saliendo del método mostrarPanelUsuario() de la clase proyecto.periodico.controladores.panelUsuarioControl
+2024-05-31T17:05:27.849+02:00  INFO 8496 --- [http-nio-8080-exec-2] proyecto.periodico.utils.EscribirLog     : Entrando en el método loginCorrecto() de la clase proyecto.periodico.controladores.loginRegistroControl
+2024-05-31T17:05:27.850+02:00  INFO 8496 --- [http-nio-8080-exec-2] proyecto.periodico.utils.EscribirLog     : Entrando en el método estaLaCuentaConfirmada() de la clase proyecto.periodico.servicios.ImplementacionUsuario
+2024-05-31T17:05:27.850+02:00  INFO 8496 --- [http-nio-8080-exec-2] proyecto.periodico.utils.EscribirLog     : Entrando en el método findFirstByEmailUsuario() de la clase jdk.proxy2.$Proxy122
+2024-05-31T17:05:27.852+02:00  INFO 8496 --- [http-nio-8080-exec-2] proyecto.periodico.utils.EscribirLog     : Saliendo del método findFirstByEmailUsuario() de la clase jdk.proxy2.$Proxy122
+2024-05-31T17:05:27.852+02:00  INFO 8496 --- [http-nio-8080-exec-2] proyecto.periodico.utils.EscribirLog     : Saliendo del método estaLaCuentaConfirmada() de la clase proyecto.periodico.servicios.ImplementacionUsuario
+2024-05-31T17:05:27.852+02:00  INFO 8496 --- [http-nio-8080-exec-2] proyecto.periodico.utils.EscribirLog     : Entrando en el método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:05:27.852+02:00  INFO 8496 --- [http-nio-8080-exec-2] proyecto.periodico.utils.EscribirLog     : Entrando en el método findAll() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:05:27.856+02:00  INFO 8496 --- [http-nio-8080-exec-2] proyecto.periodico.utils.EscribirLog     : Saliendo del método findAll() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:05:27.856+02:00  INFO 8496 --- [http-nio-8080-exec-2] proyecto.periodico.utils.EscribirLog     : Entrando en el método listaNoticiasToDto() de la clase proyecto.periodico.servicios.ImplementacionNoticiaToDTO
+2024-05-31T17:05:27.856+02:00  INFO 8496 --- [http-nio-8080-exec-2] proyecto.periodico.utils.EscribirLog     : Saliendo del método listaNoticiasToDto() de la clase proyecto.periodico.servicios.ImplementacionNoticiaToDTO
+2024-05-31T17:05:27.856+02:00  INFO 8496 --- [http-nio-8080-exec-2] proyecto.periodico.utils.EscribirLog     : Saliendo del método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:05:27.857+02:00  INFO 8496 --- [http-nio-8080-exec-2] proyecto.periodico.utils.EscribirLog     : Entrando en el método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionCategoria
+2024-05-31T17:05:27.857+02:00  INFO 8496 --- [http-nio-8080-exec-2] proyecto.periodico.utils.EscribirLog     : Entrando en el método findAll() de la clase jdk.proxy2.$Proxy125
+2024-05-31T17:05:27.858+02:00  INFO 8496 --- [http-nio-8080-exec-2] proyecto.periodico.utils.EscribirLog     : Saliendo del método findAll() de la clase jdk.proxy2.$Proxy125
+2024-05-31T17:05:27.858+02:00  INFO 8496 --- [http-nio-8080-exec-2] proyecto.periodico.utils.EscribirLog     : Entrando en el método listaCategoriaToDto() de la clase proyecto.periodico.servicios.ImplementacionCategoriaToDTO
+2024-05-31T17:05:27.858+02:00  INFO 8496 --- [http-nio-8080-exec-2] proyecto.periodico.utils.EscribirLog     : Saliendo del método listaCategoriaToDto() de la clase proyecto.periodico.servicios.ImplementacionCategoriaToDTO
+2024-05-31T17:05:27.858+02:00  INFO 8496 --- [http-nio-8080-exec-2] proyecto.periodico.utils.EscribirLog     : Saliendo del método buscarTodas() de la clase proyecto.periodico.servicios.ImplementacionCategoria
+2024-05-31T17:05:27.859+02:00  INFO 8496 --- [http-nio-8080-exec-2] proyecto.periodico.utils.EscribirLog     : Entrando en el método obtenerNoticiaMasReciente() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:05:27.859+02:00  INFO 8496 --- [http-nio-8080-exec-2] proyecto.periodico.utils.EscribirLog     : Entrando en el método findAllByOrderByFchaPublicacionDesc() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:05:27.861+02:00  INFO 8496 --- [http-nio-8080-exec-2] proyecto.periodico.utils.EscribirLog     : Saliendo del método findAllByOrderByFchaPublicacionDesc() de la clase jdk.proxy2.$Proxy124
+2024-05-31T17:05:27.861+02:00  INFO 8496 --- [http-nio-8080-exec-2] proyecto.periodico.utils.EscribirLog     : Saliendo del método obtenerNoticiaMasReciente() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:05:27.861+02:00  INFO 8496 --- [http-nio-8080-exec-2] proyecto.periodico.utils.EscribirLog     : Entrando en el método noticiaToDto() de la clase proyecto.periodico.servicios.ImplementacionNoticiaToDTO
+2024-05-31T17:05:27.862+02:00  INFO 8496 --- [http-nio-8080-exec-2] proyecto.periodico.utils.EscribirLog     : Saliendo del método noticiaToDto() de la clase proyecto.periodico.servicios.ImplementacionNoticiaToDTO
+2024-05-31T17:05:27.862+02:00  INFO 8496 --- [http-nio-8080-exec-2] proyecto.periodico.utils.EscribirLog     : Entrando en el método resumirNoticia() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:05:27.862+02:00  INFO 8496 --- [http-nio-8080-exec-2] proyecto.periodico.utils.EscribirLog     : Saliendo del método resumirNoticia() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:05:27.862+02:00  INFO 8496 --- [http-nio-8080-exec-2] proyecto.periodico.utils.EscribirLog     : Entrando en el método resumirNoticia2() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:05:27.862+02:00  INFO 8496 --- [http-nio-8080-exec-2] proyecto.periodico.utils.EscribirLog     : Saliendo del método resumirNoticia2() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:05:27.862+02:00  INFO 8496 --- [http-nio-8080-exec-2] proyecto.periodico.utils.EscribirLog     : Entrando en el método resumirNoticia() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:05:27.862+02:00  INFO 8496 --- [http-nio-8080-exec-2] proyecto.periodico.utils.EscribirLog     : Saliendo del método resumirNoticia() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:05:27.862+02:00  INFO 8496 --- [http-nio-8080-exec-2] proyecto.periodico.utils.EscribirLog     : Entrando en el método resumirNoticia2() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:05:27.863+02:00  INFO 8496 --- [http-nio-8080-exec-2] proyecto.periodico.utils.EscribirLog     : Saliendo del método resumirNoticia2() de la clase proyecto.periodico.servicios.ImplementacionNoticia
+2024-05-31T17:05:27.863+02:00  INFO 8496 --- [http-nio-8080-exec-2] proyecto.periodico.utils.EscribirLog     : Saliendo del método loginCorrecto() de la clase proyecto.periodico.controladores.loginRegistroControl
+2024-05-31T17:05:28.337+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Entrando en el método mostrarPanelUsuario() de la clase proyecto.periodico.controladores.panelUsuarioControl
+2024-05-31T17:05:28.338+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Entrando en el método buscarPorEmail() de la clase proyecto.periodico.servicios.ImplementacionUsuario
+2024-05-31T17:05:28.338+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Entrando en el método findFirstByEmailUsuario() de la clase jdk.proxy2.$Proxy122
+2024-05-31T17:05:28.339+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Saliendo del método findFirstByEmailUsuario() de la clase jdk.proxy2.$Proxy122
+2024-05-31T17:05:28.340+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Saliendo del método buscarPorEmail() de la clase proyecto.periodico.servicios.ImplementacionUsuario
+2024-05-31T17:05:28.340+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Entrando en el método usuarioToDto() de la clase proyecto.periodico.servicios.ImplementacionUsuarioToDto
+2024-05-31T17:05:28.340+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Saliendo del método usuarioToDto() de la clase proyecto.periodico.servicios.ImplementacionUsuarioToDto
+2024-05-31T17:05:28.360+02:00  INFO 8496 --- [http-nio-8080-exec-6] proyecto.periodico.utils.EscribirLog     : Saliendo del método mostrarPanelUsuario() de la clase proyecto.periodico.controladores.panelUsuarioControl
