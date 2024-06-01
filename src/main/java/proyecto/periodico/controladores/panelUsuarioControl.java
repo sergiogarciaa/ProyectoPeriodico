@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import proyecto.periodico.servicios.InterfazUsuario;
 import proyecto.periodico.servicios.InterfazUsuarioToDTO;
@@ -39,11 +40,14 @@ public class panelUsuarioControl {
 	private BCryptPasswordEncoder passwordEncoder;
 	
 	@GetMapping("/privada/panelUsuario")
-	public String mostrarPanelUsuario(Authentication authentication, Model model) {
+	public String mostrarPanelUsuario(Authentication authentication, Model model, @RequestParam(required = false) Boolean edicion) {
 	    Usuario usuario = usuarioServicio.buscarPorEmail(authentication.getName());
 	    UsuarioDTO usuarioDTO = usuarioToDTO.usuarioToDto(usuario);
 	    usuarioDTO.setRol(usuario.getRol());
-	    
+	    if (edicion != null && edicion) {
+			model.addAttribute("edicion", "Los datos han sido actualizados");
+
+	    }
 	    List<Comentarios> comentarios = usuario.getUsuarioComentario();
 	    List<Noticia> noticiasPublicadas = usuario.getNoticias();
 	    List<String> titulosNoticias = new ArrayList<>();
@@ -91,8 +95,8 @@ public class panelUsuarioControl {
 
 	    // Actualizar los campos del usuario con los datos del DTO
 	    usuarioServicio.actualizarUsuario(usuarioDTO);
-
-	    return "redirect:/privada/panelUsuario"; // Redirigir de vuelta al panel de usuario
+	    
+	    return "redirect:/privada/panelUsuario?edicion=true"; // Redirigir de vuelta al panel de usuario
 	}
 
 }
