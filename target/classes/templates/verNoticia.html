@@ -102,7 +102,7 @@
 					<div class="d-flex justify-content-center py-2" id="comentarios" th:each="comentario : ${comentarios}">
 						<div class="second py-2 px-2 w-100">
 							<span class="text1" th:text="${comentario.descComentario}" style="word-wrap: break-word;">Type your note, and hit enter to add it</span>
-							<div class="d-flex justify-content-between mt-2">
+							<div class="d-flex justify-content-between mt-2" th:if="${comentario.usuarioComentario.size() > 0}">
 								<div>
 									<img src="https://i.imgur.com/AgAC1Is.jpg" width="18">
 									<span class="text2" th:text="${comentario.usuarioComentario[0].nombreUsuario}"></span>

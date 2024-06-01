@@ -129,6 +129,10 @@ public class loginRegistroControl {
 			model.addAttribute("mensajeRegistroExitoso", "Registro del nuevo usuario OK");
 			return "login";
 		} 
+		 else if (nuevoUsuario == null) {
+			 model.addAttribute("mensajeErrorMail", "Ya existe un usuario con ese email");
+			 return "registro";
+		 }
 		 else if (nuevoUsuario.isCuentaConfirmada()) {
 				return "login";
 			} else {

@@ -46,7 +46,7 @@ public class ImplementacionUsuario implements InterfazUsuario {
 			Usuario usuarioDaoByEmail = repositorio.findFirstByEmailUsuario(userDto.getEmailUsuario());
 
 			if (usuarioDaoByEmail != null) {
-				return null; // Si no es null es que ya está registrado
+				return null; // Si es null es que ya está registrado
 			}
 
 			// Si continua la ejecución es que el email no se encuentra ya registrado

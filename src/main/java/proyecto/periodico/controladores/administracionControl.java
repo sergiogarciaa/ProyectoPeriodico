@@ -137,7 +137,8 @@ public class administracionControl {
 	     if (!usuarioDTO.isCuentaConfirmada()) {
 	    	    usuarioDTO.setCuentaConfirmada(usuarioExistente.isCuentaConfirmada());
 	    	}
-	  
+	     usuarioDTO.setEmailUsuario(usuarioExistente.getEmailUsuario());
+	     usuarioDTO.setUsuarioComentario(usuarioExistente.getUsuarioComentario());
 	     // Guardar el usuario actualizado en la base de datos
 	     usuarioServicio.actualizarUsuario(usuarioDTO);
 

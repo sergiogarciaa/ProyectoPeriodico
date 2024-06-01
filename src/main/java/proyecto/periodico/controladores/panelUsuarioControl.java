@@ -87,6 +87,7 @@ public class panelUsuarioControl {
 	    usuarioDTO.setId(usuarioExistente.getIdUsuario());
 	    usuarioDTO.setEmailUsuario(usuarioExistente.getEmailUsuario()); // Email no editable
 	    usuarioDTO.setRol(usuarioExistente.getRol());
+	    usuarioDTO.setUsuarioComentario(usuarioExistente.getUsuarioComentario());
 
 	    // Actualizar los campos del usuario con los datos del DTO
 	    usuarioServicio.actualizarUsuario(usuarioDTO);
