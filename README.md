@@ -23,5 +23,5 @@ Sin acceder, los usuarios solo podrán acceder a las cuatro últimas noticias, l
 
 En **"La Revista"**, nos esforzamos por ofrecer una experiencia informativa y participativa para todos nuestros lectores, manteniendo altos estándares de calidad y veracidad en nuestro contenido. ¡Bienvenidos a nuestra comunidad periodística!
 
-**Manual de Usuario
+## Manual de Usuario
 https://docs.google.com/document/d/1NdWi2El6Tv6RNFm_mLg3ygwc7QuBVkWsDjgDf9SHQMY/edit?usp=sharing
